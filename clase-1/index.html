@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Introducción a la Programación - imyisusdev</title>
+
+    <!-- use icon -->
+    <link
+      rel="icon"
+      href="https://avatars.githubusercontent.com/u/188985435?v=4"
+    />
+
+    <!-- Reveal.js CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css"
+    />
+    <!-- Usamos el tema blanco como base -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/white.min.css"
+    />
+
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* --- ESTILOS PERSONALIZADOS (B&W THEME) --- */
+
+      .reveal {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        color: #1a1a1a;
+      }
+
+      /* Variables de marca B&W con un toque de acento */
+      :root {
+        --brand-dark: #000000;
+        --brand-gray: #f3f4f6;
+        --accent-color: #4f46e5; /* Un índigo sutil para resaltar sin romper el B&W */
+      }
+
+      /* Fondo de diapositivas */
+      .reveal .slides section {
+        background: transparent;
+      }
+
+      /* Títulos */
+      .reveal h1,
+      .reveal h2,
+      .reveal h3,
+      .reveal h4 {
+        color: #111;
+        font-weight: 800;
+        text-transform: none;
+        letter-spacing: -1px;
+      }
+
+      /* Branding Flotante (Versión Light) */
+      #branding-overlay {
+        position: absolute;
+        bottom: 25px;
+        left: 25px;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: monospace;
+        pointer-events: none;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 8px 15px;
+        border-radius: 50px;
+        border: 2px solid #000; /* Borde negro sólido */
+        backdrop-filter: blur(5px);
+        box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1); /* Sombra dura estilo moderno */
+      }
+
+      #branding-overlay img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid #000;
+      }
+
+      #branding-overlay span {
+        color: #000;
+        font-size: 1rem;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+      }
+
+      /* Layout Dividido */
+      .split-container {
+        display: flex;
+        width: 100%;
+        gap: 20px;
+        align-items: stretch;
+        justify-content: center;
+      }
+
+      .split-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 25px;
+        background: #fff;
+        border-radius: 12px;
+        border: 2px solid #e5e7eb;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+      }
+
+      .split-column:hover {
+        transform: translateY(-5px);
+        border-color: #000;
+      }
+
+      /* Tablas B&W */
+      .comparison-table {
+        font-size: 0.8em;
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 15px;
+      }
+      .comparison-table th {
+        text-transform: uppercase;
+        color: #000;
+        border-bottom: 2px solid #000 !important;
+        padding-bottom: 10px;
+        letter-spacing: 2px;
+      }
+      .comparison-table td {
+        background: #fff;
+        padding: 15px;
+        border-bottom: 3px solid #e5e7eb !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        color: #374151;
+      }
+      .comparison-table tr td:first-child {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+      .comparison-table tr td:last-child {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+
+      /* Cards Estilo Minimalista */
+      .bw-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 20px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      }
+      .bw-card:hover {
+        border-color: #000;
+        box-shadow: 5px 5px 0px #000; /* Efecto pop-up B&W */
+        transform: translate(-2px, -2px);
+      }
+
+      /* Código inline estilo GitHub Light */
+      code {
+        font-family: "Fira Code", monospace;
+        color: #e01a76;
+        background: #f3f4f6;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- MARCA DE AGUA FIJA -->
+    <div id="branding-overlay">
+      <img
+        src="https://avatars.githubusercontent.com/u/188985435?v=4"
+        alt="Logo imyisusdev"
+      />
+      <span>imyisusdev</span>
+    </div>
+
+    <div class="reveal">
+      <div class="slides">
+        <!-- 1. PORTADA: Limpia y Minimalista -->
+        <section data-background-color="#ffffff">
+          <div
+            class="flex flex-col items-center justify-center h-full border-4 border-black p-8 relative"
+          >
+            <!-- Decoración esquinas -->
+            <div class="absolute top-0 left-0 w-8 h-8 bg-black"></div>
+            <div class="absolute bottom-0 right-0 w-8 h-8 bg-black"></div>
+
+            <!-- Logo Central -->
+            <div class="mb-8 relative">
+              <img
+                src="https://avatars.githubusercontent.com/u/188985435?v=4"
+                class="w-40 h-40 rounded-full border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,0.2)]"
+              />
+            </div>
+
+            <h1
+              class="text-6xl font-black text-black uppercase tracking-tighter mb-2"
+            >
+              Intro a la <br /><span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-gray-700 to-black"
+                >Programación</span
+              >
+            </h1>
+
+            <div class="h-1 w-24 bg-black my-6"></div>
+
+            <h3 class="text-2xl text-gray-600 font-medium">
+              Descifrando el mundo digital
+            </h3>
+
+            <div class="mt-8">
+              <span
+                class="bg-black text-white px-4 py-1 rounded-full font-mono text-sm"
+                >Instructor: imyisusdev</span
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. ¿QUÉ ES LA PROGRAMACIÓN? -->
+        <section data-background-color="#f9fafb">
+          <h2>¿Qué es la Programación?</h2>
+          <div class="grid grid-cols-2 gap-12 items-center mt-12">
+            <div class="fragment fade-right relative">
+              <!-- Marco estilo polaroid -->
+              <div
+                class="bg-white p-4 shadow-xl rotate-[-2deg] border border-gray-200"
+              >
+                <img
+                  src="https://plus.unsplash.com/premium_vector-1726854249045-a64a5bd32275"
+                  class="w-full h-64 object-cover grayscale hover:grayscale-0 transition duration-500"
+                />
+                <p class="mt-4 text-center font-handwriting text-gray-500">
+                  ¿Es Magia?
+                </p>
+              </div>
+            </div>
+            <div class="fragment fade-left">
+              <div
+                class="bg-white p-8 rounded-2xl border-l-8 border-black shadow-lg"
+              >
+                <div class="gap-4 mb-4">
+                  <i class="fas fa-list-ol text-4xl text-black"></i>
+                  <p class="text-3xl font-bold m-0">Instrucciones</p>
+                </div>
+                <p class="text-xl text-gray-600 leading-relaxed">
+                  Es simplemente decirle a la computadora
+                  <b class="bg-yellow-200 px-1 text-black">qué hacer</b> paso a
+                  paso.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. SOFTWARE VS HARDWARE -->
+        <section data-background-color="#ffffff">
+          <!-- Título fijo -->
+          <div
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 100px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <h2 class="m-0 border-b-4 border-black pb-2">
+              Hardware vs. Software
+            </h2>
+          </div>
+
+          <div style="margin-top: 120px" class="split-container h-[400px]">
+            <!-- Columna Hardware -->
+            <div class="split-column fragment zoom-in group">
+              <div
+                class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-6 border-2 border-black group-hover:bg-black group-hover:text-white transition"
+              >
+                <i class="fas fa-hammer text-4xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-black">Hardware</h3>
+              <p class="text-lg my-4 text-gray-600">
+                Lo que puedes
+                <b class="border-b-2 border-black text-black">TOCAR</b>
+              </p>
+              <div class="flex gap-4 text-2xl text-gray-400 mt-auto">
+                <i class="fas fa-mobile-alt"></i>
+                <i class="fas fa-desktop"></i>
+                <i class="fas fa-microchip"></i>
+              </div>
+              <p
+                class="text-xs text-gray-400 mt-4 uppercase tracking-widest font-bold"
+              >
+                El Cuerpo
+              </p>
+            </div>
+
+            <!-- Columna Software -->
+            <div class="split-column fragment zoom-in group">
+              <div
+                class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-6 border-2 border-black group-hover:bg-black group-hover:text-white transition"
+              >
+                <i class="fas fa-ghost text-4xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-black">Software</h3>
+              <p class="text-lg my-4 text-gray-600">
+                Lo que
+                <b class="border-b-2 border-black text-black">NO</b> tocas
+              </p>
+              <div class="flex gap-4 text-2xl text-gray-400 mt-auto">
+                <i class="fab fa-whatsapp"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fas fa-gamepad"></i>
+              </div>
+              <p
+                class="text-xs text-gray-400 mt-4 uppercase tracking-widest font-bold"
+              >
+                La Mente
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. ¿QUÉ ES UN ALGORITMO? -->
+        <section data-background-color="#f3f4f6">
+          <h2>¿Qué es un Algoritmo?</h2>
+          <p class="text-xl mb-8 text-gray-500 font-mono">
+            "Pasos ordenados para resolver un problema"
+          </p>
+
+          <div
+            class="bg-white p-8 rounded-xl max-w-2xl mx-auto border-2 border-gray-200 shadow-[10px_10px_0px_rgba(0,0,0,1)]"
+          >
+            <h4
+              class="text-black mb-6 flex items-center justify-center gap-3 font-bold border-b pb-4"
+            >
+              <i class="fas fa-tooth text-gray-400"></i> Algoritmo: Cepillarse
+            </h4>
+            <ul class="text-left space-y-4 text-gray-700">
+              <li class="fragment fade-down flex items-center gap-4">
+                <span
+                  class="bg-black text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-md"
+                  >1</span
+                >
+                Tomar cepillo y pasta
+              </li>
+              <li class="fragment fade-down flex items-center gap-4">
+                <span
+                  class="bg-black text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-md"
+                  >2</span
+                >
+                Poner pasta en el cepillo
+              </li>
+              <li class="fragment fade-down flex items-center gap-4">
+                <span
+                  class="bg-black text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-md"
+                  >3</span
+                >
+                Cepillar dientes por 2 min
+              </li>
+              <li class="fragment fade-down flex items-center gap-4">
+                <span
+                  class="bg-black text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-md"
+                  >4</span
+                >
+                Enjuagar
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 5. EL LENGUAJE -->
+        <section data-background-color="#ffffff">
+          <h2>El Lenguaje</h2>
+          <div
+            class="flex items-center justify-center gap-6 mt-12 bg-gray-50 p-8 rounded-3xl border border-gray-200"
+          >
+            <div class="text-center fragment w-1/4">
+              <div
+                class="bg-white w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-gray-300 shadow-sm"
+              >
+                <i class="fas fa-user text-5xl text-gray-700"></i>
+              </div>
+              <p class="mt-2 font-bold text-black">Tú</p>
+              <div
+                class="bg-gray-200 px-3 py-1 rounded-full mt-1 text-xs text-gray-600 font-bold"
+              >
+                Español
+              </div>
+            </div>
+
+            <div class="flex-1 flex flex-col items-center fragment">
+              <i class="fas fa-arrow-right text-4xl text-gray-300 mb-2"></i>
+              <div
+                class="bg-black text-white px-6 py-3 rounded-lg font-mono font-bold shadow-xl transform hover:scale-110 transition-transform cursor-pointer border-2 border-black hover:bg-white hover:text-black"
+              >
+                TRADUCTOR
+              </div>
+              <p class="text-xs text-gray-500 mt-3 font-mono font-bold">
+                (Python, JS, C++)
+              </p>
+              <i class="fas fa-arrow-right text-4xl text-gray-300 mt-2"></i>
+            </div>
+
+            <div class="text-center fragment w-1/4">
+              <div
+                class="bg-white w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-gray-300 shadow-sm"
+              >
+                <i class="fas fa-laptop text-5xl text-gray-700"></i>
+              </div>
+              <p class="mt-2 font-bold text-black">PC</p>
+              <div
+                class="bg-gray-200 px-3 py-1 rounded-full mt-1 text-xs font-mono text-gray-600 font-bold"
+              >
+                010101
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. NIVELES DE LENGUAJE -->
+        <section data-background-color="#ffffff">
+          <h3>Niveles de Lenguaje</h3>
+          <div
+            class="flex flex-col items-center justify-center w-3/4 mx-auto mt-8 gap-3"
+          >
+            <!-- Alto Nivel -->
+            <div
+              class="w-full bg-white p-5 rounded-t-xl fragment fade-in-then-semi-out border-2 border-black shadow-lg relative z-20"
+            >
+              <div class="flex justify-between items-center">
+                <h4
+                  class="text-black m-0 text-xl font-bold flex items-center gap-2"
+                >
+                  <i class="fas fa-cloud text-blue-500"></i> Alto Nivel
+                </h4>
+                <div class="flex gap-3 text-2xl text-gray-600">
+                  <i class="fab fa-python"></i> <i class="fab fa-js"></i>
+                </div>
+              </div>
+              <p class="text-sm text-gray-500 mt-2">Parece inglés. Fácil.</p>
+              <code class="block mt-2 border border-gray-300"
+                >print("Hola Mundo")</code
+              >
+            </div>
+
+            <!-- Bajo Nivel -->
+            <div
+              class="w-11/12 bg-gray-100 p-4 fragment fade-in-then-semi-out border-x-2 border-b-2 border-gray-400 relative z-10"
+            >
+              <h4 class="text-gray-800 m-0 text-lg font-bold">Bajo Nivel</h4>
+              <p class="text-sm text-gray-500 mt-1">Control del hardware.</p>
+              <code class="block mt-2 text-gray-600 bg-gray-200"
+                >MOV AX, 1</code
+              >
+            </div>
+
+            <!-- Máquina -->
+            <div class="w-10/12 bg-gray-800 p-4 rounded-b-xl fragment fade-in">
+              <h4 class="!text-white m-0 text-base font-bold">
+                Lenguaje Máquina
+              </h4>
+              <p class="text-sm text-gray-400 mt-1">Solo para el procesador.</p>
+              <code
+                class="block mt-2 text-green-400 bg-black font-mono text-xs tracking-widest border border-green-900"
+                >01010111</code
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. COMPILADOR VS INTÉRPRETE -->
+        <section data-background-color="#f9fafb">
+          <h2 class="mb-8">¿Cómo se traduce?</h2>
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th class="w-1/2">Compilador</th>
+                <th class="w-1/2">Intérprete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="fragment">
+                <td class="text-center align-middle">
+                  <i class="fas fa-book text-4xl text-red-400 mb-2"></i><br />
+                  Traduce el libro <b>entero</b> antes.
+                </td>
+                <td class="text-center align-middle">
+                  <i class="fas fa-language text-4xl text-green-400 mb-2"></i
+                  ><br />
+                  Traduce <b>frase por frase</b> en vivo.
+                </td>
+              </tr>
+              <tr class="fragment">
+                <td class="bg-white/5 border-l-2 border-red-500">
+                  Crea un archivo (.exe). Súper rápido.
+                </td>
+                <td class="bg-white/5 border-l-2 border-green-500">
+                  Se ejecuta al momento. Fácil de probar.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- 8. ¿QUÉ ES CÓDIGO? (Sección oscura para contraste) -->
+        <section data-background-color="#ffffff">
+          <div
+            class="relative p-8 border border-gray-800 rounded-xl max-w-4xl mx-auto"
+          >
+            <!-- Decoración tipo editor -->
+            <div class="flex gap-2 mb-6">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+
+            <h2 class="text-white font-mono text-left mb-4">¿Qué es Código?</h2>
+            <p class="text-xl text-gray-400 font-light text-left mb-8">
+              El texto que da vida a las ideas.
+            </p>
+
+            <div
+              class="text-left bg-gray-900 p-6 rounded-lg font-mono text-lg border-l-4 border-green-500 shadow-2xl"
+            >
+              <span class="text-purple-400">if</span> (<span
+                class="text-blue-300"
+                >tienes_hambre</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="text-yellow-300">comer</span>(<span
+                class="text-green-300"
+                >"Pizza"</span
+              >);<br />
+              } <span class="text-purple-400">else</span> {<br />
+              &nbsp;&nbsp;<span class="text-yellow-300">programar</span
+              >();<br />
+              }
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. MITO MATEMÁTICAS -->
+        <section data-background-color="#ffffff">
+          <h2>¿Genio Matemático?</h2>
+          <div class="flex justify-center items-center gap-12 mt-12">
+            <div class="relative fragment fade-right group">
+              <div
+                class="bg-gray-100 p-6 rounded-2xl text-black font-serif italic w-48 h-48 flex flex-col items-center justify-center opacity-50 grayscale border-2 border-gray-200"
+              >
+                <span class="text-2xl">∫ x² dx</span>
+                <span class="text-xs mt-2 text-gray-500">Cálculo</span>
+              </div>
+              <!-- X Gigante -->
+              <i
+                class="fas fa-times text-red-500 text-[10rem] absolute inset-0 flex items-center justify-center -mt-4 opacity-0 group-hover:opacity-100 transition duration-300 transform scale-150 drop-shadow-lg"
+              ></i>
+            </div>
+
+            <div class="relative fragment fade-left">
+              <div
+                class="bg-black p-6 rounded-2xl w-56 h-56 flex flex-col items-center justify-center shadow-2xl transform scale-110 border-4 border-gray-800"
+              >
+                <i
+                  class="fas fa-puzzle-piece text-6xl text-white animate-pulse"
+                ></i>
+                <span class="text-xl mt-4 font-bold tracking-wider text-white"
+                  >LÓGICA</span
+                >
+              </div>
+              <div
+                class="absolute -top-5 -right-5 bg-green-500 text-white px-4 rounded-full shadow-lg border-4 border-white"
+              >
+                <i class="fas fa-check text-2xl"></i>
+              </div>
+            </div>
+          </div>
+          <p class="fragment mt-12 text-xl text-gray-600">
+            Es más como resolver un <b>rompecabezas</b>.
+          </p>
+        </section>
+
+        <!-- 10. FRONTEND VS BACKEND -->
+        <section data-background-color="#f3f4f6">
+          <h3 class="mb-8">El Restaurante Digital</h3>
+          <div class="grid grid-cols-3 gap-4 h-80">
+            <!-- Frontend -->
+            <div
+              class="bg-white p-6 rounded-xl flex flex-col items-center justify-between border-t-8 border-pink-500 shadow-md fragment fade-up"
+            >
+              <div class="text-pink-600 font-bold text-xl tracking-wider">
+                FRONTEND
+              </div>
+              <i class="fas fa-utensils text-5xl text-gray-300"></i>
+              <div class="text-sm text-center">
+                <p class="font-bold text-black text-lg">El Comedor</p>
+                <p class="text-gray-500 mt-2 text-xs">Lo que el cliente ve.</p>
+                <span
+                  class="inline-block mt-3 px-2 py-1 bg-pink-600 text-white rounded text-xs"
+                  >HTML / CSS</span
+                >
+              </div>
+            </div>
+
+            <!-- API / Waiter -->
+            <div
+              class="bg-white p-6 rounded-xl flex flex-col items-center justify-between border-t-8 border-yellow-400 shadow-md fragment fade-up scale-105 z-10"
+            >
+              <div class="text-yellow-600 font-bold text-xl tracking-wider">
+                INTERNET
+              </div>
+              <i class="fas fa-concierge-bell text-5xl text-gray-300"></i>
+              <div class="text-sm text-center">
+                <p class="font-bold text-black text-lg">El Mesero</p>
+                <p class="text-gray-500 mt-2 text-xs">Lleva y trae pedidos.</p>
+              </div>
+            </div>
+
+            <!-- Backend -->
+            <div
+              class="bg-white p-6 rounded-xl flex flex-col items-center justify-between border-t-8 border-blue-600 shadow-md fragment fade-up"
+            >
+              <div class="text-blue-700 font-bold text-xl tracking-wider">
+                BACKEND
+              </div>
+              <i class="fas fa-fire-burner text-5xl text-gray-300"></i>
+              <div class="text-sm text-center">
+                <p class="font-bold text-black text-lg">La Cocina</p>
+                <p class="text-gray-500 mt-2 text-xs">Donde ocurre la magia.</p>
+                <span
+                  class="inline-block mt-3 px-2 py-1 bg-blue-700 text-white rounded text-xs"
+                  >Python / DB</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 11. NIVELES (JUNIOR/MID/SENIOR) -->
+        <section data-background-color="#ffffff">
+          <div
+            style="position: absolute; top: 0; left: 0; right: 0; z-index: 10"
+          >
+            <h3>Niveles de Experiencia</h3>
+          </div>
+
+          <div
+            class="flex justify-center items-end gap-6 h-[500px] pb-10 mt-12"
+          >
+            <!-- Junior -->
+            <div
+              class="flex flex-col items-center w-1/3 fragment fade-up group"
+            >
+              <div
+                class="relative transition transform group-hover:-translate-y-2"
+              >
+                <i class="fas fa-user text-5xl text-green-500 mb-2"></i>
+                <span
+                  class="absolute -top-3 -right-3 bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded-full border border-green-500"
+                  >Lvl 1</span
+                >
+              </div>
+              <div
+                class="h-24 w-16 bg-green-200 rounded-t border-x-2 border-t-2 border-green-500"
+              ></div>
+              <div
+                class="bg-white p-4 rounded-xl w-full text-center mt-2 border-2 border-green-100 shadow-lg"
+              >
+                <p class="font-bold text-green-600 text-xl">JUNIOR</p>
+                <p class="text-xs text-gray-500 mt-2">Aprende. Erra.</p>
+              </div>
+            </div>
+
+            <!-- Mid -->
+            <div
+              class="flex flex-col items-center w-1/3 fragment fade-up group transition-all delay-100"
+            >
+              <div
+                class="relative transition transform group-hover:-translate-y-2"
+              >
+                <i class="fas fa-user-shield text-6xl text-yellow-500 mb-2"></i>
+                <span
+                  class="absolute -top-3 -right-3 bg-yellow-100 text-yellow-800 text-[10px] font-bold px-2 py-1 rounded-full border border-yellow-500"
+                  >Lvl 50</span
+                >
+              </div>
+              <div
+                class="h-40 w-16 bg-yellow-200 rounded-t border-x-2 border-t-2 border-yellow-500"
+              ></div>
+              <div
+                class="bg-white p-4 rounded-xl w-full text-center mt-2 border-2 border-yellow-100 shadow-lg"
+              >
+                <p class="font-bold text-yellow-600 text-xl">MID</p>
+                <p class="text-xs text-gray-500 mt-2">Independiente.</p>
+              </div>
+            </div>
+
+            <!-- Senior -->
+            <div
+              class="flex flex-col items-center w-1/3 fragment fade-up group transition-all delay-200"
+            >
+              <div
+                class="relative transition transform group-hover:-translate-y-2"
+              >
+                <i class="fas fa-user-astronaut text-7xl text-red-600 mb-2"></i>
+                <span
+                  class="absolute -top-3 -right-3 bg-red-100 text-red-800 text-[10px] font-bold px-2 py-1 rounded-full border border-red-500"
+                  >Lvl 99</span
+                >
+              </div>
+              <div
+                class="h-56 w-16 bg-red-200 rounded-t border-x-2 border-t-2 border-red-500"
+              ></div>
+              <div
+                class="bg-white p-4 rounded-xl w-full text-center mt-2 border-2 border-red-100 shadow-lg"
+              >
+                <p class="font-bold text-red-600 text-xl">SENIOR</p>
+                <p class="text-xs text-gray-500 mt-2">Maestro. Guía.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 12. ÁREAS Y TIPOS DE TRABAJO -->
+        <section data-background-color="#f9fafb">
+          <h3>Áreas de Interés</h3>
+          <div class="grid grid-cols-3 gap-6 mt-8">
+            <!-- Cards Minimalistas -->
+            <div class="bw-card group transition fragment zoom-in">
+              <i
+                class="fas fa-mobile-alt text-4xl text-black mb-4 group-hover:scale-125 transition-transform duration-300"
+              ></i>
+              <h4 class="text-lg font-bold text-gray-800">Apps</h4>
+            </div>
+
+            <div class="bw-card group transition fragment zoom-in">
+              <i
+                class="fas fa-gamepad text-4xl text-black mb-4 group-hover:scale-125 transition-transform duration-300"
+              ></i>
+              <h4 class="text-lg font-bold text-gray-800">Juegos</h4>
+            </div>
+
+            <div class="bw-card group transition fragment zoom-in">
+              <i
+                class="fas fa-brain text-4xl text-black mb-4 group-hover:scale-125 transition-transform duration-300"
+              ></i>
+              <h4 class="text-lg font-bold text-gray-800">IA</h4>
+            </div>
+
+            <div class="bw-card group transition fragment zoom-in">
+              <i
+                class="fas fa-globe text-4xl text-black mb-4 group-hover:scale-125 transition-transform duration-300"
+              ></i>
+              <h4 class="text-lg font-bold text-gray-800">Web</h4>
+            </div>
+
+            <div class="bw-card group transition fragment zoom-in">
+              <i
+                class="fas fa-user-secret text-4xl text-black mb-4 group-hover:scale-125 transition-transform duration-300"
+              ></i>
+              <h4 class="text-lg font-bold text-gray-800">Seguridad</h4>
+            </div>
+
+            <div class="bw-card group transition fragment zoom-in">
+              <i
+                class="fas fa-chart-line text-4xl text-black mb-4 group-hover:scale-125 transition-transform duration-300"
+              ></i>
+              <h4 class="text-lg font-bold text-gray-800">Datos</h4>
+            </div>
+          </div>
+        </section>
+
+        <!-- 13. CARRERA Y FUTURO -->
+        <section data-background-color="#ffffff">
+          <h3>Carrera y Futuro</h3>
+          <div class="flex gap-8 items-center justify-center mt-8">
+            <div
+              class="w-1/2 text-left bg-gray-50 p-6 rounded-xl border-l-4 border-black"
+            >
+              <h4 class="text-lg text-black mb-4 font-bold">Rutas</h4>
+              <ul class="space-y-4 text-gray-700">
+                <li class="flex items-center gap-3">
+                  <i class="fas fa-graduation-cap"></i> Ingeniería
+                </li>
+                <li class="flex items-center gap-3">
+                  <i class="fas fa-laptop-code"></i> Ciencias Comp.
+                </li>
+                <li class="flex items-center gap-3">
+                  <i class="fas fa-bolt"></i> Autodidacta
+                </li>
+              </ul>
+            </div>
+            <div
+              class="w-1/2 bg-white p-6 rounded-xl border-2 border-gray-100 shadow-xl relative overflow-hidden"
+            >
+              <p class="text-green-600 font-black mb-4 text-xl uppercase">
+                <i class="fas fa-money-bill-wave mr-2"></i> Alta Demanda
+              </p>
+              <div
+                class="w-full h-40 flex items-end justify-around px-4 pb-0 relative border-b border-gray-300"
+              >
+                <!-- Barras gráficas -->
+                <div class="w-10 bg-gray-300 h-1/4 rounded-t mx-1"></div>
+                <div class="w-10 bg-gray-400 h-2/4 rounded-t mx-1"></div>
+                <div class="w-10 bg-gray-600 h-3/4 rounded-t mx-1"></div>
+                <div
+                  class="w-10 bg-black h-full rounded-t mx-1 relative shadow-lg"
+                >
+                  <i
+                    class="fas fa-arrow-up text-white absolute -top-8 left-2 animate-bounce bg-black rounded-full p-1 text-xs"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 14. ROADMAP FINAL -->
+        <section data-background-color="#ffffff">
+          <h2 class="text-black mb-8 font-black">Tu Roadmap 🚀</h2>
+          <div class="flex flex-col gap-6 w-3/4 mx-auto">
+            <div class="flex items-center gap-6 fragment fade-right group">
+              <div
+                class="bg-black text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg group-hover:scale-110 transition-transform"
+              >
+                1
+              </div>
+              <div
+                class="bg-white p-4 rounded-xl flex-1 border-2 border-gray-100 shadow-md group-hover:border-black transition-colors"
+              >
+                <h5 class="text-black m-0 text-xl font-bold">Experimentar</h5>
+                <p class="text-sm text-gray-500 m-0 mt-1">Clases de prueba.</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-6 fragment fade-right group">
+              <div
+                class="bg-black text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg group-hover:scale-110 transition-transform"
+              >
+                2
+              </div>
+              <div
+                class="bg-white p-4 rounded-xl flex-1 border-2 border-gray-100 shadow-md group-hover:border-black transition-colors"
+              >
+                <h5 class="text-black m-0 text-xl font-bold">Elegir</h5>
+                <p class="text-sm text-gray-500 m-0 mt-1">¿Visual o Lógica?</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-6 fragment fade-right group">
+              <div
+                class="bg-black text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg group-hover:scale-110 transition-transform"
+              >
+                3
+              </div>
+              <div
+                class="bg-white p-4 rounded-xl flex-1 border-2 border-gray-100 shadow-md group-hover:border-black transition-colors"
+              >
+                <h5 class="text-black m-0 text-xl font-bold">Crear</h5>
+                <p class="text-sm text-gray-500 m-0 mt-1">
+                  Hacer cosas reales.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="mt-16 flex items-center justify-center gap-4 py-2 px-6 rounded-full inline-flex mx-auto border-2 border-black bg-white shadow-[4px_4px_0px_#000]"
+          >
+            <img
+              src="https://avatars.githubusercontent.com/u/188985435?v=4"
+              class="w-10 h-10 rounded-full border border-black"
+            />
+            <span class="font-mono text-lg font-bold text-black"
+              >imyisusdev</span
+            >
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Scripts de Reveal.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        // Cambiar color de la barra de progreso a negro
+        progressColor: "#000000",
+        center: true,
+        transition: "fade",
+        backgroundTransition: "fade",
+      });
+    </script>
+  </body>
+</html>
