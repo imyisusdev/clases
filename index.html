@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clases de Programación - imyisusdev</title>
+    <link
+      rel="icon"
+      href="https://avatars.githubusercontent.com/u/188985435?v=4"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Fira+Code:wght@400;700&display=swap');
+
+      body {
+        font-family: 'Inter', 'Segoe UI', sans-serif;
+        background-color: #fafafa;
+        color: #1a1a1a;
+      }
+
+      .neo-border {
+        border: 3px solid #000000;
+      }
+
+      .neo-shadow {
+        box-shadow: 6px 6px 0px #000000;
+      }
+
+      .neo-shadow-hover {
+        transition: all 0.2s ease-in-out;
+      }
+
+      .neo-shadow-hover:hover {
+        transform: translate(-4px, -4px);
+        box-shadow: 10px 10px 0px #000000;
+      }
+
+      .neo-card {
+        background: #ffffff;
+        border: 3px solid #000000;
+        box-shadow: 6px 6px 0px #000000;
+        transition: all 0.2s ease-in-out;
+      }
+
+      .neo-card:hover {
+        transform: translate(-4px, -4px);
+        box-shadow: 10px 10px 0px #000000;
+      }
+
+      .neo-badge {
+        border: 2px solid #000000;
+        box-shadow: 2px 2px 0px #000000;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col justify-between py-12 px-6">
+    <div class="max-w-4xl mx-auto w-full">
+      <!-- HEADER -->
+      <header class="text-center mb-12">
+        <div class="inline-block relative mb-6">
+          <img
+            src="https://avatars.githubusercontent.com/u/188985435?v=4"
+            alt="Logo imyisusdev"
+            class="w-28 h-28 rounded-full border-4 border-black shadow-[6px_6px_0px_#000000] hover:scale-105 transition-transform duration-300 mx-auto"
+          />
+        </div>
+
+        <!-- Redes del Canal (Neo-brutalistas) -->
+        <div class="flex flex-wrap justify-center gap-3 mb-8">
+          <a
+            href="https://linktr.ee/imyisusdev"
+            target="_blank"
+            title="Linktree"
+            class="w-10 h-10 bg-emerald-400 border-2 border-black rounded flex items-center justify-center text-black shadow-[3px_3px_0px_#000] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000] transition-all"
+          >
+            <i class="fas fa-tree text-lg"></i>
+          </a>
+          <a
+            href="https://github.com/imyisusdev"
+            target="_blank"
+            title="GitHub"
+            class="w-10 h-10 bg-white border-2 border-black rounded flex items-center justify-center text-black shadow-[3px_3px_0px_#000] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000] transition-all"
+          >
+            <i class="fab fa-github text-lg"></i>
+          </a>
+          <a
+            href="https://youtube.com/@imyisusdev"
+            target="_blank"
+            title="YouTube"
+            class="w-10 h-10 bg-red-500 border-2 border-black rounded flex items-center justify-center text-white shadow-[3px_3px_0px_#000] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000] transition-all"
+          >
+            <i class="fab fa-youtube text-lg"></i>
+          </a>
+          <a
+            href="https://instagram.com/imyisusdev"
+            target="_blank"
+            title="Instagram"
+            class="w-10 h-10 bg-pink-500 border-2 border-black rounded flex items-center justify-center text-white shadow-[3px_3px_0px_#000] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000] transition-all"
+          >
+            <i class="fab fa-instagram text-lg"></i>
+          </a>
+          <a
+            href="https://tiktok.com/@imyisusdev"
+            target="_blank"
+            title="TikTok"
+            class="w-10 h-10 bg-black border-2 border-white rounded flex items-center justify-center text-white shadow-[3px_3px_0px_#000] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000] transition-all"
+          >
+            <i class="fab fa-tiktok text-lg"></i>
+          </a>
+          <a
+            href="https://threads.net/@imyisusdev"
+            target="_blank"
+            title="Threads"
+            class="w-10 h-10 bg-white border-2 border-black rounded flex items-center justify-center text-black shadow-[3px_3px_0px_#000] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000] transition-all"
+          >
+            <i class="fab fa-threads text-lg"></i>
+          </a>
+          <a
+            href="https://facebook.com/imyisusdev"
+            target="_blank"
+            title="Facebook"
+            class="w-10 h-10 bg-blue-600 border-2 border-black rounded flex items-center justify-center text-white shadow-[3px_3px_0px_#000] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000] transition-all"
+          >
+            <i class="fab fa-facebook-f text-lg"></i>
+          </a>
+        </div>
+
+        <h1 class="text-5xl font-black uppercase tracking-tight mb-4">
+          Clases de
+          <span
+            class="bg-black text-white px-3 py-1 inline-block transform -rotate-1"
+            >Programación</span
+          >
+        </h1>
+        <p class="text-xl text-gray-600 font-medium max-w-lg mx-auto">
+          El camino hacia el desarrollo de software profesional, explicado de
+          forma lógica, sin rodeos y desde los fundamentos.
+        </p>
+      </header>
+
+      <!-- CLASES GRID -->
+      <main class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <!-- Clase 1 -->
+        <article
+          class="neo-card p-6 flex flex-col justify-between relative overflow-hidden group"
+        >
+          <div
+            class="absolute top-0 right-0 w-12 h-12 bg-black text-white flex items-center justify-center font-bold text-sm transform translate-x-3 -translate-y-3 rotate-45 group-hover:bg-indigo-600 transition-colors"
+          >
+            1
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <span
+                class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full border border-emerald-400"
+                >DISPONIBLE</span
+              >
+              <span class="font-mono text-xs text-gray-500">Clase 1</span>
+            </div>
+            <h2 class="text-2xl font-black mb-3">
+              Introducción a la Programación
+            </h2>
+            <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+              Descifrando el mundo digital. Qué es la programación, algoritmos
+              cotidianos, qué es el código real y desmitificación de mitos
+              lógicos. Frontend vs. Backend al descubierto.
+            </p>
+          </div>
+          <div
+            class="mt-auto pt-4 border-t-2 border-dashed border-gray-200 flex flex-col gap-3"
+          >
+            <div class="flex gap-3">
+              <a
+                href="./clase-1/"
+                class="flex-1 bg-black text-white hover:bg-white hover:text-black border-2 border-black py-2 text-center rounded font-bold transition-all shadow-[3px_3px_0px_rgba(0,0,0,0.25)] text-sm flex items-center justify-center gap-1.5"
+              >
+                <i class="fas fa-desktop"></i> Diapositivas
+              </a>
+              <a
+                href="https://youtube.com/@imyisusdev"
+                target="_blank"
+                class="flex-1 bg-red-600 text-white hover:bg-white hover:text-red-600 border-2 border-red-600 py-2 text-center rounded font-bold transition-all shadow-[3px_3px_0px_rgba(220,38,38,0.25)] text-sm flex items-center justify-center gap-1.5"
+              >
+                <i class="fab fa-youtube"></i> Grabación
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Clase 2 -->
+        <article
+          class="neo-card p-6 flex flex-col justify-between relative overflow-hidden group opacity-85 hover:opacity-100"
+        >
+          <div
+            class="absolute top-0 right-0 w-12 h-12 bg-gray-400 text-white flex items-center justify-center font-bold text-sm transform translate-x-3 -translate-y-3 rotate-45 transition-colors"
+          >
+            2
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <span
+                class="bg-gray-100 text-gray-600 text-xs font-bold px-2.5 py-1 rounded-full border border-gray-300"
+                >PRÓXIMAMENTE</span
+              >
+              <span class="font-mono text-xs text-gray-500">Clase 2</span>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-3">
+              HTML y el Esqueleto Web
+            </h2>
+            <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+              Los cimientos y paredes de tu web. Entendé la estructura de
+              carpetas, etiquetas fundamentales, semántica HTML y creá el
+              esqueleto inicial de tu propia tarjeta de presentación en CodePen.
+            </p>
+          </div>
+          <div
+            class="mt-auto pt-4 border-t-2 border-dashed border-gray-200 flex flex-col gap-3"
+          >
+            <div class="flex gap-3">
+              <span
+                class="flex-1 bg-gray-100 text-gray-400 border-2 border-gray-300 py-2 text-center rounded font-bold text-sm flex items-center justify-center gap-1.5 cursor-not-allowed"
+              >
+                <i class="fas fa-lock"></i> Materiales
+              </span>
+              <span
+                class="flex-1 bg-gray-100 text-gray-400 border-2 border-gray-300 py-2 text-center rounded font-bold text-sm flex items-center justify-center gap-1.5 cursor-not-allowed"
+              >
+                <i class="fab fa-youtube"></i> Grabación
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Clase 3 -->
+        <article
+          class="neo-card p-6 flex flex-col justify-between relative overflow-hidden group opacity-85 hover:opacity-100"
+        >
+          <div
+            class="absolute top-0 right-0 w-12 h-12 bg-gray-400 text-white flex items-center justify-center font-bold text-sm transform translate-x-3 -translate-y-3 rotate-45 transition-colors"
+          >
+            3
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <span
+                class="bg-gray-100 text-gray-600 text-xs font-bold px-2.5 py-1 rounded-full border border-gray-300"
+                >PRÓXIMAMENTE</span
+              >
+              <span class="font-mono text-xs text-gray-500">Clase 3</span>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-3">
+              CSS y el Estilo Neo-brutalista
+            </h2>
+            <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+              Pintura, decoración y distribución. Aprendé el Box Model (márgenes
+              y bordes), fuentes personalizadas, Flexbox para alinear sin sufrir
+              y dale un estilo Neo-brutalista facha a tu Bio Card.
+            </p>
+          </div>
+          <div
+            class="mt-auto pt-4 border-t-2 border-dashed border-gray-200 flex flex-col gap-3"
+          >
+            <div class="flex gap-3">
+              <span
+                class="flex-1 bg-gray-100 text-gray-400 border-2 border-gray-300 py-2 text-center rounded font-bold text-sm flex items-center justify-center gap-1.5 cursor-not-allowed"
+              >
+                <i class="fas fa-lock"></i> Materiales
+              </span>
+              <span
+                class="flex-1 bg-gray-100 text-gray-400 border-2 border-gray-300 py-2 text-center rounded font-bold text-sm flex items-center justify-center gap-1.5 cursor-not-allowed"
+              >
+                <i class="fab fa-youtube"></i> Grabación
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Clase 4 -->
+        <article
+          class="neo-card p-6 flex flex-col justify-between relative overflow-hidden group opacity-85 hover:opacity-100"
+        >
+          <div
+            class="absolute top-0 right-0 w-12 h-12 bg-gray-400 text-white flex items-center justify-center font-bold text-sm transform translate-x-3 -translate-y-3 rotate-45 transition-colors"
+          >
+            4
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <span
+                class="bg-gray-100 text-gray-600 text-xs font-bold px-2.5 py-1 rounded-full border border-gray-300"
+                >PRÓXIMAMENTE</span
+              >
+              <span class="font-mono text-xs text-gray-500">Clase 4</span>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-3">
+              JS y la Vida de tu Tarjeta
+            </h2>
+            <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+              Instalación eléctrica y sensores de movimiento. Entendé variables,
+              funciones y eventos del DOM. Creá botones interactivos, saludos
+              dinámicos, modo oscuro/claro y compartí tu link de CodePen.
+            </p>
+          </div>
+          <div
+            class="mt-auto pt-4 border-t-2 border-dashed border-gray-200 flex flex-col gap-3"
+          >
+            <div class="flex gap-3">
+              <span
+                class="flex-1 bg-gray-100 text-gray-400 border-2 border-gray-300 py-2 text-center rounded font-bold text-sm flex items-center justify-center gap-1.5 cursor-not-allowed"
+              >
+                <i class="fas fa-lock"></i> Materiales
+              </span>
+              <span
+                class="flex-1 bg-gray-100 text-gray-400 border-2 border-gray-300 py-2 text-center rounded font-bold text-sm flex items-center justify-center gap-1.5 cursor-not-allowed"
+              >
+                <i class="fab fa-youtube"></i> Grabación
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Clase 5 -->
+        <article
+          class="neo-card p-6 flex flex-col justify-between relative overflow-hidden group opacity-85 hover:opacity-100"
+        >
+          <div
+            class="absolute top-0 right-0 w-12 h-12 bg-gray-400 text-white flex items-center justify-center font-bold text-sm transform translate-x-3 -translate-y-3 rotate-45 transition-colors"
+          >
+            5
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <span
+                class="bg-gray-100 text-gray-600 text-xs font-bold px-2.5 py-1 rounded-full border border-gray-300"
+                >PRÓXIMAMENTE</span
+              >
+              <span class="font-mono text-xs text-gray-500">Clase 5</span>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-3">
+              Lógica en Consola: Mini Juego
+            </h2>
+            <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+              El motor que no ves. Adentrate en la lógica pura programando el
+              juego "Adiviná el Número Secreto" en la terminal de Replit/JSBin
+              usando variables de estado, condicionales y ciclos repetitivos.
+            </p>
+          </div>
+          <div
+            class="mt-auto pt-4 border-t-2 border-dashed border-gray-200 flex flex-col gap-3"
+          >
+            <div class="flex gap-3">
+              <span
+                class="flex-1 bg-gray-100 text-gray-400 border-2 border-gray-300 py-2 text-center rounded font-bold text-sm flex items-center justify-center gap-1.5 cursor-not-allowed"
+              >
+                <i class="fas fa-lock"></i> Materiales
+              </span>
+              <span
+                class="flex-1 bg-gray-100 text-gray-400 border-2 border-gray-300 py-2 text-center rounded font-bold text-sm flex items-center justify-center gap-1.5 cursor-not-allowed"
+              >
+                <i class="fab fa-youtube"></i> Grabación
+              </span>
+            </div>
+          </div>
+        </article>
+      </main>
+
+      <!-- SECCIÓN RECURSOS EXTRA -->
+      <section class="neo-card p-6 bg-white mb-16">
+        <h3 class="text-2xl font-black mb-4 flex items-center gap-2">
+          <i class="fas fa-graduation-cap"></i> ¿Por qué esta estructura?
+        </h3>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+          Cada clase está diseñada usando **conceptos primero**. Creemos en
+          crear bases sólidas (SOLID FOUNDATIONS) antes de meternos en librerías
+          o frameworks. No hay atajos: el verdadero aprendizaje requiere tiempo,
+          esfuerzo y entender cómo funcionan las cosas por debajo del capó.
+        </p>
+        <div class="flex flex-wrap gap-4 text-xs font-mono text-gray-600">
+          <span class="bg-gray-100 px-3 py-1.5 rounded border border-gray-300"
+            ><i class="fas fa-check text-black mr-1"></i> Sin atajos</span
+          >
+          <span class="bg-gray-100 px-3 py-1.5 rounded border border-gray-300"
+            ><i class="fas fa-check text-black mr-1"></i> Fundamentos
+            primero</span
+          >
+          <span class="bg-gray-100 px-3 py-1.5 rounded border border-gray-300"
+            ><i class="fas fa-check text-black mr-1"></i> Lógica >
+            Sintaxis</span
+          >
+        </div>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer
+      class="text-center border-t-3 border-black pt-8 max-w-4xl mx-auto w-full"
+    >
+      <div class="flex justify-between items-center flex-col sm:flex-row gap-4">
+        <p class="font-mono text-sm text-gray-500">
+          Creado con pasión por <strong class="text-black">imyisusdev</strong>
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a
+            href="https://linktr.ee/imyisusdev"
+            target="_blank"
+            title="Linktree"
+            class="w-10 h-10 bg-white border-2 border-black rounded flex items-center justify-center text-black shadow-[3px_3px_0px_#000] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_#000] transition-all"
+          >
+            <i class="fas fa-tree text-base"></i>
+          </a>
+          <a
+            href="https://github.com/imyisusdev"
+            target="_blank"
+            title="GitHub"
+            class="w-10 h-10 bg-white border-2 border-black rounded flex items-center justify-center text-black shadow-[3px_3px_0px_#000] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_#000] transition-all"
+          >
+            <i class="fab fa-github text-base"></i>
+          </a>
+          <a
+            href="https://youtube.com/@imyisusdev"
+            target="_blank"
+            title="YouTube"
+            class="w-10 h-10 bg-white border-2 border-black rounded flex items-center justify-center text-black shadow-[3px_3px_0px_#000] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_#000] transition-all"
+          >
+            <i class="fab fa-youtube text-base"></i>
+          </a>
+          <a
+            href="https://instagram.com/imyisusdev"
+            target="_blank"
+            title="Instagram"
+            class="w-10 h-10 bg-white border-2 border-black rounded flex items-center justify-center text-black shadow-[3px_3px_0px_#000] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_#000] transition-all"
+          >
+            <i class="fab fa-instagram text-base"></i>
+          </a>
+          <a
+            href="https://tiktok.com/@imyisusdev"
+            target="_blank"
+            title="TikTok"
+            class="w-10 h-10 bg-white border-2 border-black rounded flex items-center justify-center text-black shadow-[3px_3px_0px_#000] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_#000] transition-all"
+          >
+            <i class="fab fa-tiktok text-base"></i>
+          </a>
+          <a
+            href="https://threads.net/@imyisusdev"
+            target="_blank"
+            title="Threads"
+            class="w-10 h-10 bg-white border-2 border-black rounded flex items-center justify-center text-black shadow-[3px_3px_0px_#000] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_#000] transition-all"
+          >
+            <i class="fab fa-threads text-base"></i>
+          </a>
+          <a
+            href="https://facebook.com/imyisusdev"
+            target="_blank"
+            title="Facebook"
+            class="w-10 h-10 bg-white border-2 border-black rounded flex items-center justify-center text-black shadow-[3px_3px_0px_#000] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_#000] transition-all"
+          >
+            <i class="fab fa-facebook-f text-base"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
