@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>HTML y el Esqueleto Web - imyisusdev</title>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/188985435?v=4" />
+
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/white.min.css" />
+
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Fira+Code:wght@400;700&display=swap');
+
+      .reveal {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        color: #1a1a1a;
+      }
+
+      /* Títulos suaves y elegantes */
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+        color: #111;
+        font-weight: 800;
+        text-transform: none;
+        letter-spacing: -1px;
+      }
+
+      /* Marca de agua flotante idéntica a Clase 1 */
+      #branding-overlay {
+        position: absolute;
+        bottom: 25px;
+        left: 25px;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: monospace;
+        pointer-events: none;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 8px 15px;
+        border-radius: 50px;
+        border: 2px solid #000;
+        backdrop-filter: blur(5px);
+        box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1);
+      }
+
+      #branding-overlay img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 2px solid #000;
+      }
+
+      #branding-overlay span {
+        color: #000;
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      /* Cards suaves y redondeadas (Estilo original Clase 1) */
+      .bw-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 24px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      }
+
+      .bw-card:hover {
+        border-color: #000;
+        box-shadow: 5px 5px 0px #000;
+        transform: translate(-2px, -2px);
+      }
+
+      /* Código */
+      code {
+        font-family: "Fira Code", monospace;
+        color: #e01a76;
+        background: #f3f4f6;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      pre code {
+        color: #1a1a1a;
+        background: transparent;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- MARCA DE AGUA FIJA -->
+    <div id="branding-overlay">
+      <img src="https://avatars.githubusercontent.com/u/188985435?v=4" alt="Logo imyisusdev" />
+      <span>imyisusdev</span>
+    </div>
+
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- 1. PORTADA: Limpia y Minimalista con Título Sólido -->
+        <section data-background-color="#ffffff">
+          <div class="flex flex-col items-center justify-center border-4 border-black p-8 relative max-w-4xl mx-auto">
+            <div class="absolute top-0 left-0 w-8 h-8 bg-black"></div>
+            <div class="absolute bottom-0 right-0 w-8 h-8 bg-black"></div>
+
+            <div class="mb-6">
+              <img src="https://avatars.githubusercontent.com/u/188985435?v=4" class="w-36 h-36 rounded-full border-4 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.15)] mx-auto" />
+            </div>
+
+            <h1 class="text-5xl font-black text-black uppercase tracking-tight mb-2">
+              HTML y el Esqueleto Web
+            </h1>
+            <div class="h-1 w-24 bg-black my-4 mx-auto"></div>
+            <h3 class="text-xl text-gray-600 font-medium">Clase 2: Diseñando tu Bio Card</h3>
+          </div>
+        </section>
+
+        <!-- 2. ¿CÓMO VIAJA LA WEB? (Restauradas las 3 Columnas Originales y Limpias) -->
+        <section data-background-color="#fafafa">
+          <h2>¿Cómo funciona la Web?</h2>
+          <p class="text-lg text-gray-500 font-mono mb-8">El viaje de la información en segundos.</p>
+          <div class="grid grid-cols-3 gap-6 items-stretch mt-4">
+            <div class="bw-card flex flex-col justify-between">
+              <span class="text-4xl mb-2">📱</span>
+              <h4 class="font-bold text-lg my-2">Cliente (Tú)</h4>
+              <p class="text-xs text-gray-500 leading-relaxed">Escribís la dirección de la web en tu navegador y hacés una petición de archivo.</p>
+            </div>
+            <div class="bw-card flex flex-col justify-between">
+              <span class="text-4xl mb-2">⚡</span>
+              <h4 class="font-bold text-lg my-2">Internet</h4>
+              <p class="text-xs text-gray-500 leading-relaxed">Lleva tu consulta a través del mundo y te devuelve los datos de respuesta.</p>
+            </div>
+            <div class="bw-card flex flex-col justify-between">
+              <span class="text-4xl mb-2">🖥️</span>
+              <h4 class="font-bold text-lg my-2">Servidor</h4>
+              <p class="text-xs text-gray-500 leading-relaxed">Una computadora remota que busca el archivo HTML solicitado y te lo envía.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. LA ANALOGÍA DEL PLANO (Visual Original y Suave) -->
+        <section data-background-color="#ffffff">
+          <h2>¿Qué es HTML?</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left">
+              <h3 class="text-xl font-bold mb-3">La analogía cotidiana: Los Planos</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                HTML no es un lenguaje de programación. Es un **lenguaje de marcado**. Define el esqueleto y estructura de tu web: vigas, paredes y dónde va cada elemento de tu casa digital.
+              </p>
+            </div>
+            <div class="flex flex-col gap-3">
+              <div class="p-4 bg-gray-50 border-l-4 border-black text-left font-mono text-xs rounded shadow-sm">
+                🧱 <strong>HTML:</strong> Estructura (Vigas y paredes)
+              </div>
+              <div class="p-4 bg-gray-50 border-l-4 border-indigo-500 text-left font-mono text-xs rounded shadow-sm">
+                🎨 <strong>CSS:</strong> Estilo (Pintura y decoración)
+              </div>
+              <div class="p-4 bg-gray-50 border-l-4 border-yellow-500 text-left font-mono text-xs rounded shadow-sm">
+                ⚡ <strong>JavaScript:</strong> Lógica (Electricidad y timbre)
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. EL DNI DE LA WEB: EXTENSIONES (Didáctica agregada) -->
+        <section data-background-color="#ffffff">
+          <h2>El Nombre del Archivo: .html</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left">
+              <h3 class="text-xl font-bold mb-3">¿Por qué .html?</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Aunque programemos en CodePen, los archivos reales necesitan un "apellido" o extensión.
+              </p>
+              <p class="text-xs text-gray-500 mt-2">
+                La extensión <strong><code>.html</code></strong> le avisa a tu computadora que este archivo debe abrirse con un navegador web (Chrome, Firefox, Safari) y no con un procesador de textos como Word.
+              </p>
+            </div>
+            
+            <div class="bw-card text-center bg-gray-50 flex flex-col items-center justify-center">
+              <span class="text-4xl mb-2">📄</span>
+              <div class="font-mono text-lg font-bold">
+                index<span class="text-pink-600 font-black">.html</span>
+              </div>
+              <p class="text-xs text-gray-500 mt-3">
+                El archivo principal de cualquier página web siempre se llama **index.html**. Es la portada del sitio.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. ANATOMÍA DE UNA ETIQUETA (Corregido con ilustración premium integrada suavemente) -->
+        <section data-background-color="#fafafa">
+          <h2>Anatomía de una Etiqueta</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-xl font-bold mb-3">La analogía de la Caja</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                HTML funciona como cajas contenedoras. Abrís la caja con una etiqueta, metés tu texto e imágenes, y la cerrás usando la barra diagonal <code>/</code>.
+              </p>
+              <div class="bg-gray-900 text-white p-4 rounded font-mono text-sm shadow-md text-center">
+                <span class="text-green-400">&lt;p&gt;</span>Hola Mundo<span class="text-green-400">&lt;/p&gt;</span>
+              </div>
+            </div>
+            
+            <div class="flex items-center justify-center">
+              <div class="bg-white p-3 border border-gray-200 rounded-2xl shadow-sm">
+                <img src="../images/html_tag_illustration.png" alt="HTML Tag Illustration" class="w-full max-w-[260px] object-contain" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. EL CONCEPTO DE ANIDACIÓN (Restauradas las cajas redondeadas didácticas) -->
+        <section data-background-color="#ffffff">
+          <h2>Anidación (Nesting)</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left font-sans">
+              <h3 class="text-xl font-bold mb-3">Cajas dentro de cajas</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                Como las muñecas rusas (Matryoshkas), las etiquetas van unas dentro de otras de forma organizada.
+              </p>
+              <div class="p-3 bg-red-50 border-l-4 border-red-500 text-xs text-red-700 rounded">
+                <strong>⚠️ Regla de Oro:</strong> La última caja que abrís debe ser la primera que cerrás. ¡No cruces etiquetas!
+              </div>
+            </div>
+            
+            <div class="bw-card bg-gray-50 font-mono text-xs text-left leading-relaxed">
+              <div class="text-blue-600">&lt;body&gt;</div>
+              <div class="pl-6 text-green-600">&lt;main&gt;</div>
+              <div class="pl-12 text-purple-600">&lt;article&gt;</div>
+              <div class="pl-18 text-gray-800">Contenido interno</div>
+              <div class="pl-12 text-purple-600">&lt;/article&gt;</div>
+              <div class="pl-6 text-green-600">&lt;/main&gt;</div>
+              <div class="text-blue-600">&lt;/body&gt;</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. LA ESTRUCTURA BÁSICA DE UN ARCHIVO (Corregidos altos y desbordes) -->
+        <section data-background-color="#ffffff">
+          <h2>El Documento Estándar</h2>
+          <p class="text-sm text-gray-500 font-mono mb-4">El esqueleto clásico de un archivo en tu computadora.</p>
+          
+          <div class="grid grid-cols-2 gap-6 items-stretch">
+            <div class="bg-gray-900 p-4 rounded-xl text-left text-xs font-mono text-green-400 max-h-[300px] overflow-y-auto shadow-md">
+              &lt;!DOCTYPE html&gt;<br>
+              &lt;html lang="es"&gt;<br>
+              &nbsp;&nbsp;&lt;head&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset="utf-8"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Mi Web&lt;/title&gt;<br>
+              &nbsp;&nbsp;&lt;/head&gt;<br>
+              &nbsp;&nbsp;&lt;body&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;header&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Hola&lt;/h1&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;/header&gt;<br>
+              &nbsp;&nbsp;&lt;/body&gt;<br>
+              &lt;/html&gt;
+            </div>
+            
+            <div class="flex flex-col justify-between text-left gap-2 text-xs">
+              <div class="p-2.5 bg-white border border-gray-200 rounded">
+                <strong><code>&lt;!DOCTYPE html&gt;</code></strong>: Le dice al navegador: "Soy HTML5 moderno".
+              </div>
+              <div class="p-2.5 bg-white border border-gray-200 rounded">
+                <strong><code>&lt;html&gt;</code></strong>: Envoltura raíz de toda la página web.
+              </div>
+              <div class="p-2.5 bg-white border border-gray-200 rounded">
+                <strong><code>&lt;head&gt;</code></strong>: El cerebro. Datos invisibles (idioma, título de la pestaña).
+              </div>
+              <div class="p-2.5 bg-white border border-gray-200 rounded">
+                <strong><code>&lt;body&gt;</code></strong>: El cuerpo. Todo lo que el usuario ve y toca en pantalla.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. SEMÁNTICA HTML (Limpio y elegante con casa didáctica) -->
+        <section data-background-color="#ffffff">
+          <h2>Semántica HTML</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-xl font-bold mb-3">La analogía de la Casa</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3">
+                No tirás todo en un galpón gigante. Dividís en: entrada, comedor, sótano. 
+                De la misma forma, estructuramos con significado.
+              </p>
+              <p class="text-xs text-gray-500">
+                La semántica ayuda a **Google** (SEO) y a los lectores de pantalla para la **Accesibilidad**.
+              </p>
+            </div>
+            
+            <div class="border border-gray-300 rounded-xl p-3 flex flex-col gap-2 bg-gray-50 font-mono text-xs text-center font-bold">
+              <div class="bg-indigo-50 text-indigo-700 border border-indigo-200 p-2 rounded">
+                &lt;header&gt; (Cabecera / Entrada)
+              </div>
+              <div class="bg-emerald-50 text-emerald-700 border border-emerald-200 p-3 rounded flex flex-col gap-2">
+                &lt;main&gt; (Contenido / Living)
+                <div class="bg-white text-gray-600 border border-gray-200 p-1.5 rounded font-normal text-[10px]">
+                  &lt;article&gt; (Tu Biografía)
+                </div>
+              </div>
+              <div class="bg-amber-50 text-amber-700 border border-amber-200 p-2 rounded">
+                &lt;footer&gt; (Pie / Sótano)
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- DIAPOSITIVAS INDIVIDUALES POR ETIQUETA EN INGLÉS -->
+        <!-- ============================================== -->
+
+        <!-- 9. TÍTULOS (Heading) -->
+        <section data-background-color="#ffffff">
+          <h2>Títulos: &lt;h1&gt; a &lt;h6&gt;</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left">
+              <h4 class="font-bold text-lg text-indigo-600 mb-2 font-mono">Origen: "Heading" (Encabezado)</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Viene de la palabra inglesa <strong>Heading</strong>. Define la jerarquía y el tamaño del título:
+              </p>
+              <ul class="text-xs text-gray-500 space-y-2 mt-3 font-sans">
+                <li><code>&lt;h1&gt;</code>: El título central (Solo uno por página).</li>
+                <li><code>&lt;h2&gt;</code>: Secciones secundarias.</li>
+                <li><code>&lt;h3&gt;</code> a <code>&lt;h6&gt;</code>: Subtemas de menor rango.</li>
+              </ul>
+            </div>
+            
+            <div class="bw-card bg-gray-50 text-left flex flex-col gap-2 font-serif">
+              <h2 class="text-xl font-black m-0 border-b pb-2">h1. Título Web</h2>
+              <h3 class="text-lg font-bold m-0 text-gray-800">h2. Título Sección</h3>
+              <h4 class="text-base font-bold m-0 text-gray-700">h3. Subtítulo</h4>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10. PÁRRAFO (Paragraph) -->
+        <section data-background-color="#ffffff">
+          <h2>Párrafos: &lt;p&gt;</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left">
+              <h4 class="font-bold text-lg text-indigo-600 mb-2 font-mono">Origen: "Paragraph" (Párrafo)</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Viene del inglés <strong>Paragraph</strong>. Representa bloques de texto normales.
+              </p>
+              <div class="h-px bg-gray-200 my-4"></div>
+              <p class="text-xs text-gray-500 leading-relaxed">
+                Usá <code>&lt;strong&gt;</code> para resaltar en <strong>negrita</strong> y <code>&lt;em&gt;</code> para dar énfasis en <em>cursiva</em>.
+              </p>
+            </div>
+            
+            <div class="bw-card bg-gray-50 font-sans text-sm text-left leading-relaxed">
+              <code class="block text-xs mb-3 text-pink-600">&lt;p&gt;Hola, soy &lt;strong&gt;Jesús&lt;/strong&gt;&lt;/p&gt;</code>
+              <p class="p-3 bg-white border border-gray-200 rounded">
+                Hola, soy <strong>Jesús</strong>. En redes me encontrás como <em>@imyisusdev</em>.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 11. LISTAS (ul, li) - Didáctica para estructurar redes -->
+        <section data-background-color="#ffffff">
+          <h2>Listas de Redes: &lt;ul&gt; y &lt;li&gt;</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left">
+              <h4 class="font-bold text-lg text-indigo-600 mb-2 font-mono">Origen: "Unordered List" & "List Item"</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Del inglés <strong>Unordered List</strong> (Lista desordenada/viñetas) y <strong>List Item</strong> (Elemento de lista).
+              </p>
+              <p class="text-xs text-gray-500 mt-3">
+                Es la manera semántica perfecta de agrupar y ordenar tus enlaces de contacto y redes sociales.
+              </p>
+            </div>
+            
+            <div class="bw-card bg-gray-50 font-mono text-xs text-left flex flex-col gap-3">
+              <div class="bg-gray-900 text-green-400 p-3 rounded shadow-inner">
+                &lt;ul&gt;<br>
+                &nbsp;&nbsp;&lt;li&gt;Mi YouTube&lt;/li&gt;<br>
+                &nbsp;&nbsp;&lt;li&gt;Mi TikTok&lt;/li&gt;<br>
+                &lt;/ul&gt;
+              </div>
+              <ul class="list-disc pl-5 font-sans text-sm font-bold text-black">
+                <li>Mi YouTube</li>
+                <li>Mi TikTok</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 12. IMÁGENES (Image) -->
+        <section data-background-color="#ffffff">
+          <h2>Imágenes: &lt;img /&gt;</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left">
+              <h4 class="font-bold text-lg text-indigo-600 mb-2 font-mono">Origen: "Image" (Imagen)</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Viene de <strong>Image</strong>. Es una etiqueta autocerrable.
+              </p>
+              <div class="h-px bg-gray-200 my-3"></div>
+              <div class="text-xs text-gray-500 space-y-1">
+                <div>• <strong><code>src</code></strong> (Source / Fuente): URL o dirección de la foto.</div>
+                <div>• <strong><code>alt</code></strong> (Alternative): Texto descriptivo para lectores de pantalla.</div>
+              </div>
+            </div>
+            
+            <div class="bw-card bg-gray-900 text-left font-mono text-[11px] text-green-400 shadow-md">
+              &lt;img<br>
+              &nbsp;&nbsp;src="https://avatars..."<br>
+              &nbsp;&nbsp;alt="Foto de perfil de imyisusdev"<br>
+              /&gt;
+            </div>
+          </div>
+        </section>
+
+        <!-- 13. ENLACES (Anchor) (Corregida redirección interactiva a demo real) -->
+        <section data-background-color="#ffffff">
+          <h2>Enlaces: &lt;a&gt; (Ancla)</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left">
+              <h4 class="font-bold text-lg text-indigo-600 mb-2 font-mono">Origen: "Anchor" (Ancla)</h4>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3">
+                Viene de <strong>Anchor</strong>. Como un ancla amarra tu barco en el puerto, esta etiqueta amarra tu página a otra dirección web.
+              </p>
+              <p class="text-xs text-gray-500 font-bold">
+                💡 Agregá <code>target="_blank"</code> para abrir el link en otra pestaña.
+              </p>
+            </div>
+            
+            <div class="flex flex-col gap-3 w-full">
+              <div class="bg-gray-900 text-green-400 p-4 rounded text-left font-mono text-[11px] shadow-sm">
+                &lt;a href="./demo.html"&gt;Ver Demo&lt;/a&gt;
+              </div>
+              <!-- Enlace real que abre la demo.html en una nueva pestaña -->
+              <a href="./ejemplos/demo.html" target="_blank" class="bg-black text-white text-center py-3 rounded-xl font-bold border-2 border-black shadow-[3px_3px_0px_rgba(0,0,0,0.15)] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_rgba(0,0,0,0.15)] transition-all text-sm">
+                ⚓ Ver Demo Real Completa
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- 14. PRÁCTICA DE HOY (El Editor VS Code Mockup - Mantenido impecable) -->
+        <section data-background-color="#000000">
+          <div class="max-w-4xl mx-auto text-left">
+            <span class="bg-white text-black px-3 py-1 font-mono text-xs rounded font-bold uppercase tracking-wider mb-4 inline-block">Práctica en CodePen</span>
+            <h2 class="text-white text-3xl mb-4">Estructurando tu Bio Card 🏆</h2>
+            <p class="text-gray-400 text-sm mb-6">
+              Abrí tu CodePen y copiá la plantilla de <code>esqueleto.html</code>. 
+              Maquetá el esqueleto semántico agregando tus datos reales y tu lista ordenada de redes.
+            </p>
+            
+            <!-- VS Code Editor Layout Mockup -->
+            <div class="bg-gray-950 border border-gray-800 rounded-xl overflow-hidden shadow-2xl font-mono text-xs text-white max-w-2xl mx-auto">
+              <!-- Barra del editor -->
+              <div class="bg-gray-900 px-4 py-2 border-b border-gray-800 flex justify-between items-center text-gray-500">
+                <div class="flex gap-2">
+                  <span class="w-3 h-3 bg-red-500 rounded-full"></span>
+                  <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
+                  <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                </div>
+                <span>codepen.html</span>
+                <span></span>
+              </div>
+              <!-- Contenido de código -->
+              <div class="p-6 flex flex-col gap-2 overflow-y-auto max-h-[200px]">
+                <div><span class="text-indigo-400">&lt;body&gt;</span></div>
+                <div class="pl-4"><span class="text-blue-400">&lt;header&gt;</span> (Tu foto y tu nombre) <span class="text-blue-400">&lt;/header&gt;</span></div>
+                <div class="pl-4"><span class="text-emerald-400">&lt;main&gt;</span></div>
+                <div class="pl-8"><span class="text-purple-400">&lt;article&gt;</span> (Tu Rol y Biografía) <span class="text-purple-400">&lt;/article&gt;</span></div>
+                <div class="pl-4"><span class="text-emerald-400">&lt;/main&gt;</span></div>
+                <div class="pl-4"><span class="text-yellow-400">&lt;section&gt;</span> (Lista de redes con <span class="text-pink-400">&lt;ul&gt;</span> y <span class="text-pink-400">&lt;li&gt;</span>) <span class="text-yellow-400">&lt;/section&gt;</span></div>
+                <div class="pl-4"><span class="text-blue-400">&lt;footer&gt;</span> (Tus créditos) <span class="text-blue-400">&lt;/footer&gt;</span></div>
+                <div><span class="text-indigo-400">&lt;/body&gt;</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 15. DESAFÍO FINAL -->
+        <section data-background-color="#ffffff">
+          <h2>¡Manos al Código! 🚀</h2>
+          <div class="bw-card max-w-xl mx-auto text-left mt-8">
+            <h4 class="font-bold text-lg text-green-600 mb-3"><i class="fas fa-flag mr-2"></i> Tu Reto del Día</h4>
+            <ol class="text-sm space-y-3 text-gray-700 font-sans">
+              <li>Copiar el archivo de plantilla <code>esqueleto.html</code>.</li>
+              <li>Reemplazar el contenido con tus datos reales y links.</li>
+              <li>Asegurarte de usar listas <code>&lt;ul&gt;</code> y <code>&lt;li&gt;</code> para tus redes.</li>
+              <li>Compartir tu enlace en el chat para revisarlo juntos en vivo.</li>
+            </ol>
+          </div>
+          
+          <div class="mt-8 flex items-center justify-center gap-4 py-2 px-6 rounded-full inline-flex mx-auto border-2 border-black bg-white shadow-[4px_4px_0px_rgba(0,0,0,0.15)]">
+            <img src="https://avatars.githubusercontent.com/u/188985435?v=4" class="w-10 h-10 rounded-full border border-black" />
+            <span class="font-mono text-sm font-bold text-black">imyisusdev - Programación desde cero</span>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- Scripts de Reveal.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        progressColor: "#000000",
+        center: true,
+        transition: "fade",
+        backgroundTransition: "fade",
+      });
+    </script>
+  </body>
+</html>
