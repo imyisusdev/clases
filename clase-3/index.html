@@ -182,6 +182,39 @@
           </div>
         </section>
 
+        <!-- NUEVA DIAPOSITIVA: LA CASCADA (CASCADING) -->
+        <section data-background-color="#ffffff">
+          <h2>¿Qué es la Cascada? (Cascading)</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">El orden de las reglas importa 🌊</h3>
+              <p class="text-xs text-gray-600 leading-relaxed mb-3">
+                CSS significa <em>Cascading Style Sheets</em> (Hojas de Estilo en Cascada). Esto significa que los estilos caen como una cascada y se aplican de arriba a abajo.
+              </p>
+              <div class="h-px bg-gray-200 my-4"></div>
+              <h4 class="font-bold text-xs text-red-600 uppercase mb-1">¡Regla de oro!:</h4>
+              <p class="text-xs text-gray-500 leading-relaxed">
+                Si escribís dos reglas contradictorias para el mismo elemento con la misma importancia, **la última en leerse "pisa" a las anteriores**.
+              </p>
+            </div>
+            
+            <div class="flex flex-col gap-3">
+              <div class="bg-gray-900 p-6 rounded-xl text-left font-mono text-xs text-white shadow-lg">
+                <span class="text-yellow-400">h1</span> {<br>
+                &nbsp;&nbsp;color: <span class="text-blue-400">blue</span>;<br>
+                }<br><br>
+                <span class="text-yellow-400">h1</span> {<br>
+                &nbsp;&nbsp;color: <span class="text-red-400">red</span>;<br>
+                }
+              </div>
+              <div class="p-4 bg-yellow-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold text-xs text-black">
+                ❓ ¿De qué color se pinta el h1? <br>
+                <span class="text-red-600 text-sm font-black">¡RED! (Rojo)</span> porque está al final del código.
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- NUEVA DIAPOSITIVA: SELECTORES BÁSICOS -->
         <section data-background-color="#ffffff">
           <h2>Selectores Básicos en CSS</h2>
@@ -279,6 +312,41 @@
                       🍵 Content (La taza / Tu texto)
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- NUEVA DIAPOSITIVA: BOX SIZING BORDER BOX -->
+        <section data-background-color="#ffffff">
+          <h2>El truco final del Box Model</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">box-sizing: border-box 📦</h3>
+              <p class="text-xs text-gray-600 leading-relaxed mb-3">
+                Por defecto, si una caja mide 200px de ancho y le agregás 20px de padding, la caja se expande a 240px. ¡Se agranda y rompe tu maquetación!
+              </p>
+              <div class="h-px bg-gray-200 my-3"></div>
+              <h4 class="font-bold text-xs text-indigo-600 uppercase mb-1">La solución:</h4>
+              <p class="text-xs text-gray-500 leading-relaxed">
+                Al aplicar <code>box-sizing: border-box</code>, le decís a la caja: *"mantené tu ancho exacto y meté el padding y el borde hacia adentro"*.
+              </p>
+            </div>
+            
+            <div class="flex flex-col gap-4 text-xs font-mono text-center">
+              <div class="border-2 border-black p-3 bg-red-50 rounded shadow-md">
+                <span class="font-bold text-red-700">Sin border-box (content-box)</span>
+                <div class="bg-white border-4 border-black p-2 mt-1 font-bold text-black">
+                  Ancho 200px + Padding 20px = <br>
+                  <span class="text-red-600 text-sm font-black">¡240px totales! (Se ensancha)</span>
+                </div>
+              </div>
+              <div class="border-2 border-black p-3 bg-green-50 rounded shadow-md">
+                <span class="font-bold text-green-700">Con border-box (¡El estándar!)</span>
+                <div class="bg-white border-4 border-black p-2 mt-1 font-bold text-black">
+                  Ancho 200px (Padding va hacia adentro) = <br>
+                  <span class="text-green-600 text-sm font-black">¡200px totales exactos!</span>
                 </div>
               </div>
             </div>
@@ -582,6 +650,41 @@
               .btn-youtube:hover {<br>
               &nbsp;&nbsp;background-color: #ffcccc;<br>
               }
+            </div>
+          </div>
+        </section>
+
+        <!-- NUEVA DIAPOSITIVA: TU SUPERPODER (DEVTOOLS) -->
+        <section data-background-color="#ffffff">
+          <h2>Tu Superpoder: El Inspector (DevTools) 🛠️</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h4 class="text-lg font-bold mb-2">Inspeccionando y "Hackeando" la Web</h4>
+              <p class="text-xs text-gray-600 leading-relaxed mb-3">
+                Cualquier navegador moderno tiene herramientas de desarrollador. Presionando <strong>F12</strong> o haciendo <strong>Click derecho -> Inspeccionar</strong>, podés ver y modificar el HTML y CSS de cualquier sitio en tiempo real.
+              </p>
+              <div class="h-px bg-gray-200 my-3"></div>
+              <h5 class="font-bold text-xs text-indigo-600 uppercase mb-1">¡Ideas divertidas para probar en vivo!:</h5>
+              <ul class="text-[10px] space-y-1.5 font-sans text-gray-500">
+                <li>🏦 <strong>El saldo millonario:</strong> Editá tu saldo de home banking para tener 1 millón de dólares por unos segundos.</li>
+                <li>🐦 <strong>El Tweet del siglo:</strong> Cambiá el texto de un tweet de Elon Musk para que parezca que te contrató a vos.</li>
+                <li>📰 <strong>Titular de portada:</strong> Modificá el título de un diario famoso y poné tu nombre en primera plana.</li>
+              </ul>
+            </div>
+            
+            <div class="flex flex-col gap-3 text-xs font-mono text-center">
+              <div class="border-2 border-black p-3 bg-indigo-50 rounded shadow-[4px_4px_0px_#000] text-left">
+                <span class="bg-black text-white px-2 py-0.5 rounded text-[9px] uppercase font-bold">Consola del Desarrollador</span>
+                <div class="mt-3 text-[11px] space-y-1.5 text-slate-700 font-sans">
+                  <p>1️⃣ Click derecho en el texto que querés cambiar.</p>
+                  <p>2️⃣ Seleccioná <strong>"Inspeccionar"</strong>.</p>
+                  <p>3️⃣ En la pestaña <em>Elements</em>, hacé doble click sobre el texto y escribí tu versión.</p>
+                  <p>4️⃣ ¡Mirá la pantalla! (Tranqui, al recargar la página todo vuelve a la normalidad 😅).</p>
+                </div>
+              </div>
+              <p class="text-[10px] text-gray-400 italic">
+                * Nota: Los cambios son locales en tu navegador, no alterás el servidor real.
+              </p>
             </div>
           </div>
         </section>
