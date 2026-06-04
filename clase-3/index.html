@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>CSS y el Estilo Neo-brutalista - imyisusdev</title>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/188985435?v=4" />
+
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/white.min.css" />
+
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Fira+Code:wght@400;700&display=swap');
+
+      .reveal {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        color: #1a1a1a;
+      }
+
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+        color: #111;
+        font-weight: 800;
+        text-transform: none;
+        letter-spacing: -1px;
+      }
+
+      /* Marca de agua flotante del canal */
+      #branding-overlay {
+        position: absolute;
+        bottom: 25px;
+        left: 25px;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: monospace;
+        pointer-events: none;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 8px 15px;
+        border-radius: 50px;
+        border: 2px solid #000;
+        backdrop-filter: blur(5px);
+        box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1);
+      }
+
+      #branding-overlay img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 2px solid #000;
+      }
+
+      #branding-overlay span {
+        color: #000;
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      /* Cards suaves redondeadas */
+      .bw-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 24px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      }
+
+      .bw-card:hover {
+        border-color: #000;
+        box-shadow: 5px 5px 0px #000;
+        transform: translate(-2px, -2px);
+      }
+
+      code {
+        font-family: "Fira Code", monospace;
+        color: #e01a76;
+        background: #f3f4f6;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      pre code {
+        color: #1a1a1a;
+        background: transparent;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- MARCA DE AGUA FIJA -->
+    <div id="branding-overlay">
+      <img src="https://avatars.githubusercontent.com/u/188985435?v=4" alt="Logo imyisusdev" />
+      <span>imyisusdev</span>
+    </div>
+
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- 1. PORTADA -->
+        <section data-background-color="#ffffff">
+          <div class="flex flex-col items-center justify-center border-4 border-black p-8 relative max-w-2xl mx-auto">
+            <div class="absolute top-0 left-0 w-8 h-8 bg-black"></div>
+            <div class="absolute bottom-0 right-0 w-8 h-8 bg-black"></div>
+
+            <div class="mb-6">
+              <img src="https://avatars.githubusercontent.com/u/188985435?v=4" class="w-36 h-36 rounded-full border-4 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.15)] mx-auto" />
+            </div>
+
+            <h2 class="text-5xl font-black text-black uppercase tracking-tight mb-2">
+              CSS y el Estilo Neo-brutalista
+            </h2>
+            <div class="h-1 w-24 bg-black my-4 mx-auto"></div>
+            <h3 class="text-xl text-gray-600 font-medium">Clase 3: Pintura, Decoración y Flexbox</h3>
+          </div>
+        </section>
+
+        <!-- 2. ¿QUÉ ES CSS? -->
+        <section data-background-color="#ffffff">
+          <h2>¿Qué es CSS?</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left">
+              <h4 class="font-bold text-lg text-indigo-600 mb-2 font-mono">Origen: Cascading Style Sheets</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Hojas de Estilo en Cascada. Es el lenguaje que le da color, fuentes y vida al esqueleto gris de HTML.
+              </p>
+              <div class="h-px bg-gray-200 my-4"></div>
+              <h5 class="text-xs font-bold text-gray-700 uppercase mb-1">La analogía de la casa:</h5>
+              <p class="text-xs text-gray-500 leading-relaxed">
+                Si HTML es el plano y los ladrillos, CSS es la pintura, la decoración, las alfombras y el diseño de interiores de cada habitación.
+              </p>
+            </div>
+            
+            <div class="flex flex-col gap-3 text-left text-xs">
+              <div class="p-4 bg-gray-50 border-2 border-black rounded shadow-[3px_3px_0px_#000]">
+                🎨 <strong>Selectores:</strong> Indican <strong>qué</strong> elemento pintar.
+              </div>
+              <div class="p-4 bg-gray-50 border-2 border-black rounded shadow-[3px_3px_0px_#000]">
+                📏 <strong>Propiedades:</strong> Indican <strong>qué aspecto</strong> cambiar (color, borde, tamaño).
+              </div>
+              <div class="p-4 bg-gray-50 border-2 border-black rounded shadow-[3px_3px_0px_#000]">
+                💎 <strong>Valores:</strong> Indican <strong>cómo</strong> queremos que quede (rojo, 4px, 200px).
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. SINTAXIS BÁSICA DE CSS -->
+        <section data-background-color="#ffffff">
+          <h2>Sintaxis Básica de CSS</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left">
+              <h3 class="text-xl font-bold mb-3">La analogía de la pared</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Si querés pintar una pared específica de tu casa, tenés que seleccionarla, decidir qué propiedad cambiar y aplicar el valor.
+              </p>
+              <div class="h-px bg-gray-200 my-4"></div>
+              <p class="text-xs text-gray-500 leading-relaxed">
+                El CSS se escribe seleccionando la etiqueta HTML y abriendo llaves <code>{ }</code> para encerrar las reglas de estilo.
+              </p>
+            </div>
+            
+            <div class="bg-gray-900 p-6 rounded-xl text-left font-mono text-sm text-white shadow-lg flex flex-col gap-1.5">
+              <div><span class="text-yellow-400">h1</span> {</div>
+              <div class="pl-6"><span class="text-blue-400">color</span>: <span class="text-green-400">#4f46e5</span>;</div>
+              <div class="pl-6"><span class="text-blue-400 font-bold">font-size</span>: <span class="text-green-400">32px</span>;</div>
+              <div>}</div>
+              <div class="mt-4 pt-3 border-t border-gray-800 text-[10px] text-gray-500">
+                Selector = h1 | Propiedades = color, font-size
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. EL BOX MODEL (Modelo de Cajas) -->
+        <section data-background-color="#fafafa">
+          <h2>El Modelo de Cajas (Box Model)</h2>
+          <p class="text-sm text-gray-500 font-mono mb-4">Todo elemento en HTML es una caja invisible.</p>
+          
+          <div class="grid grid-cols-2 gap-8 items-center mt-4">
+            <div class="bw-card text-left">
+              <h3 class="text-xl font-bold mb-3">La analogía: La Taza y su Caja</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3">
+                Pensalo como enviar una taza por correo:
+              </p>
+              <ul class="text-xs text-gray-500 space-y-1.5 font-sans">
+                <li>🍵 <strong>Content:</strong> La taza misma.</li>
+                <li>📦 <strong>Padding (Relleno):</strong> El plástico de burbujas interno para proteger la taza.</li>
+                <li>📦 <strong>Border (Borde):</strong> El cartón de la caja.</li>
+                <li>🚚 <strong>Margin (Margen):</strong> La distancia vacía entre esta caja y otras encomiendas.</li>
+              </ul>
+            </div>
+            
+            <div class="border-2 border-black rounded-xl p-3 bg-white shadow-md text-xs font-mono text-center font-bold">
+              <div class="bg-amber-100 border border-amber-400 text-amber-800 p-2.5 rounded">
+                Margin (Espacio exterior)
+                <div class="bg-indigo-100 border border-indigo-400 text-indigo-800 p-2.5 rounded mt-1.5">
+                  Border (Caja de cartón)
+                  <div class="bg-emerald-100 border border-emerald-400 text-emerald-800 p-2.5 rounded mt-1.5">
+                    Padding (Burbujas / Aire interno)
+                    <div class="bg-white border border-gray-300 text-gray-700 p-2 rounded mt-1.5 font-sans">
+                      🍵 Content (La taza / Tu texto)
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. FLEXBOX - INTRODUCCIÓN Y EJES -->
+        <section data-background-color="#ffffff">
+          <h2>Flexbox y la Alineación</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-xl font-bold mb-3">¿Qué es Flexbox?</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Es una herramienta de CSS diseñada para ordenar, centrar y distribuir elementos fácilmente sin que se rompa la maquetación.
+              </p>
+              <div class="h-px bg-gray-200 my-4"></div>
+              <h4 class="font-bold text-xs text-gray-700 uppercase mb-1">Los dos ejes principales:</h4>
+              <p class="text-xs text-gray-500 leading-relaxed">
+                • <strong>Main Axis:</strong> El eje horizontal (por defecto).<br>
+                • <strong>Cross Axis:</strong> El eje vertical perpendicular.
+              </p>
+            </div>
+            
+            <div class="flex flex-col gap-3 text-xs text-left">
+              <div class="p-3 bg-gray-50 border border-gray-200 rounded">
+                <code>display: flex;</code> <br>
+                <span class="text-gray-500 font-sans text-[11px]">Activa el modo Flexbox en el contenedor madre.</span>
+              </div>
+              <div class="p-3 bg-gray-50 border border-gray-200 rounded">
+                <code>flex-direction: column / row;</code> <br>
+                <span class="text-gray-500 font-sans text-[11px]">Alinea en vertical (columna) o en horizontal (fila).</span>
+              </div>
+              <div class="p-3 bg-gray-50 border border-gray-200 rounded">
+                <code>justify-content: center;</code> <br>
+                <span class="text-gray-500 font-sans text-[11px]">Centra los elementos a lo largo del eje principal.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. FLEXBOX - ANALOGÍA 1: LA CAJA DE JUGUETES -->
+        <section data-background-color="#ffffff">
+          <h2>Flexbox: La Caja de Juguetes</h2>
+          <p class="text-sm text-gray-500 font-mono mb-4">Analogía de Organización Física</p>
+          
+          <div class="grid grid-cols-2 gap-8 items-center mt-4">
+            <div class="bw-card text-left">
+              <h3 class="text-xl font-bold mb-3">Ordenando juguetes</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3">
+                Imaginá que tenés una caja contenedora (el "Flex Container") y querés ordenar autitos y bloques adentro:
+              </p>
+              <ul class="text-xs text-gray-500 space-y-2 font-sans">
+                <li>🧸 <strong><code>flex-direction: row</code></strong>: Ponés los juguetes uno al lado del otro en una sola fila.</li>
+                <li>🧸 <strong><code>flex-direction: column</code></strong>: Apilás los juguetes uno arriba del otro en una torre.</li>
+                <li>🧸 <strong><code>gap: 10px</code></strong>: Dejás un espacio físico de 10px entre juguete y juguete para que no se golpeen.</li>
+              </ul>
+            </div>
+            
+            <div class="border-2 border-black rounded-xl p-4 bg-amber-50 shadow-md text-xs font-mono">
+              <span class="bg-black text-white px-2 py-0.5 rounded text-[10px] uppercase font-bold">Caja de Juguetes (Flex Container)</span>
+              <div class="border-2 border-dashed border-amber-300 rounded p-4 flex gap-4 justify-center mt-4 bg-white">
+                <div class="w-12 h-12 bg-red-400 text-white rounded flex items-center justify-center text-xl shadow" title="Juguete 1">🚗</div>
+                <div class="w-12 h-12 bg-blue-400 text-white rounded flex items-center justify-center text-xl shadow" title="Juguete 2">🧸</div>
+                <div class="w-12 h-12 bg-green-400 text-white rounded flex items-center justify-center text-xl shadow" title="Juguete 3">🧱</div>
+              </div>
+              <p class="text-[10px] text-gray-500 mt-3 font-sans text-center">
+                <code>display: flex; flex-direction: row; gap: 16px;</code>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. FLEXBOX - ANALOGÍA 2: LAS BUTACAS DE CINE/TEATRO -->
+        <section data-background-color="#ffffff">
+          <h2>Flexbox: Las Butacas de Cine</h2>
+          <p class="text-sm text-gray-500 font-mono mb-4">Analogía de Distribución de Asientos</p>
+          
+          <div class="grid grid-cols-2 gap-8 items-center mt-4">
+            <div class="bw-card text-left">
+              <h3 class="text-xl font-bold mb-3">Alineando espectadores</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3">
+                Imaginá una fila entera de butacas en una sala de cine. ¿Cómo acomodamos al público?
+              </p>
+              <ul class="text-xs text-gray-500 space-y-2 font-sans">
+                <li>🎬 <strong><code>justify-content: flex-start</code></strong>: Todos sentados a la izquierda, cerca de la puerta de entrada.</li>
+                <li>🎬 <strong><code>justify-content: center</code></strong>: Todos sentados al centro, alineados con la pantalla.</li>
+                <li>🎬 <strong><code>justify-content: space-between</code></strong>: Distribuidos de extremo a extremo, dejando el máximo espacio libre al medio.</li>
+              </ul>
+            </div>
+            
+            <div class="border-2 border-black rounded-xl p-4 bg-slate-900 text-white shadow-md text-xs font-mono">
+              <span class="bg-indigo-600 text-white px-2 py-0.5 rounded text-[10px] uppercase font-bold">Fila de Cine (Fila Flex)</span>
+              
+              <div class="border border-slate-700 rounded p-3 flex justify-between mt-4 bg-slate-950">
+                <div class="w-10 h-10 bg-slate-800 border border-slate-600 rounded flex items-center justify-center text-lg">🍿</div>
+                <div class="w-10 h-10 bg-slate-800 border border-slate-600 rounded flex items-center justify-center text-lg">🎬</div>
+                <div class="w-10 h-10 bg-slate-800 border border-slate-600 rounded flex items-center justify-center text-lg">🥤</div>
+              </div>
+              <p class="text-[10px] text-slate-400 mt-3 font-sans text-center">
+                <code>justify-content: space-between;</code>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- PROCESO DE MAQUETADO PASO A PASO (IR APLICANDO POCO A POCO) -->
+        <!-- ============================================== -->
+
+        <!-- 8. PASO 1: RESET Y BODY -->
+        <section data-background-color="#ffffff">
+          <h2>Paso 1: El Escenario (body y reset)</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left text-sm text-gray-600 leading-relaxed">
+              <p class="mb-3">
+                <strong>¿Qué hacemos aquí?</strong>
+              </p>
+              <ol class="space-y-2 text-xs">
+                <li>1. Quitamos los márgenes por defecto del navegador con el selector universal <code>*</code>.</li>
+                <li>2. Centramos la futura tarjeta al medio de la pantalla usando <strong>Flexbox</strong> en el <code>body</code>.</li>
+                <li>3. Le damos un fondo crema suave y cargamos la tipografía <code>Outfit</code>.</li>
+              </ol>
+            </div>
+            
+            <div class="bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md max-h-[300px] overflow-y-auto">
+              * {<br>
+              &nbsp;&nbsp;margin: 0;<br>
+              &nbsp;&nbsp;padding: 0;<br>
+              &nbsp;&nbsp;box-sizing: border-box;<br>
+              }<br><br>
+              body {<br>
+              &nbsp;&nbsp;font-family: 'Outfit', sans-serif;<br>
+              &nbsp;&nbsp;background-color: #f6f5f0;<br>
+              &nbsp;&nbsp;display: flex;<br>
+              &nbsp;&nbsp;justify-content: center;<br>
+              &nbsp;&nbsp;align-items: center;<br>
+              &nbsp;&nbsp;min-height: 100vh;<br>
+              }
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. PASO 2: LA CARD CONTENEDORA -->
+        <section data-background-color="#ffffff">
+          <h2>Paso 2: La Caja de la Tarjeta (.card)</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left text-sm text-gray-600 leading-relaxed">
+              <p class="mb-3">
+                <strong>¿Qué hacemos aquí?</strong>
+              </p>
+              <ol class="space-y-2 text-xs">
+                <li>1. Limitamos el ancho de la tarjeta a un tamaño óptimo (<code>max-width: 380px</code>).</li>
+                <li>2. Agregamos el relleno interno (`padding`) para que el contenido no toque los bordes.</li>
+                <li>3. Aplicamos el estilo de diseño: borde negro de 4px, esquinas redondeadas y la sombra rígida plana.</li>
+              </ol>
+            </div>
+            
+            <div class="bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md">
+              .card {<br>
+              &nbsp;&nbsp;background-color: #ffffff;<br>
+              &nbsp;&nbsp;max-width: 380px;<br>
+              &nbsp;&nbsp;width: 100%;<br>
+              &nbsp;&nbsp;padding: 35px 25px;<br>
+              &nbsp;&nbsp;border: 4px solid #000000;<br>
+              &nbsp;&nbsp;box-shadow: 8px 8px 0px #000000;<br>
+              &nbsp;&nbsp;border-radius: 20px;<br>
+              &nbsp;&nbsp;text-align: center;<br>
+              }
+            </div>
+          </div>
+        </section>
+
+        <!-- 10. PASO 3: AVATAR Y TÍTULO -->
+        <section data-background-color="#ffffff">
+          <h2>Paso 3: Quién soy (avatar y título)</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left text-sm text-gray-600 leading-relaxed">
+              <p class="mb-3">
+                <strong>¿Qué hacemos aquí?</strong>
+              </p>
+              <ol class="space-y-2 text-xs">
+                <li>1. Achicamos la imagen de perfil a un tamaño coherente (`width: 110px`).</li>
+                <li>2. Le damos forma circular perfecta aplicando <code>border-radius: 50%</code>.</li>
+                <li>3. Agregamos el título en mayúsculas, negrita y con letra grande.</li>
+              </ol>
+            </div>
+            
+            <div class="bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md max-h-[300px] overflow-y-auto">
+              header img {<br>
+              &nbsp;&nbsp;width: 110px;<br>
+              &nbsp;&nbsp;height: 110px;<br>
+              &nbsp;&nbsp;border-radius: 50%;<br>
+              &nbsp;&nbsp;border: 4px solid #000000;<br>
+              &nbsp;&nbsp;box-shadow: 3px 3px 0px #000000;<br>
+              &nbsp;&nbsp;margin-bottom: 15px;<br>
+              }<br><br>
+              header h1 {<br>
+              &nbsp;&nbsp;font-size: 2rem;<br>
+              &nbsp;&nbsp;font-weight: 900;<br>
+              &nbsp;&nbsp;text-transform: uppercase;<br>
+              }
+            </div>
+          </div>
+        </section>
+
+        <!-- 11. PASO 4: LOS ENLACES DE REDES -->
+        <section data-background-color="#ffffff">
+          <h2>Paso 4: Mis Redes (lista y enlaces)</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left text-sm text-gray-600 leading-relaxed">
+              <p class="mb-3">
+                <strong>¿Qué hacemos aquí?</strong>
+              </p>
+              <ol class="space-y-2 text-xs">
+                <li>1. Quitamos los puntitos/viñetas de la lista de HTML con <code>list-style: none</code>.</li>
+                <li>2. Diseñamos cada enlace <code>a</code> como un botón de bloque (`display: block`).</li>
+                <li>3. Le damos estilo de botón físico: fondo blanco, borde de 3px, sombra y bordes redondeados.</li>
+              </ol>
+            </div>
+            
+            <div class="bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md max-h-[300px] overflow-y-auto">
+              section ul {<br>
+              &nbsp;&nbsp;list-style: none;<br>
+              &nbsp;&nbsp;display: flex;<br>
+              &nbsp;&nbsp;flex-direction: column;<br>
+              &nbsp;&nbsp;gap: 12px;<br>
+              }<br><br>
+              section ul li a {<br>
+              &nbsp;&nbsp;display: block;<br>
+              &nbsp;&nbsp;text-decoration: none;<br>
+              &nbsp;&nbsp;color: #000000;<br>
+              &nbsp;&nbsp;background-color: #ffffff;<br>
+              &nbsp;&nbsp;padding: 12px;<br>
+              &nbsp;&nbsp;font-weight: 800;<br>
+              &nbsp;&nbsp;border: 3px solid #000000;<br>
+              &nbsp;&nbsp;box-shadow: 4px 4px 0px #000000;<br>
+              &nbsp;&nbsp;border-radius: 10px;<br>
+              }
+            </div>
+          </div>
+        </section>
+
+        <!-- 12. PASO 5: EL EFECTO PRESIÓN (Hover & Active) -->
+        <section data-background-color="#ffffff">
+          <h2>Paso 5: El Click Físico (efectos hover)</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left text-sm text-gray-600 leading-relaxed">
+              <p class="mb-3">
+                <strong>¿Qué hacemos aquí?</strong>
+              </p>
+              <p class="text-xs mb-3">
+                Para simular que el botón realmente se hunde al presionarlo o pasar el mouse:
+              </p>
+              <ol class="space-y-2 text-xs">
+                <li>1. Empujamos el botón ligeramente hacia abajo y a la derecha con <code>translate(2px, 2px)</code>.</li>
+                <li>2. Reducimos el tamaño de la sombra plana de 4px a 2px en la misma proporción.</li>
+                <li>3. Agregamos <code>transition: all 0.15s</code> para que el movimiento no sea brusco.</li>
+              </ol>
+            </div>
+            
+            <div class="bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md">
+              /* En el tag a de la diapo anterior agregamos: */<br>
+              transition: all 0.15s ease-in-out;<br><br>
+              /* Y creamos la regla hover: */<br>
+              section ul li a:hover {<br>
+              &nbsp;&nbsp;transform: translate(2px, 2px);<br>
+              &nbsp;&nbsp;box-shadow: 2px 2px 0px #000000;<br>
+              }
+            </div>
+          </div>
+        </section>
+
+        <!-- 13. PASO 6: PERSONALIZACIÓN (Hover Colors) -->
+        <section data-background-color="#ffffff">
+          <h2>Paso 6: Detalle y Personalización</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-8">
+            <div class="bw-card text-left text-sm text-gray-600 leading-relaxed">
+              <p class="mb-3">
+                <strong>¿Qué hacemos aquí?</strong>
+              </p>
+              <p class="text-xs mb-3">
+                Para que la tarjeta luzca profesional y colorida, le damos a cada botón un color de fondo diferente cuando pasamos el mouse por encima:
+              </p>
+              <ul class="text-[10px] space-y-1 font-sans text-gray-500">
+                <li>🌳 Linktree: Verde suave (<code>#c2f0c2</code>)</li>
+                <li>💻 GitHub: Gris suave (<code>#e2e8f0</code>)</li>
+                <li>🎥 YouTube: Rojo suave (<code>#ffcccc</code>)</li>
+              </ul>
+            </div>
+            
+            <div class="bg-gray-900 p-4 rounded-xl text-left font-mono text-[10px] text-green-400 shadow-md max-h-[300px] overflow-y-auto">
+              /* Linktree (Elemento 1) */<br>
+              section ul li:nth-child(1) a:hover {<br>
+              &nbsp;&nbsp;background-color: #c2f0c2;<br>
+              }<br><br>
+              /* GitHub (Elemento 2) */<br>
+              section ul li:nth-child(2) a:hover {<br>
+              &nbsp;&nbsp;background-color: #e2e8f0;<br>
+              }<br><br>
+              /* YouTube (Elemento 3) */<br>
+              section ul li:nth-child(3) a:hover {<br>
+              &nbsp;&nbsp;background-color: #ffcccc;<br>
+              }
+            </div>
+          </div>
+        </section>
+
+        <!-- 14. DESAFÍO EN CODEPEN (Editor VS Code Mockup) -->
+        <section data-background-color="#000000">
+          <div class="max-w-4xl mx-auto text-left">
+            <span class="bg-white text-black px-3 py-1 font-mono text-xs rounded font-bold uppercase tracking-wider mb-4 inline-block">Tu Turno</span>
+            <h2 class="text-white text-3xl mb-4">Aplicando Estilos CSS 🏆</h2>
+            <p class="text-gray-400 text-sm mb-6">
+              Vinculá el archivo CSS en tu HTML y empezá a maquetar el reset, centrar el body con Flexbox y darle la sombra dura brutalista a tu Bio Card.
+            </p>
+            
+            <!-- VS Code Editor Layout Mockup -->
+            <div class="bg-gray-950 border border-gray-800 rounded-xl overflow-hidden shadow-2xl font-mono text-xs text-white max-w-2xl mx-auto">
+              <!-- Barra del editor -->
+              <div class="bg-gray-900 px-4 py-2 border-b border-gray-800 flex justify-between items-center text-gray-500">
+                <div class="flex gap-2">
+                  <span class="w-3 h-3 bg-red-500 rounded-full"></span>
+                  <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
+                  <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                </div>
+                <span>estilos.css</span>
+                <span></span>
+              </div>
+              <!-- Contenido de código CSS -->
+              <div class="p-6 flex flex-col gap-2 overflow-y-auto max-h-[200px]">
+                <div><span class="text-indigo-400">body</span> {</div>
+                <div class="pl-6"><span class="text-blue-400">display</span>: flex;</div>
+                <div class="pl-6"><span class="text-blue-400">justify-content</span>: center;</div>
+                <div>}</div>
+                <div class="mt-2"><span class="text-indigo-400 font-bold">.card</span> {</div>
+                <div class="pl-6"><span class="text-blue-400">border</span>: 4px solid #000;</div>
+                <div class="pl-6"><span class="text-blue-400 font-bold">box-shadow</span>: 8px 8px 0px #000;</div>
+                <div>}</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 15. DEMOS DE REFERENCIA (NUEVA DIAPOSITIVA) -->
+        <section data-background-color="#ffffff">
+          <h2>Demos y Variantes de Referencia 🎨</h2>
+          <p class="text-sm text-gray-500 font-mono mb-6">Inspiración de estilos para los alumnos (Abrir en pestaña nueva)</p>
+          
+          <div class="grid grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto">
+            <!-- Columna Verticales -->
+            <div class="bw-card flex flex-col gap-3 text-left">
+              <h4 class="font-bold text-base text-black border-b pb-2 mb-2"><i class="fas fa-arrows-up-down mr-2"></i> Botones con Texto (Vertical)</h4>
+              <a href="./demo/neobrutalista/" target="_blank" class="bg-white hover:bg-gray-100 text-black py-2.5 px-4 rounded-xl border-2 border-black font-bold text-xs shadow-[2px_2px_0px_#000] flex items-center justify-between transition-all">
+                <span>1. Neo-brutalista Premium</span> <i class="fas fa-external-link-alt text-[10px]"></i>
+              </a>
+              <a href="./demo/cyberneon/" target="_blank" class="bg-white hover:bg-gray-100 text-black py-2.5 px-4 rounded-xl border-2 border-black font-bold text-xs shadow-[2px_2px_0px_#000] flex items-center justify-between transition-all">
+                <span>2. Cyber Neon / Cyberpunk</span> <i class="fas fa-external-link-alt text-[10px]"></i>
+              </a>
+              <a href="./demo/minimal-glass/" target="_blank" class="bg-white hover:bg-gray-100 text-black py-2.5 px-4 rounded-xl border-2 border-black font-bold text-xs shadow-[2px_2px_0px_#000] flex items-center justify-between transition-all">
+                <span>3. Glassmorphism / Vidrio</span> <i class="fas fa-external-link-alt text-[10px]"></i>
+              </a>
+            </div>
+            
+            <!-- Columna Horizontales -->
+            <div class="bw-card flex flex-col gap-3 text-left">
+              <h4 class="font-bold text-base text-black border-b pb-2 mb-2"><i class="fas fa-arrows-left-right mr-2"></i> Solo Iconos (Horizontal)</h4>
+              <a href="./demo/neobrutalista-iconos/" target="_blank" class="bg-white hover:bg-gray-100 text-black py-2.5 px-4 rounded-xl border-2 border-black font-bold text-xs shadow-[2px_2px_0px_#000] flex items-center justify-between transition-all">
+                <span>1. Neo-brutalista (Horizontal)</span> <i class="fas fa-external-link-alt text-[10px]"></i>
+              </a>
+              <a href="./demo/cyberneon-iconos/" target="_blank" class="bg-white hover:bg-gray-100 text-black py-2.5 px-4 rounded-xl border-2 border-black font-bold text-xs shadow-[2px_2px_0px_#000] flex items-center justify-between transition-all">
+                <span>2. Cyber Neon (Horizontal)</span> <i class="fas fa-external-link-alt text-[10px]"></i>
+              </a>
+              <a href="./demo/minimal-glass-iconos/" target="_blank" class="bg-white hover:bg-gray-100 text-black py-2.5 px-4 rounded-xl border-2 border-black font-bold text-xs shadow-[2px_2px_0px_#000] flex items-center justify-between transition-all">
+                <span>3. Glassmorphism (Horizontal)</span> <i class="fas fa-external-link-alt text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- 16. DESAFÍO FINAL -->
+        <section data-background-color="#ffffff">
+          <h2>¡Manos a la Obra! 🚀</h2>
+          <div class="bw-card max-w-xl mx-auto text-left mt-8">
+            <h4 class="font-bold text-lg text-green-600 mb-3"><i class="fas fa-flag mr-2"></i> Reto de la Clase</h4>
+            <ol class="text-sm space-y-3 text-gray-700 font-sans">
+              <li>Vincular <code>estilos.css</code> en tu archivo de CodePen.</li>
+              <li>Centrar el contenedor <code>.card</code> usando Flexbox en el <code>body</code>.</li>
+              <li>Aplicar los bordes gruesos y las sombras duras de color negro.</li>
+              <li>Maquetar tus redes como botones con efecto hover interactivo y colores pastel.</li>
+            </ol>
+          </div>
+          
+          <div class="mt-8 flex items-center justify-center gap-4 py-2 px-6 rounded-full inline-flex mx-auto border-2 border-black bg-white shadow-[4px_4px_0px_rgba(0,0,0,0.15)]">
+            <img src="https://avatars.githubusercontent.com/u/188985435?v=4" class="w-10 h-10 rounded-full border border-black" />
+            <span class="font-mono text-sm font-bold text-black">imyisusdev - CSS y Diseño Web</span>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- Scripts de Reveal.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        progressColor: "#000000",
+        center: true,
+        transition: "fade",
+        backgroundTransition: "fade",
+      });
+    </script>
+  </body>
+</html>
