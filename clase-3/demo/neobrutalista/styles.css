@@ -121,13 +121,14 @@ section ul li a:hover {
   box-shadow: 2px 2px 0px #000000;
 }
 
-section ul li:nth-child(1) a:hover { background-color: #c2f0c2; }
-section ul li:nth-child(2) a:hover { background-color: #e2e8f0; }
-section ul li:nth-child(3) a:hover { background-color: #ffcccc; }
-section ul li:nth-child(4) a:hover { background-color: #ffd0ec; }
-section ul li:nth-child(5) a:hover { background-color: #d1f7f5; }
-section ul li:nth-child(6) a:hover { background-color: #e2d9f3; }
-section ul li:nth-child(7) a:hover { background-color: #d2e4ff; }
+/* Clases de hover individuales para evitar selectores avanzados complejos */
+.btn-linktree:hover { background-color: #c2f0c2; }
+.btn-github:hover { background-color: #e2e8f0; }
+.btn-youtube:hover { background-color: #ffcccc; }
+.btn-instagram:hover { background-color: #ffd0ec; }
+.btn-tiktok:hover { background-color: #d1f7f5; }
+.btn-threads:hover { background-color: #e2d9f3; }
+.btn-facebook:hover { background-color: #d2e4ff; }
 
 footer {
   margin-top: 30px;

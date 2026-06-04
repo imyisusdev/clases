@@ -182,6 +182,73 @@
           </div>
         </section>
 
+        <!-- NUEVA DIAPOSITIVA: SELECTORES BÁSICOS -->
+        <section data-background-color="#ffffff">
+          <h2>Selectores Básicos en CSS</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">¿Cómo elegimos qué pintar?</h3>
+              <p class="text-xs text-gray-600 leading-relaxed mb-3">
+                Para aplicar estilos en CSS, necesitamos indicarle al navegador a qué elementos nos referimos. Hay tres formas básicas:
+              </p>
+              <ul class="text-xs text-gray-500 space-y-2.5 font-sans">
+                <li>🏷️ <strong>Etiqueta:</strong> Afecta a todos los elementos de ese tipo (ej: <code>h1</code>, <code>p</code>, <code>a</code>).</li>
+                <li>🎯 <strong>Clase (<code>.</code>):</strong> Selecciona elementos por su atributo <code>class</code>. Lleva un punto inicial y se puede reutilizar en muchas etiquetas.</li>
+                <li>💎 <strong>ID / Identificador (<code>#</code>):</strong> Selecciona un único elemento con ese <code>id</code> específico. Lleva un hashtag.</li>
+              </ul>
+            </div>
+            
+            <div class="flex flex-col gap-3 text-left font-mono text-xs">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md">
+                <span class="text-gray-500">/* Por Etiqueta */</span><br>
+                <span class="text-yellow-400">h1</span> { color: black; }
+              </div>
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md">
+                <span class="text-gray-500">/* Por Clase (lleva punto) */</span><br>
+                <span class="text-yellow-400">.btn-linktree</span> { background: #c2f0c2; }
+              </div>
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md">
+                <span class="text-gray-500">/* Por ID (lleva #) */</span><br>
+                <span class="text-yellow-400">#avatar</span> { border-radius: 50%; }
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- NUEVA DIAPOSITIVA: FORMATOS DE COLOR -->
+        <section data-background-color="#ffffff">
+          <h2>Formatos de Color en CSS</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">Pintando con Código</h3>
+              <p class="text-xs text-gray-600 leading-relaxed mb-3">
+                CSS nos permite definir los colores de nuestros diseños usando distintos formatos:
+              </p>
+              <ul class="text-xs text-gray-500 space-y-2.5 font-sans">
+                <li>🎨 <strong>Nombres de Color:</strong> Colores predefinidos por el navegador como <code>red</code>, <code>blue</code>, <code>transparent</code>.</li>
+                <li>#️⃣ <strong>Hexadecimal (HEX):</strong> El estándar más usado. Empieza con <code>#</code> seguido de 6 caracteres (Rojo, Verde, Azul). Ej: <code>#ff007f</code>.</li>
+                <li>🌈 <strong>RGB / RGBA:</strong> Define la mezcla de Rojo, Verde y Azul de 0 a 255. La <strong>"A"</strong> de RGBA es para la opacidad o transparencia (de 0 a 1).</li>
+              </ul>
+            </div>
+            
+            <div class="flex flex-col gap-3 text-left font-mono text-xs">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md">
+                <span class="text-gray-500">/* Color por Nombre */</span><br>
+                color: <span class="text-red-400">red</span>;
+              </div>
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md">
+                <span class="text-gray-500">/* Hexadecimal (#RRGGBB) */</span><br>
+                color: <span class="text-yellow-400">#ff007f</span>; <span class="text-gray-500">/* Rosa Neón */</span>
+              </div>
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md">
+                <span class="text-gray-500">/* RGB y RGBA (Transparencia) */</span><br>
+                color: <span class="text-blue-400">rgb(255, 0, 127)</span>;<br>
+                background: <span class="text-blue-400">rgba(0, 0, 0, 0.5)</span>; <span class="text-gray-500">/* 50% opacidad */</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- 4. EL BOX MODEL (Modelo de Cajas) -->
         <section data-background-color="#fafafa">
           <h2>El Modelo de Cajas (Box Model)</h2>
@@ -493,7 +560,7 @@
                 <strong>¿Qué hacemos aquí?</strong>
               </p>
               <p class="text-xs mb-3">
-                Para que la tarjeta luzca profesional y colorida, le damos a cada botón un color de fondo diferente cuando pasamos el mouse por encima:
+                Para que la tarjeta luzca profesional y colorida, le damos a cada botón un color de fondo diferente cuando pasamos el mouse por encima usando sus selectores de clase individuales:
               </p>
               <ul class="text-[10px] space-y-1 font-sans text-gray-500">
                 <li>🌳 Linktree: Verde suave (<code>#c2f0c2</code>)</li>
@@ -503,16 +570,16 @@
             </div>
             
             <div class="bg-gray-900 p-4 rounded-xl text-left font-mono text-[10px] text-green-400 shadow-md max-h-[300px] overflow-y-auto">
-              /* Linktree (Elemento 1) */<br>
-              section ul li:nth-child(1) a:hover {<br>
+              /* Linktree (.btn-linktree) */<br>
+              .btn-linktree:hover {<br>
               &nbsp;&nbsp;background-color: #c2f0c2;<br>
               }<br><br>
-              /* GitHub (Elemento 2) */<br>
-              section ul li:nth-child(2) a:hover {<br>
+              /* GitHub (.btn-github) */<br>
+              .btn-github:hover {<br>
               &nbsp;&nbsp;background-color: #e2e8f0;<br>
               }<br><br>
-              /* YouTube (Elemento 3) */<br>
-              section ul li:nth-child(3) a:hover {<br>
+              /* YouTube (.btn-youtube) */<br>
+              .btn-youtube:hover {<br>
               &nbsp;&nbsp;background-color: #ffcccc;<br>
               }
             </div>
