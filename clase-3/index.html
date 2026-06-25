@@ -131,24 +131,24 @@
           <div class="grid grid-cols-2 gap-8 items-center mt-8">
             <div class="bw-card text-left">
               <h4 class="font-bold text-lg text-indigo-600 mb-2 font-mono">Origen: Cascading Style Sheets</h4>
-              <p class="text-sm text-gray-600 leading-relaxed">
+              <p class="text-sm text-gray-600 leading-relaxed fragment fade-up">
                 Hojas de Estilo en Cascada. Es el lenguaje que le da color, fuentes y vida al esqueleto gris de HTML.
               </p>
               <div class="h-px bg-gray-200 my-4"></div>
-              <h5 class="text-xs font-bold text-gray-700 uppercase mb-1">La analogía de la casa:</h5>
-              <p class="text-xs text-gray-500 leading-relaxed">
+              <h5 class="text-xs font-bold text-gray-700 uppercase mb-1 fragment fade-up">La analogía de la casa:</h5>
+              <p class="text-xs text-gray-500 leading-relaxed fragment fade-up">
                 Si HTML es el plano y los ladrillos, CSS es la pintura, la decoración, las alfombras y el diseño de interiores de cada habitación.
               </p>
             </div>
             
             <div class="flex flex-col gap-3 text-left text-xs">
-              <div class="p-4 bg-gray-50 border-2 border-black rounded shadow-[3px_3px_0px_#000]">
+              <div class="p-4 bg-gray-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] fragment fade-left">
                 🎨 <strong>Selectores:</strong> Indican <strong>qué</strong> elemento pintar.
               </div>
-              <div class="p-4 bg-gray-50 border-2 border-black rounded shadow-[3px_3px_0px_#000]">
+              <div class="p-4 bg-gray-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] fragment fade-left">
                 📏 <strong>Propiedades:</strong> Indican <strong>qué aspecto</strong> cambiar (color, borde, tamaño).
               </div>
-              <div class="p-4 bg-gray-50 border-2 border-black rounded shadow-[3px_3px_0px_#000]">
+              <div class="p-4 bg-gray-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] fragment fade-left">
                 💎 <strong>Valores:</strong> Indican <strong>cómo</strong> queremos que quede (rojo, 4px, 200px).
               </div>
             </div>
@@ -161,16 +161,16 @@
           <div class="grid grid-cols-2 gap-8 items-center mt-8">
             <div class="bw-card text-left">
               <h3 class="text-xl font-bold mb-3">La analogía de la pared</h3>
-              <p class="text-sm text-gray-600 leading-relaxed">
+              <p class="text-sm text-gray-600 leading-relaxed fragment fade-up">
                 Si querés pintar una pared específica de tu casa, tenés que seleccionarla, decidir qué propiedad cambiar y aplicar el valor.
               </p>
               <div class="h-px bg-gray-200 my-4"></div>
-              <p class="text-xs text-gray-500 leading-relaxed">
+              <p class="text-xs text-gray-500 leading-relaxed fragment fade-up">
                 El CSS se escribe seleccionando la etiqueta HTML y abriendo llaves <code>{ }</code> para encerrar las reglas de estilo.
               </p>
             </div>
             
-            <div class="bg-gray-900 p-6 rounded-xl text-left font-mono text-sm text-white shadow-lg flex flex-col gap-1.5">
+            <div class="bg-gray-900 p-6 rounded-xl text-left font-mono text-sm text-white shadow-lg flex flex-col gap-1.5 fragment fade-left">
               <div><span class="text-yellow-400">h1</span> {</div>
               <div class="pl-6"><span class="text-blue-400">color</span>: <span class="text-green-400">#4f46e5</span>;</div>
               <div class="pl-6"><span class="text-blue-400 font-bold">font-size</span>: <span class="text-green-400">32px</span>;</div>
@@ -182,24 +182,24 @@
           </div>
         </section>
 
-        <!-- NUEVA DIAPOSITIVA: LA CASCADA (CASCADING) -->
+        <!-- 2.5 ¿QUÉ ES LA CASCADA? (CASCADING) -->
         <section data-background-color="#ffffff">
           <h2>¿Qué es la Cascada? (Cascading)</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
             <div class="bw-card text-left">
               <h3 class="text-lg font-bold mb-2">El orden de las reglas importa 🌊</h3>
-              <p class="text-xs text-gray-600 leading-relaxed mb-3">
+              <p class="text-xs text-gray-600 leading-relaxed mb-3 fragment fade-up">
                 CSS significa <em>Cascading Style Sheets</em> (Hojas de Estilo en Cascada). Esto significa que los estilos caen como una cascada y se aplican de arriba a abajo.
               </p>
               <div class="h-px bg-gray-200 my-4"></div>
-              <h4 class="font-bold text-xs text-red-600 uppercase mb-1">¡Regla de oro!:</h4>
-              <p class="text-xs text-gray-500 leading-relaxed">
+              <h4 class="font-bold text-xs text-red-600 uppercase mb-1 fragment fade-up">¡Regla de oro!:</h4>
+              <p class="text-xs text-gray-500 leading-relaxed fragment fade-up">
                 Si escribís dos reglas contradictorias para el mismo elemento con la misma importancia, **la última en leerse "pisa" a las anteriores**.
               </p>
             </div>
             
             <div class="flex flex-col gap-3">
-              <div class="bg-gray-900 p-6 rounded-xl text-left font-mono text-xs text-white shadow-lg">
+              <div class="bg-gray-900 p-6 rounded-xl text-left font-mono text-xs text-white shadow-lg fragment fade-left">
                 <span class="text-yellow-400">h1</span> {<br>
                 &nbsp;&nbsp;color: <span class="text-blue-400">blue</span>;<br>
                 }<br><br>
@@ -207,7 +207,7 @@
                 &nbsp;&nbsp;color: <span class="text-red-400">red</span>;<br>
                 }
               </div>
-              <div class="p-4 bg-yellow-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold text-xs text-black">
+              <div class="p-4 bg-yellow-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold text-xs text-black fragment fade-up">
                 ❓ ¿De qué color se pinta el h1? <br>
                 <span class="text-red-600 text-sm font-black">¡RED! (Rojo)</span> porque está al final del código.
               </div>
@@ -225,22 +225,22 @@
                 Para aplicar estilos en CSS, necesitamos indicarle al navegador a qué elementos nos referimos. Hay tres formas básicas:
               </p>
               <ul class="text-xs text-gray-500 space-y-2.5 font-sans">
-                <li>🏷️ <strong>Etiqueta:</strong> Afecta a todos los elementos de ese tipo (ej: <code>h1</code>, <code>p</code>, <code>a</code>).</li>
-                <li>🎯 <strong>Clase (<code>.</code>):</strong> Selecciona elementos por su atributo <code>class</code>. Lleva un punto inicial y se puede reutilizar en muchas etiquetas.</li>
-                <li>💎 <strong>ID / Identificador (<code>#</code>):</strong> Selecciona un único elemento con ese <code>id</code> específico. Lleva un hashtag.</li>
+                <li class="fragment fade-up">🏷️ <strong>Etiqueta:</strong> Afecta a todos los elementos de ese tipo (ej: <code>h1</code>, <code>p</code>, <code>a</code>).</li>
+                <li class="fragment fade-up">🎯 <strong>Clase (<code>.</code>):</strong> Selecciona elementos por su atributo <code>class</code>. Lleva un punto inicial y se puede reutilizar en muchas etiquetas.</li>
+                <li class="fragment fade-up">💎 <strong>ID / Identificador (<code>#</code>):</strong> Selecciona un único elemento con ese <code>id</code> específico. Lleva un hashtag.</li>
               </ul>
             </div>
             
             <div class="flex flex-col gap-3 text-left font-mono text-xs">
-              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
                 <span class="text-gray-500">/* Por Etiqueta */</span><br>
                 <span class="text-yellow-400">h1</span> { color: black; }
               </div>
-              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
                 <span class="text-gray-500">/* Por Clase (lleva punto) */</span><br>
                 <span class="text-yellow-400">.btn-linktree</span> { background: #c2f0c2; }
               </div>
-              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
                 <span class="text-gray-500">/* Por ID (lleva #) */</span><br>
                 <span class="text-yellow-400">#avatar</span> { border-radius: 50%; }
               </div>
@@ -255,25 +255,25 @@
             <div class="bw-card text-left">
               <h3 class="text-lg font-bold mb-2">Pintando con Código</h3>
               <p class="text-xs text-gray-600 leading-relaxed mb-3">
-                CSS nos permite definir los colores de nuestros diseños usando distintos formatos:
+                CSS nos permite definir los colores de nuestros designs usando distintos formatos:
               </p>
               <ul class="text-xs text-gray-500 space-y-2.5 font-sans">
-                <li>🎨 <strong>Nombres de Color:</strong> Colores predefinidos por el navegador como <code>red</code>, <code>blue</code>, <code>transparent</code>.</li>
-                <li>#️⃣ <strong>Hexadecimal (HEX):</strong> El estándar más usado. Empieza con <code>#</code> seguido de 6 caracteres (Rojo, Verde, Azul). Ej: <code>#ff007f</code>.</li>
-                <li>🌈 <strong>RGB / RGBA:</strong> Define la mezcla de Rojo, Verde y Azul de 0 a 255. La <strong>"A"</strong> de RGBA es para la opacidad o transparencia (de 0 a 1).</li>
+                <li class="fragment fade-up">🎨 <strong>Nombres de Color:</strong> Colores predefinidos por el navegador como <code>red</code>, <code>blue</code>, <code>transparent</code>.</li>
+                <li class="fragment fade-up">#️⃣ <strong>Hexadecimal (HEX):</strong> El estándar más usado. Empieza con <code>#</code> seguido de 6 caracteres (Rojo, Verde, Azul). Ej: <code>#ff007f</code>.</li>
+                <li class="fragment fade-up">🌈 <strong>RGB / RGBA:</strong> Define la mezcla de Rojo, Verde y Azul de 0 a 255. La <strong>"A"</strong> de RGBA es para la opacidad o transparencia (de 0 a 1).</li>
               </ul>
             </div>
             
             <div class="flex flex-col gap-3 text-left font-mono text-xs">
-              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
                 <span class="text-gray-500">/* Color por Nombre */</span><br>
                 color: <span class="text-red-400">red</span>;
               </div>
-              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
                 <span class="text-gray-500">/* Hexadecimal (#RRGGBB) */</span><br>
                 color: <span class="text-yellow-400">#ff007f</span>; <span class="text-gray-500">/* Rosa Neón */</span>
               </div>
-              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
                 <span class="text-gray-500">/* RGB y RGBA (Transparencia) */</span><br>
                 color: <span class="text-blue-400">rgb(255, 0, 127)</span>;<br>
                 background: <span class="text-blue-400">rgba(0, 0, 0, 0.5)</span>; <span class="text-gray-500">/* 50% opacidad */</span>
@@ -294,14 +294,14 @@
                 Pensalo como enviar una taza por correo:
               </p>
               <ul class="text-xs text-gray-500 space-y-1.5 font-sans">
-                <li>🍵 <strong>Content:</strong> La taza misma.</li>
-                <li>📦 <strong>Padding (Relleno):</strong> El plástico de burbujas interno para proteger la taza.</li>
-                <li>📦 <strong>Border (Borde):</strong> El cartón de la caja.</li>
-                <li>🚚 <strong>Margin (Margen):</strong> La distancia vacía entre esta caja y otras encomiendas.</li>
+                <li class="fragment fade-up">🍵 <strong>Content:</strong> La taza misma.</li>
+                <li class="fragment fade-up">📦 <strong>Padding (Relleno):</strong> El plástico de burbujas interno para proteger la taza.</li>
+                <li class="fragment fade-up">📦 <strong>Border (Borde):</strong> El cartón de la caja.</li>
+                <li class="fragment fade-up">🚚 <strong>Margin (Margen):</strong> La distancia vacía entre esta caja y otras encomiendas.</li>
               </ul>
             </div>
             
-            <div class="border-2 border-black rounded-xl p-3 bg-white shadow-md text-xs font-mono text-center font-bold">
+            <div class="border-2 border-black rounded-xl p-3 bg-white shadow-md text-xs font-mono text-center font-bold fragment fade-left">
               <div class="bg-amber-100 border border-amber-400 text-amber-800 p-2.5 rounded">
                 Margin (Espacio exterior)
                 <div class="bg-indigo-100 border border-indigo-400 text-indigo-800 p-2.5 rounded mt-1.5">
@@ -324,25 +324,25 @@
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
             <div class="bw-card text-left">
               <h3 class="text-lg font-bold mb-2">box-sizing: border-box 📦</h3>
-              <p class="text-xs text-gray-600 leading-relaxed mb-3">
+              <p class="text-xs text-gray-600 leading-relaxed mb-3 fragment fade-up">
                 Por defecto, si una caja mide 200px de ancho y le agregás 20px de padding, la caja se expande a 240px. ¡Se agranda y rompe tu maquetación!
               </p>
               <div class="h-px bg-gray-200 my-3"></div>
-              <h4 class="font-bold text-xs text-indigo-600 uppercase mb-1">La solución:</h4>
-              <p class="text-xs text-gray-500 leading-relaxed">
+              <h4 class="font-bold text-xs text-indigo-600 uppercase mb-1 fragment fade-up">La solución:</h4>
+              <p class="text-xs text-gray-500 leading-relaxed fragment fade-up">
                 Al aplicar <code>box-sizing: border-box</code>, le decís a la caja: *"mantené tu ancho exacto y meté el padding y el borde hacia adentro"*.
               </p>
             </div>
             
             <div class="flex flex-col gap-4 text-xs font-mono text-center">
-              <div class="border-2 border-black p-3 bg-red-50 rounded shadow-md">
+              <div class="border-2 border-black p-3 bg-red-50 rounded shadow-md fragment fade-left">
                 <span class="font-bold text-red-700">Sin border-box (content-box)</span>
                 <div class="bg-white border-4 border-black p-2 mt-1 font-bold text-black">
                   Ancho 200px + Padding 20px = <br>
                   <span class="text-red-600 text-sm font-black">¡240px totales! (Se ensancha)</span>
                 </div>
               </div>
-              <div class="border-2 border-black p-3 bg-green-50 rounded shadow-md">
+              <div class="border-2 border-black p-3 bg-green-50 rounded shadow-md fragment fade-left">
                 <span class="font-bold text-green-700">Con border-box (¡El estándar!)</span>
                 <div class="bg-white border-4 border-black p-2 mt-1 font-bold text-black">
                   Ancho 200px (Padding va hacia adentro) = <br>
@@ -357,7 +357,7 @@
         <section data-background-color="#ffffff">
           <h2>Flexbox y la Alineación</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
-            <div class="bw-card text-left">
+            <div class="fragment fade-right bw-card text-left">
               <h3 class="text-xl font-bold mb-3">¿Qué es Flexbox?</h3>
               <p class="text-sm text-gray-600 leading-relaxed">
                 Es una herramienta de CSS diseñada para ordenar, centrar y distribuir elementos fácilmente sin que se rompa la maquetación.
@@ -370,7 +370,7 @@
               </p>
             </div>
             
-            <div class="flex flex-col gap-3 text-xs text-left">
+            <div class="fragment fade-left flex flex-col gap-3 text-xs text-left">
               <div class="p-3 bg-gray-50 border border-gray-200 rounded">
                 <code>display: flex;</code> <br>
                 <span class="text-gray-500 font-sans text-[11px]">Activa el modo Flexbox en el contenedor madre.</span>
@@ -393,7 +393,7 @@
           <p class="text-sm text-gray-500 font-mono mb-4">Analogía de Organización Física</p>
           
           <div class="grid grid-cols-2 gap-8 items-center mt-4">
-            <div class="bw-card text-left">
+            <div class="fragment fade-right bw-card text-left">
               <h3 class="text-xl font-bold mb-3">Ordenando juguetes</h3>
               <p class="text-sm text-gray-600 leading-relaxed mb-3">
                 Imaginá que tenés una caja contenedora (el "Flex Container") y querés ordenar autitos y bloques adentro:
@@ -405,7 +405,7 @@
               </ul>
             </div>
             
-            <div class="border-2 border-black rounded-xl p-4 bg-amber-50 shadow-md text-xs font-mono">
+            <div class="fragment fade-left border-2 border-black rounded-xl p-4 bg-amber-50 shadow-md text-xs font-mono">
               <span class="bg-black text-white px-2 py-0.5 rounded text-[10px] uppercase font-bold">Caja de Juguetes (Flex Container)</span>
               <div class="border-2 border-dashed border-amber-300 rounded p-4 flex gap-4 justify-center mt-4 bg-white">
                 <div class="w-12 h-12 bg-red-400 text-white rounded flex items-center justify-center text-xl shadow" title="Juguete 1">🚗</div>
@@ -425,7 +425,7 @@
           <p class="text-sm text-gray-500 font-mono mb-4">Analogía de Distribución de Asientos</p>
           
           <div class="grid grid-cols-2 gap-8 items-center mt-4">
-            <div class="bw-card text-left">
+            <div class="fragment fade-right bw-card text-left">
               <h3 class="text-xl font-bold mb-3">Alineando espectadores</h3>
               <p class="text-sm text-gray-600 leading-relaxed mb-3">
                 Imaginá una fila entera de butacas en una sala de cine. ¿Cómo acomodamos al público?
@@ -437,7 +437,7 @@
               </ul>
             </div>
             
-            <div class="border-2 border-black rounded-xl p-4 bg-slate-900 text-white shadow-md text-xs font-mono">
+            <div class="fragment fade-left border-2 border-black rounded-xl p-4 bg-slate-900 text-white shadow-md text-xs font-mono">
               <span class="bg-indigo-600 text-white px-2 py-0.5 rounded text-[10px] uppercase font-bold">Fila de Cine (Fila Flex)</span>
               
               <div class="border border-slate-700 rounded p-3 flex justify-between mt-4 bg-slate-950">
@@ -460,7 +460,7 @@
         <section data-background-color="#ffffff">
           <h2>Paso 1: El Escenario (body y reset)</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-8">
-            <div class="bw-card text-left text-sm text-gray-600 leading-relaxed">
+            <div class="fragment fade-right bw-card text-left text-sm text-gray-600 leading-relaxed">
               <p class="mb-3">
                 <strong>¿Qué hacemos aquí?</strong>
               </p>
@@ -471,7 +471,7 @@
               </ol>
             </div>
             
-            <div class="bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md max-h-[300px] overflow-y-auto">
+            <div class="fragment fade-left bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md max-h-[300px] overflow-y-auto">
               * {<br>
               &nbsp;&nbsp;margin: 0;<br>
               &nbsp;&nbsp;padding: 0;<br>
@@ -493,7 +493,7 @@
         <section data-background-color="#ffffff">
           <h2>Paso 2: La Caja de la Tarjeta (.card)</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-8">
-            <div class="bw-card text-left text-sm text-gray-600 leading-relaxed">
+            <div class="fragment fade-right bw-card text-left text-sm text-gray-600 leading-relaxed">
               <p class="mb-3">
                 <strong>¿Qué hacemos aquí?</strong>
               </p>
@@ -504,7 +504,7 @@
               </ol>
             </div>
             
-            <div class="bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md">
+            <div class="fragment fade-left bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md">
               .card {<br>
               &nbsp;&nbsp;background-color: #ffffff;<br>
               &nbsp;&nbsp;max-width: 380px;<br>
@@ -523,7 +523,7 @@
         <section data-background-color="#ffffff">
           <h2>Paso 3: Quién soy (avatar y título)</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-8">
-            <div class="bw-card text-left text-sm text-gray-600 leading-relaxed">
+            <div class="fragment fade-right bw-card text-left text-sm text-gray-600 leading-relaxed">
               <p class="mb-3">
                 <strong>¿Qué hacemos aquí?</strong>
               </p>
@@ -534,7 +534,7 @@
               </ol>
             </div>
             
-            <div class="bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md max-h-[300px] overflow-y-auto">
+            <div class="fragment fade-left bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md max-h-[300px] overflow-y-auto">
               header img {<br>
               &nbsp;&nbsp;width: 110px;<br>
               &nbsp;&nbsp;height: 110px;<br>
@@ -556,7 +556,7 @@
         <section data-background-color="#ffffff">
           <h2>Paso 4: Mis Redes (lista y enlaces)</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-8">
-            <div class="bw-card text-left text-sm text-gray-600 leading-relaxed">
+            <div class="fragment fade-right bw-card text-left text-sm text-gray-600 leading-relaxed">
               <p class="mb-3">
                 <strong>¿Qué hacemos aquí?</strong>
               </p>
@@ -567,7 +567,7 @@
               </ol>
             </div>
             
-            <div class="bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md max-h-[300px] overflow-y-auto">
+            <div class="fragment fade-left bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md max-h-[300px] overflow-y-auto">
               section ul {<br>
               &nbsp;&nbsp;list-style: none;<br>
               &nbsp;&nbsp;display: flex;<br>
@@ -593,7 +593,7 @@
         <section data-background-color="#ffffff">
           <h2>Paso 5: El Click Físico (efectos hover)</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-8">
-            <div class="bw-card text-left text-sm text-gray-600 leading-relaxed">
+            <div class="fragment fade-right bw-card text-left text-sm text-gray-600 leading-relaxed">
               <p class="mb-3">
                 <strong>¿Qué hacemos aquí?</strong>
               </p>
@@ -607,7 +607,7 @@
               </ol>
             </div>
             
-            <div class="bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md">
+            <div class="fragment fade-left bg-gray-900 p-4 rounded-xl text-left font-mono text-[11px] text-green-400 shadow-md">
               /* En el tag a de la diapo anterior agregamos: */<br>
               transition: all 0.15s ease-in-out;<br><br>
               /* Y creamos la regla hover: */<br>
@@ -623,7 +623,7 @@
         <section data-background-color="#ffffff">
           <h2>Paso 6: Detalle y Personalización</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-8">
-            <div class="bw-card text-left text-sm text-gray-600 leading-relaxed">
+            <div class="fragment fade-right bw-card text-left text-sm text-gray-600 leading-relaxed">
               <p class="mb-3">
                 <strong>¿Qué hacemos aquí?</strong>
               </p>
@@ -637,7 +637,7 @@
               </ul>
             </div>
             
-            <div class="bg-gray-900 p-4 rounded-xl text-left font-mono text-[10px] text-green-400 shadow-md max-h-[300px] overflow-y-auto">
+            <div class="fragment fade-left bg-gray-900 p-4 rounded-xl text-left font-mono text-[10px] text-green-400 shadow-md max-h-[300px] overflow-y-auto">
               /* Linktree (.btn-linktree) */<br>
               .btn-linktree:hover {<br>
               &nbsp;&nbsp;background-color: #c2f0c2;<br>
@@ -658,7 +658,7 @@
         <section data-background-color="#ffffff">
           <h2>Tu Superpoder: El Inspector (DevTools) 🛠️</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
-            <div class="bw-card text-left">
+            <div class="fragment fade-right bw-card text-left">
               <h4 class="text-lg font-bold mb-2">Inspeccionando y "Hackeando" la Web</h4>
               <p class="text-xs text-gray-600 leading-relaxed mb-3">
                 Cualquier navegador moderno tiene herramientas de desarrollador. Presionando <strong>F12</strong> o haciendo <strong>Click derecho -> Inspeccionar</strong>, podés ver y modificar el HTML y CSS de cualquier sitio en tiempo real.
@@ -672,7 +672,7 @@
               </ul>
             </div>
             
-            <div class="flex flex-col gap-3 text-xs font-mono text-center">
+            <div class="fragment fade-left flex flex-col gap-3 text-xs font-mono text-center">
               <div class="border-2 border-black p-3 bg-indigo-50 rounded shadow-[4px_4px_0px_#000] text-left">
                 <span class="bg-black text-white px-2 py-0.5 rounded text-[9px] uppercase font-bold">Consola del Desarrollador</span>
                 <div class="mt-3 text-[11px] space-y-1.5 text-slate-700 font-sans">
