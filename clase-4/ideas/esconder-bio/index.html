@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ideas JS: Mostrar y Ocultar Biografía - imyisusdev</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+      color: #f1f5f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      max-width: 380px;
+      width: 100%;
+      padding: 35px 25px;
+      text-align: center;
+      box-shadow: 0 10px 32px 0 rgba(0, 0, 0, 0.3);
+    }
+    header img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    .bio-container {
+      margin-bottom: 25px;
+      overflow: hidden;
+      transition: all 0.3s ease-in-out;
+      max-height: 200px; /* Suficiente altura para mostrar */
+      opacity: 1;
+    }
+    /* Clase que usaremos para ocultar */
+    .bio-container.hidden {
+      max-height: 0px;
+      opacity: 0;
+      margin-bottom: 0px;
+    }
+    .bio-text {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    button {
+      width: 100%;
+      padding: 12px 18px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+    button:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    .back-link {
+      display: block;
+      margin-top: 25px;
+      font-size: 0.8rem;
+      color: #64748b;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <img src="https://avatars.githubusercontent.com/u/188985435?v=4" alt="Foto de perfil de imyisusdev" />
+      <h1>imyisusdev</h1>
+    </header>
+    
+    <!-- El contenedor que ocultaremos/mostraremos -->
+    <div class="bio-container" id="bio-box">
+      <p class="bio-text">
+        Hola, soy Jesús. Creador de contenido y programador.
+        Me apasiona explicar programación de forma sencilla e interactiva, desde los fundamentos más puros.
+      </p>
+    </div>
+
+    <button id="btn-toggle-bio">👁️ Ocultar Biografía</button>
+    
+    <a href="../../demo/minimal-glass/index.html" class="back-link">&larr; Volver a la Bio Card</a>
+  </div>
+
+  <script>
+    // Selección de elementos del DOM
+    const btnToggle = document.getElementById('btn-toggle-bio');
+    const bioBox = document.getElementById('bio-box');
+
+    // Escuchador de eventos para alternar visibilidad
+    btnToggle.addEventListener('click', () => {
+      // Alternamos la clase .hidden
+      bioBox.classList.toggle('hidden');
+      
+      // Cambiamos el texto del botón según el estado de visibilidad
+      if (bioBox.classList.contains('hidden')) {
+        btnToggle.textContent = '👁️ Mostrar Biografía';
+      } else {
+        btnToggle.textContent = '👁️ Ocultar Biografía';
+      }
+    });
+  </script>
+</body>
+</html>

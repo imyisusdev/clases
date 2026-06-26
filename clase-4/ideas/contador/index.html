@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ideas JS: Contador de Clics - imyisusdev</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #f0f3f8;
+      color: #1e293b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .card {
+      background-color: #ffffff;
+      max-width: 360px;
+      width: 100%;
+      padding: 30px;
+      border: 4px solid #000000;
+      box-shadow: 8px 8px 0px #000000;
+      border-radius: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+    .counter-display {
+      font-size: 4.5rem;
+      font-weight: 900;
+      color: #000000;
+      background-color: #ffeaa7;
+      border: 3px solid #000000;
+      border-radius: 12px;
+      padding: 10px 20px;
+      margin-bottom: 25px;
+      display: inline-block;
+      min-width: 120px;
+      box-shadow: 4px 4px 0px #000000;
+      transition: transform 0.1s ease;
+    }
+    .btn-container {
+      display: flex;
+      gap: 12px;
+    }
+    button {
+      flex: 1;
+      padding: 15px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      border: 3px solid #000000;
+      border-radius: 10px;
+      transition: all 0.1s ease-in-out;
+    }
+    #btn-increment {
+      background-color: #ff7675;
+      color: #000000;
+      box-shadow: 4px 4px 0px #000000;
+    }
+    #btn-increment:hover {
+      background-color: #ff6b6b;
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #000000;
+    }
+    #btn-reset {
+      background-color: #ffffff;
+      color: #000000;
+      box-shadow: 4px 4px 0px #000000;
+    }
+    #btn-reset:hover {
+      background-color: #f1f2f6;
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #000000;
+    }
+    .back-link {
+      display: block;
+      margin-top: 25px;
+      font-size: 0.85rem;
+      color: #64748b;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-link:hover {
+      color: #000000;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Contador de Clics</h1>
+    <div class="counter-display" id="counter">0</div>
+    <div class="btn-container">
+      <button id="btn-increment">⚡ ¡Sumar!</button>
+      <button id="btn-reset">🔄 Reset</button>
+    </div>
+    <a href="../../demo/neobrutalista/index.html" class="back-link">&larr; Volver a la Bio Card</a>
+  </div>
+
+  <script>
+    // Variable de estado para el contador
+    let clicks = 0;
+
+    // Selección de elementos del DOM
+    const counterElement = document.getElementById('counter');
+    const btnIncrement = document.getElementById('btn-increment');
+    const btnReset = document.getElementById('btn-reset');
+
+    // Escuchador de eventos para incrementar
+    btnIncrement.addEventListener('click', () => {
+      clicks++;
+      counterElement.textContent = clicks;
+      
+      // Animación micro-interactiva al sumar
+      counterElement.style.transform = 'scale(1.1)';
+      setTimeout(() => {
+        counterElement.style.transform = 'scale(1)';
+      }, 100);
+    });
+
+    // Escuchador de eventos para reiniciar
+    btnReset.addEventListener('click', () => {
+      clicks = 0;
+      counterElement.textContent = clicks;
+    });
+  </script>
+</body>
+</html>

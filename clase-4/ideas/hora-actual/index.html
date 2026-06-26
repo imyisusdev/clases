@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ideas JS: Reloj en Tiempo Real - imyisusdev</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Fira Code', monospace;
+      background-color: #05050a;
+      color: #a0aec0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .card {
+      background-color: #0d0e15;
+      max-width: 400px;
+      width: 100%;
+      padding: 40px 25px;
+      border: 2px solid #00f0ff;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+      border-radius: 16px;
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 25px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+      text-transform: uppercase;
+    }
+    .clock-display {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #ff007f;
+      text-shadow: 0 0 10px rgba(255, 0, 127, 0.7);
+      background-color: #05050a;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 15px 10px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .date-display {
+      font-size: 0.9rem;
+      color: #00f0ff;
+      text-shadow: 0 0 5px rgba(0, 240, 255, 0.4);
+      margin-bottom: 25px;
+    }
+    .back-link {
+      display: block;
+      font-size: 0.8rem;
+      color: #475569;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: #00f0ff;
+      text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Reloj del Sistema</h1>
+    <div class="clock-display" id="clock">00:00:00</div>
+    <div class="date-display" id="date">CARGANDO FECHA...</div>
+    <a href="../../demo/cyberneon/index.html" class="back-link">&gt; VOLVER_A_LA_BIO_CARD</a>
+  </div>
+
+  <script>
+    // Función para formatear y actualizar el reloj
+    function updateTime() {
+      const now = new Date();
+      
+      // Extraemos horas, minutos y segundos, agregando un cero a la izquierda si son menores a 10
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      
+      // Actualizamos el reloj en el DOM
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+
+      // Formateamos la fecha en formato legible local
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = now.toLocaleDateString('es-AR', options);
+      
+      // Actualizamos la fecha en el DOM (en mayúsculas para estética Cyber)
+      document.getElementById('date').textContent = formattedDate.toUpperCase();
+    }
+
+    // Ejecutamos la función inmediatamente al cargar
+    updateTime();
+
+    // Configuramos el temporizador para actualizar cada 1 segundo (1000ms)
+    setInterval(updateTime, 1000);
+  </script>
+</body>
+</html>

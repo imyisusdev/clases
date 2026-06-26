@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Orbitron:wght@500;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fira Code', monospace;
+  background-color: #05050a; /* Fondo ultra oscuro futurista */
+  color: #a0aec0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* LA TARJETA CON BRILLO NEÓN CYAN */
+.card {
+  background-color: #0d0e15; /* Tarjeta oscura */
+  max-width: 380px;
+  width: 100%;
+  padding: 40px 25px;
+  border: 2px solid #00f0ff; /* Borde neón cyan */
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.35); /* Glow cyan */
+  border-radius: 16px;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* AVATAR CON BRILLO NEÓN MAGENTA/ROSA */
+header .avatar-glow {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+header .avatar-glow::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #00f0ff, #ff007f);
+  z-index: 1;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
+}
+
+header img {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  border: 3px solid #0d0e15;
+  position: relative;
+  z-index: 2;
+  object-fit: cover;
+}
+
+header h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6); /* Brillo de texto */
+  margin-bottom: 5px;
+}
+
+main {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+main h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #ff007f; /* Texto rosa neón */
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px rgba(255, 0, 127, 0.4);
+  margin-bottom: 15px;
+}
+
+main p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #94a3b8;
+}
+
+/* Palabras resaltadas estilo terminal cyberpunk */
+main .highlight {
+  color: #00f0ff;
+  font-weight: 700;
+  text-shadow: 0 0 5px rgba(0, 240, 255, 0.4);
+}
+
+main strong {
+  color: #ffffff;
+  font-weight: 700;
+  border-bottom: 1px dashed #ff007f;
+}
+
+main em {
+  font-style: normal;
+  color: #facc15;
+}
+
+/* BOTONERA DE ENLACES CON GLOW DE HOVER */
+section h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #475569;
+  margin-bottom: 20px;
+  text-align: left;
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 8px;
+}
+
+section ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+section ul li a {
+  display: block;
+  text-decoration: none;
+  color: #00f0ff; /* Color de link neón */
+  background-color: #0a0b10;
+  padding: 14px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  text-align: left;
+}
+
+/* Hover: el botón se ilumina en magenta y cambia el texto */
+section ul li a:hover {
+  color: #ffffff;
+  background-color: #ff007f;
+  border-color: #ff007f;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.7);
+  transform: translateX(4px);
+  text-shadow: 0 0 5px #ffffff;
+}
+
+footer {
+  margin-top: 35px;
+  font-size: 0.7rem;
+  color: #475569;
+  letter-spacing: 1px;
+}
+
+/* --- ESTILOS DE INTERACCIÓN (JS) --- */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 25px;
+}
+
+#btn-saludo {
+  flex: 1;
+  padding: 14px;
+  font-family: 'Fira Code', monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  background-color: #0a0b10;
+  color: #ff007f;
+  border: 1px solid #ff007f;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-shadow: 0 0 5px rgba(255, 0, 127, 0.4);
+  box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
+}
+
+#btn-saludo:hover {
+  background-color: #ff007f;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.7);
+  text-shadow: 0 0 5px #ffffff;
+}
+
+#btn-theme {
+  padding: 14px 18px;
+  font-size: 1rem;
+  background-color: #0a0b10;
+  color: #00f0ff;
+  border: 1px solid #00f0ff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-shadow: 0 0 5px rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+#btn-theme:hover {
+  background-color: #00f0ff;
+  color: #0a0b10;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
+  text-shadow: none;
+}
+
+/* --- MODO CLARO (LIGHT MODE) --- */
+body.light-mode {
+  background-color: #eef6f8;
+  color: #2d3748;
+}
+
+body.light-mode .card {
+  background-color: #ffffff;
+  border-color: #00808a;
+  box-shadow: 0 10px 25px rgba(0, 128, 138, 0.15);
+}
+
+body.light-mode .card:hover {
+  box-shadow: 0 15px 35px rgba(0, 128, 138, 0.3);
+}
+
+body.light-mode header h1 {
+  color: #1a202c;
+  text-shadow: 0 2px 4px rgba(0, 128, 138, 0.2);
+}
+
+body.light-mode main h2 {
+  color: #d0006f;
+  text-shadow: none;
+}
+
+body.light-mode main p {
+  color: #4a5568;
+}
+
+body.light-mode main .highlight {
+  color: #00808a;
+  text-shadow: none;
+}
+
+body.light-mode main strong {
+  color: #1a202c;
+  border-bottom-color: #d0006f;
+}
+
+body.light-mode main em {
+  color: #b7791f;
+}
+
+body.light-mode section h3 {
+  color: #718096;
+  border-bottom-color: #e2e8f0;
+}
+
+body.light-mode section ul li a {
+  color: #00808a;
+  background-color: #f7fafc;
+  border-color: #e2e8f0;
+}
+
+body.light-mode section ul li a:hover {
+  color: #ffffff;
+  background-color: #d0006f;
+  border-color: #d0006f;
+  box-shadow: 0 0 15px rgba(208, 0, 111, 0.5);
+  text-shadow: 0 0 2px #ffffff;
+}
+
+body.light-mode #btn-saludo {
+  background-color: #f7fafc;
+  color: #d0006f;
+  border-color: #d0006f;
+  box-shadow: 0 4px 6px rgba(208, 0, 111, 0.1);
+  text-shadow: none;
+}
+
+body.light-mode #btn-saludo:hover {
+  background-color: #d0006f;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(208, 0, 111, 0.4);
+}
+
+body.light-mode #btn-theme {
+  background-color: #f7fafc;
+  color: #00808a;
+  border-color: #00808a;
+  box-shadow: 0 4px 6px rgba(0, 128, 138, 0.1);
+  text-shadow: none;
+}
+
+body.light-mode #btn-theme:hover {
+  background-color: #00808a;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(0, 128, 138, 0.4);
+}
+
+body.light-mode footer {
+  color: #718096;
+}

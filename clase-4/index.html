@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>JS y la Vida de tu Tarjeta - imyisusdev</title>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/188985435?v=4" />
+
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/white.min.css" />
+
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Fira+Code:wght@400;700&display=swap');
+
+      .reveal {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        color: #1a1a1a;
+      }
+
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+        color: #111;
+        font-weight: 800;
+        text-transform: none;
+        letter-spacing: -1px;
+      }
+
+      /* Marca de agua flotante del canal */
+      #branding-overlay {
+        position: absolute;
+        bottom: 25px;
+        left: 25px;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: monospace;
+        pointer-events: none;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 8px 15px;
+        border-radius: 50px;
+        border: 2px solid #000;
+        backdrop-filter: blur(5px);
+        box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1);
+      }
+
+      #branding-overlay img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 2px solid #000;
+      }
+
+      #branding-overlay span {
+        color: #000;
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      /* Cards suaves redondeadas */
+      .bw-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 24px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      }
+
+      .bw-card:hover {
+        border-color: #000;
+        box-shadow: 5px 5px 0px #000;
+        transform: translate(-2px, -2px);
+      }
+
+      code {
+        font-family: "Fira Code", monospace;
+        color: #e01a76;
+        background: #f3f4f6;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      pre code {
+        color: #1a1a1a;
+        background: transparent;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- MARCA DE AGUA FIJA -->
+    <div id="branding-overlay">
+      <img src="https://avatars.githubusercontent.com/u/188985435?v=4" alt="Logo imyisusdev" />
+      <span>imyisusdev</span>
+    </div>
+
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- 1. PORTADA -->
+        <section data-background-color="#ffffff">
+          <div class="flex flex-col items-center justify-center border-4 border-black p-8 relative max-w-2xl mx-auto">
+            <div class="absolute top-0 left-0 w-8 h-8 bg-black"></div>
+            <div class="absolute bottom-0 right-0 w-8 h-8 bg-black"></div>
+
+            <div class="mb-6">
+              <img src="https://avatars.githubusercontent.com/u/188985435?v=4" class="w-36 h-36 rounded-full border-4 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.15)] mx-auto" />
+            </div>
+
+            <h2 class="text-5xl font-black text-black uppercase tracking-tight mb-2">
+              JS y la Vida de tu Tarjeta
+            </h2>
+            <div class="h-1 w-24 bg-black my-4 mx-auto"></div>
+            <h3 class="text-xl text-gray-600 font-medium">Clase 4: Electricidad, Sensores y Vida</h3>
+          </div>
+        </section>
+
+        <!-- 2. ¿QUÉ ES JAVASCRIPT? -->
+        <section data-background-color="#ffffff">
+          <h2>¿Qué es JavaScript?</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h4 class="font-bold text-lg text-indigo-600 mb-2 font-mono">El cerebro dinámico</h4>
+              <p class="text-sm text-gray-600 leading-relaxed fragment fade-up">
+                Es el lenguaje de programación que nos permite crear contenido dinámico, controlar multimedia, animar imágenes y hacer que la web responda a las acciones del usuario.
+              </p>
+              <div class="h-px bg-gray-200 my-4"></div>
+              <h5 class="text-xs font-bold text-gray-700 uppercase mb-1 fragment fade-up">La analogía de la casa:</h5>
+              <p class="text-xs text-gray-500 leading-relaxed fragment fade-up">
+                Si HTML son los planos y ladrillos, y CSS es la pintura y decoración... ¡JS es la red eléctrica, el agua corriente y los sensores de movimiento!
+              </p>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-3 text-xs text-left">
+              <div class="p-3 bg-gray-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] fragment fade-left">
+                🏗️ <strong>HTML:</strong> Estructura (Esqueleto plano)
+              </div>
+              <div class="p-3 bg-gray-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] fragment fade-left">
+                🎨 <strong>CSS:</strong> Estilo y Presentación (Color y diseño)
+              </div>
+              <div class="p-3 bg-amber-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] font-bold fragment fade-left">
+                ⚡ <strong>JavaScript:</strong> Comportamiento e Interacción (Vida)
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. CONSOLE.LOG: TU PRIMERA LÍNEA -->
+        <section data-background-color="#ffffff">
+          <h2>console.log: Hablar con el navegador</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">Hablar en voz alta 🗣️</h3>
+              <p class="text-xs text-gray-600 leading-relaxed mb-3 fragment fade-up">
+                El método <code>console.log()</code> le indica al navegador que imprima un mensaje específico en la consola de desarrollo. Es nuestra principal herramienta para testear.
+              </p>
+              <div class="h-px bg-gray-200 my-3"></div>
+              <h4 class="font-bold text-xs text-indigo-600 uppercase mb-1 fragment fade-up">¿Cómo lo vemos?:</h4>
+              <p class="text-xs text-gray-500 leading-relaxed fragment fade-up">
+                Haciendo click derecho en el navegador, seleccionando <strong>Inspeccionar (F12)</strong> y yendo a la pestaña <strong>Console</strong>.
+              </p>
+            </div>
+            
+            <div class="flex flex-col gap-3 text-left font-mono text-xs">
+              <div class="bg-gray-900 p-5 rounded-xl text-green-400 shadow-md fragment fade-left">
+                <span class="text-gray-500">// Enviamos un mensaje al diario de JS</span><br>
+                <span class="text-yellow-400">console.log</span>(<span class="text-red-400">"¡Hola desde JS, che!"</span>);
+              </div>
+              <div class="p-4 bg-yellow-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold fragment fade-up">
+                💡 Ideal para verificar que nuestro script está conectado y funcionando correctamente.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. VARIABLES: CAJAS CON ETIQUETA -->
+        <section data-background-color="#ffffff">
+          <h2>Variables: Cajas de Almacenamiento</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">Guardar para después 📦</h3>
+              <p class="text-xs text-gray-600 leading-relaxed mb-3 fragment fade-up">
+                Una variable es un contenedor (una "caja") donde guardamos un dato para usarlo o cambiarlo más adelante.
+              </p>
+              <div class="h-px bg-gray-200 my-3"></div>
+              <ul class="text-[11px] text-gray-500 space-y-2 font-sans">
+                <li class="fragment fade-up">📦 <code>let</code>: Caja abierta. El contenido puede cambiar (ej. contador de clics).</li>
+                <li class="fragment fade-up">🔒 <code>const</code>: Caja sellada con cinta. El valor es constante y no cambia nunca.</li>
+              </ul>
+            </div>
+            
+            <div class="flex flex-col gap-3 text-left font-mono text-xs">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
+                <span class="text-gray-500">// Caja que puede cambiar de valor</span><br>
+                <span class="text-purple-400">let</span> clicks = <span class="text-blue-400">0</span>;<br>
+                clicks = clicks + <span class="text-blue-400">1</span>; <span class="text-gray-500">/* Ahora vale 1 */</span>
+              </div>
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
+                <span class="text-gray-500">// Caja constante e inmutable</span><br>
+                <span class="text-purple-400">const</span> canal = <span class="text-red-400">"@imyisusdev"</span>;
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. QUERYSELECTOR: BUSCAR TUS CAJAS -->
+        <section data-background-color="#ffffff">
+          <h2>querySelector: Encontrar Elementos</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">Conectar HTML y JS 🎯</h3>
+              <p class="text-xs text-gray-600 leading-relaxed mb-3 fragment fade-up">
+                Para que JS modifique un elemento HTML, primero debe encontrarlo. Usamos <code>document.querySelector()</code> con selectores CSS.
+              </p>
+              <div class="h-px bg-gray-200 my-3"></div>
+              <h4 class="font-bold text-xs text-indigo-600 uppercase mb-1 fragment fade-up">¿Qué selectores usa?:</h4>
+              <p class="text-[11px] text-gray-500 leading-relaxed fragment fade-up">
+                ¡Los mismos selectores que aprendiste en CSS!<br>
+                • Por Clase: <code>.card</code><br>
+                • Por ID: <code>#btn-saludo</code><br>
+                • Por Etiqueta: <code>h1</code>
+              </p>
+            </div>
+            
+            <div class="flex flex-col gap-3 text-left font-mono text-xs">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
+                <span class="text-gray-500">// Buscamos el botón de saludo por su ID</span><br>
+                <span class="text-purple-400">const</span> boton = document.<span class="text-yellow-400">querySelector</span>(<span class="text-red-400">"#btn-saludo"</span>);
+              </div>
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
+                <span class="text-gray-500">// Buscamos el h1 de la cabecera</span><br>
+                <span class="text-purple-400">const</span> titulo = document.<span class="text-yellow-400">querySelector</span>(<span class="text-red-400">"h1"</span>);
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. TEXTCONTENT: CAMBIAR EL CARTEL -->
+        <section data-background-color="#ffffff">
+          <h2>textContent: Cambiar el Contenido</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">Modificar texto al vuelo ✏️</h3>
+              <p class="text-xs text-gray-600 leading-relaxed mb-3 fragment fade-up">
+                La propiedad <code>textContent</code> nos permite leer o modificar el texto visible de un elemento HTML que ya seleccionamos.
+              </p>
+              <div class="h-px bg-gray-200 my-3"></div>
+              <h4 class="font-bold text-xs text-indigo-600 uppercase mb-1 fragment fade-up">La analogía:</h4>
+              <p class="text-xs text-gray-500 leading-relaxed fragment fade-up">
+                Es como cambiar físicamente el cartelito con tu nombre que tenés colgado en la puerta de tu habitación.
+              </p>
+            </div>
+            
+            <div class="flex flex-col gap-3 text-left font-mono text-xs">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
+                <span class="text-purple-400">const</span> titulo = document.<span class="text-yellow-400">querySelector</span>(<span class="text-red-400">"h1"</span>);<br>
+                <span class="text-gray-500">// Cambiamos el texto del título</span><br>
+                titulo.<span class="text-blue-400">textContent</span> = <span class="text-red-400">"¡JS está vivo!"</span>;
+              </div>
+              <div class="p-3 bg-green-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold text-black fragment fade-up">
+                👉 Al asignarle un nuevo valor, el navegador actualiza la pantalla inmediatamente.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. ADDEVENTLISTENER: EL SENSOR DE MOVIMIENTO -->
+        <section data-background-color="#ffffff">
+          <h2>addEventListener: Escuchar Acciones</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">Reaccionar a eventos ⚡</h3>
+              <p class="text-xs text-gray-600 leading-relaxed mb-3 fragment fade-up">
+                Un Event Listener "escucha" las interacciones del usuario (como clics, teclas presionadas o scroll) y ejecuta una porción de código cuando eso ocurre.
+              </p>
+              <div class="h-px bg-gray-200 my-3"></div>
+              <h4 class="font-bold text-xs text-indigo-600 uppercase mb-1 fragment fade-up">La analogía:</h4>
+              <p class="text-xs text-gray-500 leading-relaxed fragment fade-up">
+                Como un sensor de luz en el pasillo: detecta que pasás (el evento "click") y prende el foco (ejecuta la función).
+              </p>
+            </div>
+            
+            <div class="flex flex-col gap-3 text-left font-mono text-xs">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
+                boton.<span class="text-yellow-400">addEventListener</span>(<span class="text-red-400">"click"</span>, () => {<br>
+                &nbsp;&nbsp;<span class="text-yellow-400">alert</span>(<span class="text-red-400">"👋 ¡Hola, che!"</span>);<br>
+                });
+              </div>
+              <div class="p-3 bg-indigo-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold text-black fragment fade-up">
+                💡 Enlazamos el click de un botón HTML con una alerta interactiva de JS.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. CLASSLIST.TOGGLE: EL INTERRUPTOR DE LUZ -->
+        <section data-background-color="#ffffff">
+          <h2>classList.toggle: El Interruptor</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">Quitar y poner clases 🔌</h3>
+              <p class="text-xs text-gray-600 leading-relaxed mb-3 fragment fade-up">
+                El método <code>classList.toggle()</code> busca una clase CSS en una etiqueta. Si la tiene, la remueve; si no la tiene, la agrega.
+              </p>
+              <div class="h-px bg-gray-200 my-3"></div>
+              <h4 class="font-bold text-xs text-indigo-600 uppercase mb-1 fragment fade-up">¿Para qué sirve?:</h4>
+              <p class="text-xs text-gray-500 leading-relaxed fragment fade-up">
+                Es la herramienta perfecta para encender/apagar estilos de manera interactiva, como el modo oscuro de nuestra Bio Card.
+              </p>
+            </div>
+            
+            <div class="flex flex-col gap-3 text-left font-mono text-xs">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
+                <span class="text-gray-500">// Al hacer click, prende/apaga dark-mode</span><br>
+                btnTheme.<span class="text-yellow-400">addEventListener</span>(<span class="text-red-400">"click"</span>, () => {<br>
+                &nbsp;&nbsp;document.<span class="text-blue-400">body</span>.<span class="text-blue-400">classList</span>.<span class="text-yellow-400">toggle</span>(<span class="text-red-400">"dark-mode"</span>);<br>
+                });
+              </div>
+              <div class="p-3 bg-pink-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold text-black fragment fade-up">
+                💡 JS agrega/quita la clase, y CSS se encarga de re-pintar todo con la nueva paleta.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. PRÁCTICA EN CODEPEN -->
+        <section data-background-color="#121214">
+          <h2 class="text-white text-3xl font-black mb-4">Práctica en Vivo: Dando Vida</h2>
+          <div class="grid grid-cols-1 gap-6 max-w-4xl mx-auto text-left">
+            <div class="bg-gray-900 border-2 border-gray-700 rounded-xl p-5 font-mono text-xs shadow-2xl fragment fade-up">
+              <div class="flex items-center gap-2 mb-3 border-b border-gray-800 pb-2">
+                <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                <span class="text-gray-400 text-[10px] ml-2">script.js</span>
+              </div>
+              <span class="text-purple-400">const</span> btnSaludo = document.<span class="text-yellow-400">getElementById</span>(<span class="text-red-400">"btn-saludo"</span>);<br>
+              <span class="text-purple-400">const</span> btnTheme = document.<span class="text-yellow-400">getElementById</span>(<span class="text-red-400">"btn-theme"</span>);<br><br>
+
+              btnSaludo.<span class="text-yellow-400">addEventListener</span>(<span class="text-red-400">"click"</span>, () => {<br>
+              &nbsp;&nbsp;<span class="text-yellow-400">alert</span>(<span class="text-red-400">"👋 ¡Hola! Bienvenido a mi Bio Card interactiva."</span>);<br>
+              });<br><br>
+
+              btnTheme.<span class="text-yellow-400">addEventListener</span>(<span class="text-red-400">"click"</span>, () => {<br>
+              &nbsp;&nbsp;document.<span class="text-blue-400">body</span>.<span class="text-blue-400">classList</span>.<span class="text-yellow-400">toggle</span>(<span class="text-red-400">"dark-mode"</span>);<br>
+              &nbsp;&nbsp;<span class="text-purple-400">if</span> (document.<span class="text-blue-400">body</span>.<span class="text-blue-400">classList</span>.<span class="text-yellow-400">contains</span>(<span class="text-red-400">"dark-mode"</span>)) {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;btnTheme.<span class="text-blue-400">textContent</span> = <span class="text-red-400">"☀️"</span>;<br>
+              &nbsp;&nbsp;} <span class="text-purple-400">else</span> {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;btnTheme.<span class="text-blue-400">textContent</span> = <span class="text-red-400">"🌙"</span>;<br>
+              &nbsp;&nbsp;}<br>
+              });
+            </div>
+            
+            <div class="p-4 bg-gray-800 border border-gray-700 rounded-xl text-xs text-gray-300 fragment fade-up">
+              ⚡ <strong>Instrucción en CodePen:</strong> Vinculá tus botones agregando los <code>id="btn-saludo"</code> y <code>id="btn-theme"</code> en tu HTML, agregá el CSS de modo oscuro y copiá este JS en el panel correspondiente.
+            </div>
+          </div>
+        </section>
+
+        <!-- 10. DEMOS Y VARIANTES DE REFERENCIA -->
+        <section data-background-color="#ffffff">
+          <h2>Demos y Variantes de Referencia</h2>
+          <p class="text-sm text-gray-500 font-mono mb-4">Hacé clic en cualquier demo para ver el JS resuelto</p>
+          
+          <div class="grid grid-cols-2 gap-8 mt-6 text-left max-w-4xl mx-auto">
+            <div class="bw-card fragment fade-right">
+              <h3 class="text-lg font-bold mb-3 text-indigo-600"><i class="fas fa-align-center mr-2"></i> Con Texto (Vertical)</h3>
+              <ul class="text-xs space-y-3 font-mono">
+                <li>👉 <a href="demo/neobrutalista/index.html" target="_blank" class="hover:underline text-black font-bold">Neo-brutalista Vertical</a></li>
+                <li>👉 <a href="demo/cyberneon/index.html" target="_blank" class="hover:underline text-black font-bold">Cyber Neon Vertical</a></li>
+                <li>👉 <a href="demo/minimal-glass/index.html" target="_blank" class="hover:underline text-black font-bold">Minimal Glass Vertical</a></li>
+              </ul>
+            </div>
+            
+            <div class="bw-card fragment fade-left">
+              <h3 class="text-lg font-bold mb-3 text-pink-600"><i class="fas fa-ellipsis-h mr-2"></i> Solo Iconos (Horizontal)</h3>
+              <ul class="text-xs space-y-3 font-mono">
+                <li>👉 <a href="demo/neobrutalista-iconos/index.html" target="_blank" class="hover:underline text-black font-bold">Neo-brutalista Iconos</a></li>
+                <li>👉 <a href="demo/cyberneon-iconos/index.html" target="_blank" class="hover:underline text-black font-bold">Cyber Neon Iconos</a></li>
+                <li>👉 <a href="demo/minimal-glass-iconos/index.html" target="_blank" class="hover:underline text-black font-bold">Minimal Glass Iconos</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 11. IDEAS EXTRA PARA TU BIO CARD -->
+        <section data-background-color="#ffffff">
+          <h2>💡 Ideas Extra para tu Bio Card</h2>
+          <p class="text-sm text-gray-500 font-mono mb-4">Pequeños desafíos de JS para que experimentes por tu cuenta</p>
+          
+          <div class="grid grid-cols-2 gap-6 mt-6 max-w-4xl mx-auto text-left text-xs">
+            <div class="p-4 bg-gray-50 border-2 border-black rounded shadow-[4px_4px_0px_#000] fragment fade-up">
+              📈 <a href="ideas/contador/index.html" target="_blank" class="font-bold text-black hover:underline">Contador de Clics:</a><br>
+              <span class="text-gray-500">Contá cuántas veces saludan tu tarjeta usando variables (`let`).</span>
+            </div>
+            
+            <div class="p-4 bg-gray-50 border-2 border-black rounded shadow-[4px_4px_0px_#000] fragment fade-up">
+              ⏰ <a href="ideas/hora-actual/index.html" target="_blank" class="font-bold text-black hover:underline">Reloj del Sistema:</a><br>
+              <span class="text-gray-500">Mostrá la hora real en tu tarjeta y actualizala por segundo.</span>
+            </div>
+            
+            <div class="p-4 bg-gray-50 border-2 border-black rounded shadow-[4px_4px_0px_#000] fragment fade-up">
+              🎨 <a href="ideas/color-aleatorio/index.html" target="_blank" class="font-bold text-black hover:underline">Color Random:</a><br>
+              <span class="text-gray-500">Cambiá el fondo de la pantalla aleatoriamente usando `Math.random()`.</span>
+            </div>
+            
+            <div class="p-4 bg-gray-50 border-2 border-black rounded shadow-[4px_4px_0px_#000] fragment fade-up">
+              👁️ <a href="ideas/esconder-bio/index.html" target="_blank" class="font-bold text-black hover:underline">Esconder Biografía:</a><br>
+              <span class="text-gray-500">Agregá un botón para mostrar u ocultar la sección de tu bío.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 12. ¡MANOS AL CÓDIGO! (DESAFÍO FINAL - SIN ANIMACIÓN/FRAGMENTS) -->
+        <section data-background-color="#ffffff">
+          <div class="flex flex-col items-center justify-center border-4 border-black p-8 relative max-w-2xl mx-auto bg-yellow-50 shadow-[8px_8px_0px_rgba(0,0,0,1)]">
+            <h2 class="text-4xl font-black text-black uppercase tracking-tight mb-4">
+              ⚔️ DESAFÍO FINAL
+            </h2>
+            <p class="text-sm text-gray-700 leading-relaxed mb-6 font-semibold">
+              ¡Llegó la hora de darle energía y sensores de movimiento a tu propia tarjeta en CodePen!
+            </p>
+            
+            <ul class="text-xs text-left text-gray-800 space-y-3 font-sans list-decimal pl-5 mb-6">
+              <li>Colocá los botones en tu archivo HTML con los ids <strong>btn-saludo</strong> y <strong>btn-theme</strong>.</li>
+              <li>Creá las reglas de estilos para la clase <strong>.dark-mode</strong> en tu hoja de estilos CSS.</li>
+              <li>Escribí la lógica en JS para saludar con un <code>alert</code> y alternar el tema con <code>classList.toggle</code>.</li>
+              <li><strong>¡Compartilo!:</strong> Usá la opción Share de CodePen para enviarle el link del resultado a tus amigos.</li>
+            </ul>
+
+            <div class="flex items-center justify-center gap-4 py-2 px-6 rounded-full border-2 border-black bg-white shadow-[4px_4px_0px_#000]">
+              <img src="https://avatars.githubusercontent.com/u/188985435?v=4" class="w-8 h-8 rounded-full border border-black" />
+              <span class="font-mono text-sm font-bold text-black">imyisusdev</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- Scripts de Reveal.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        progressColor: "#000000",
+        center: true,
+        transition: "fade",
+        backgroundTransition: "fade",
+      });
+    </script>
+  </body>
+</html>
