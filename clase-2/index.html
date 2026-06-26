@@ -132,17 +132,17 @@
           <h2>¿Cómo funciona la Web?</h2>
           <p class="text-lg text-gray-500 font-mono mb-8">El viaje de la información en segundos.</p>
           <div class="grid grid-cols-3 gap-6 items-stretch mt-4">
-            <div class="bw-card flex flex-col justify-between">
+            <div class="bw-card flex flex-col justify-between fragment fade-right">
               <span class="text-4xl mb-2">📱</span>
               <h4 class="font-bold text-lg my-2">Cliente (Tú)</h4>
               <p class="text-xs text-gray-500 leading-relaxed">Escribís la dirección de la web en tu navegador y hacés una petición de archivo.</p>
             </div>
-            <div class="bw-card flex flex-col justify-between">
+            <div class="bw-card flex flex-col justify-between fragment fade-up">
               <span class="text-4xl mb-2">⚡</span>
               <h4 class="font-bold text-lg my-2">Internet</h4>
               <p class="text-xs text-gray-500 leading-relaxed">Lleva tu consulta a través del mundo y te devuelve los datos de respuesta.</p>
             </div>
-            <div class="bw-card flex flex-col justify-between">
+            <div class="bw-card flex flex-col justify-between fragment fade-left">
               <span class="text-4xl mb-2">🖥️</span>
               <h4 class="font-bold text-lg my-2">Servidor</h4>
               <p class="text-xs text-gray-500 leading-relaxed">Una computadora remota que busca el archivo HTML solicitado y te lo envía.</p>
@@ -156,18 +156,18 @@
           <div class="grid grid-cols-2 gap-8 items-center mt-8">
             <div class="bw-card text-left">
               <h3 class="text-xl font-bold mb-3">La analogía cotidiana: Los Planos</h3>
-              <p class="text-sm text-gray-600 leading-relaxed">
+              <p class="text-sm text-gray-600 leading-relaxed fragment fade-up">
                 HTML no es un lenguaje de programación. Es un **lenguaje de marcado**. Define el esqueleto y estructura de tu web: vigas, paredes y dónde va cada elemento de tu casa digital.
               </p>
             </div>
             <div class="flex flex-col gap-3">
-              <div class="p-4 bg-gray-50 border-l-4 border-black text-left font-mono text-xs rounded shadow-sm">
+              <div class="p-4 bg-gray-50 border-l-4 border-black text-left font-mono text-xs rounded shadow-sm fragment fade-left">
                 🧱 <strong>HTML:</strong> Estructura (Vigas y paredes)
               </div>
-              <div class="p-4 bg-gray-50 border-l-4 border-indigo-500 text-left font-mono text-xs rounded shadow-sm">
+              <div class="p-4 bg-gray-50 border-l-4 border-indigo-500 text-left font-mono text-xs rounded shadow-sm fragment fade-left">
                 🎨 <strong>CSS:</strong> Estilo (Pintura y decoración)
               </div>
-              <div class="p-4 bg-gray-50 border-l-4 border-yellow-500 text-left font-mono text-xs rounded shadow-sm">
+              <div class="p-4 bg-gray-50 border-l-4 border-yellow-500 text-left font-mono text-xs rounded shadow-sm fragment fade-left">
                 ⚡ <strong>JavaScript:</strong> Lógica (Electricidad y timbre)
               </div>
             </div>
@@ -183,12 +183,12 @@
               <p class="text-sm text-gray-600 leading-relaxed">
                 Aunque programemos en CodePen, los archivos reales necesitan un "apellido" o extensión.
               </p>
-              <p class="text-xs text-gray-500 mt-2">
+              <p class="text-xs text-gray-500 mt-2 fragment fade-up">
                 La extensión <strong><code>.html</code></strong> le avisa a tu computadora que este archivo debe abrirse con un navegador web (Chrome, Firefox, Safari) y no con un procesador de textos como Word.
               </p>
             </div>
             
-            <div class="bw-card text-center bg-gray-50 flex flex-col items-center justify-center">
+            <div class="bw-card text-center bg-gray-50 flex flex-col items-center justify-center fragment fade-left">
               <span class="text-4xl mb-2">📄</span>
               <div class="font-mono text-lg font-bold">
                 index<span class="text-pink-600 font-black">.html</span>
@@ -209,12 +209,12 @@
               <p class="text-sm text-gray-600 leading-relaxed mb-4">
                 HTML funciona como cajas contenedoras. Abrís la caja con una etiqueta, metés tu texto e imágenes, y la cerrás usando la barra diagonal <code>/</code>.
               </p>
-              <div class="bg-gray-900 text-white p-4 rounded font-mono text-sm shadow-md text-center">
+              <div class="bg-gray-900 text-white p-4 rounded font-mono text-sm shadow-md text-center fragment fade-up">
                 <span class="text-green-400">&lt;p&gt;</span>Hola Mundo<span class="text-green-400">&lt;/p&gt;</span>
               </div>
             </div>
             
-            <div class="flex items-center justify-center">
+            <div class="flex items-center justify-center fragment fade-left">
               <div class="bg-white p-3 border border-gray-200 rounded-2xl shadow-sm">
                 <img src="../images/estrectura-etiquetas-html.jpg" alt="HTML Tag Illustration" class="w-full max-w-[260px] object-contain" />
               </div>
@@ -231,12 +231,12 @@
               <p class="text-sm text-gray-600 leading-relaxed mb-4">
                 Como las muñecas rusas (Matryoshkas), las etiquetas van unas dentro de otras de forma organizada.
               </p>
-              <div class="p-3 bg-red-50 border-l-4 border-red-500 text-xs text-red-700 rounded">
+              <div class="p-3 bg-red-50 border-l-4 border-red-500 text-xs text-red-700 rounded fragment fade-up">
                 <strong>⚠️ Regla de Oro:</strong> La última caja que abrís debe ser la primera que cerrás. ¡No cruces etiquetas!
               </div>
             </div>
             
-            <div class="bw-card bg-gray-50 font-mono text-xs text-left leading-relaxed">
+            <div class="bw-card bg-gray-50 font-mono text-xs text-left leading-relaxed fragment fade-left">
               <div class="text-blue-600">&lt;body&gt;</div>
               <div class="pl-6 text-green-600">&lt;main&gt;</div>
               <div class="pl-12 text-purple-600">&lt;article&gt;</div>
@@ -254,7 +254,7 @@
           <p class="text-sm text-gray-500 font-mono mb-4">El esqueleto clásico de un archivo en tu computadora.</p>
           
           <div class="grid grid-cols-2 gap-6 items-stretch">
-            <div class="bg-gray-900 p-4 rounded-xl text-left text-xs font-mono text-green-400 max-h-[300px] overflow-y-auto shadow-md">
+            <div class="bg-gray-900 p-4 rounded-xl text-left text-xs font-mono text-green-400 max-h-[300px] overflow-y-auto shadow-md fragment fade-right">
               &lt;!DOCTYPE html&gt;<br>
               &lt;html lang="es"&gt;<br>
               &nbsp;&nbsp;&lt;head&gt;<br>
@@ -270,16 +270,16 @@
             </div>
             
             <div class="flex flex-col justify-between text-left gap-2 text-xs">
-              <div class="p-2.5 bg-white border border-gray-200 rounded">
+              <div class="p-2.5 bg-white border border-gray-200 rounded fragment fade-left">
                 <strong><code>&lt;!DOCTYPE html&gt;</code></strong>: Le dice al navegador: "Soy HTML5 moderno".
               </div>
-              <div class="p-2.5 bg-white border border-gray-200 rounded">
+              <div class="p-2.5 bg-white border border-gray-200 rounded fragment fade-left">
                 <strong><code>&lt;html&gt;</code></strong>: Envoltura raíz de toda la página web.
               </div>
-              <div class="p-2.5 bg-white border border-gray-200 rounded">
+              <div class="p-2.5 bg-white border border-gray-200 rounded fragment fade-left">
                 <strong><code>&lt;head&gt;</code></strong>: El cerebro. Datos invisibles (idioma, título de la pestaña).
               </div>
-              <div class="p-2.5 bg-white border border-gray-200 rounded">
+              <div class="p-2.5 bg-white border border-gray-200 rounded fragment fade-left">
                 <strong><code>&lt;body&gt;</code></strong>: El cuerpo. Todo lo que el usuario ve y toca en pantalla.
               </div>
             </div>
@@ -296,31 +296,27 @@
                 No tirás todo en un galpón gigante. Dividís en: entrada, comedor, sótano. 
                 De la misma forma, estructuramos con significado.
               </p>
-              <p class="text-xs text-gray-500">
+              <p class="text-xs text-gray-500 fragment fade-up">
                 La semántica ayuda a **Google** (SEO) y a los lectores de pantalla para la **Accesibilidad**.
               </p>
             </div>
             
             <div class="border border-gray-300 rounded-xl p-3 flex flex-col gap-2 bg-gray-50 font-mono text-xs text-center font-bold">
-              <div class="bg-indigo-50 text-indigo-700 border border-indigo-200 p-2 rounded">
+              <div class="bg-indigo-50 text-indigo-700 border border-indigo-200 p-2 rounded fragment fade-up">
                 &lt;header&gt; (Cabecera / Entrada)
               </div>
-              <div class="bg-emerald-50 text-emerald-700 border border-emerald-200 p-3 rounded flex flex-col gap-2">
+              <div class="bg-emerald-50 text-emerald-700 border border-emerald-200 p-3 rounded flex flex-col gap-2 fragment fade-up">
                 &lt;main&gt; (Contenido / Living)
-                <div class="bg-white text-gray-600 border border-gray-200 p-1.5 rounded font-normal text-[10px]">
+                <div class="bg-white text-gray-600 border border-gray-200 p-1.5 rounded font-normal text-[10px] fragment fade-up">
                   &lt;article&gt; (Tu Biografía)
                 </div>
               </div>
-              <div class="bg-amber-50 text-amber-700 border border-amber-200 p-2 rounded">
+              <div class="bg-amber-50 text-amber-700 border border-amber-200 p-2 rounded fragment fade-up">
                 &lt;footer&gt; (Pie / Sótano)
               </div>
             </div>
           </div>
         </section>
-
-        <!-- ============================================== -->
-        <!-- DIAPOSITIVAS INDIVIDUALES POR ETIQUETA EN INGLÉS -->
-        <!-- ============================================== -->
 
         <!-- 9. TÍTULOS (Heading) -->
         <section data-background-color="#ffffff">
@@ -332,16 +328,16 @@
                 Viene de la palabra inglesa <strong>Heading</strong>. Define la jerarquía y el tamaño del título:
               </p>
               <ul class="text-xs text-gray-500 space-y-2 mt-3 font-sans">
-                <li><code>&lt;h1&gt;</code>: El título central (Solo uno por página).</li>
-                <li><code>&lt;h2&gt;</code>: Secciones secundarias.</li>
-                <li><code>&lt;h3&gt;</code> a <code>&lt;h6&gt;</code>: Subtemas de menor rango.</li>
+                <li class="fragment fade-up"><code>&lt;h1&gt;</code>: El título central (Solo uno por página).</li>
+                <li class="fragment fade-up"><code>&lt;h2&gt;</code>: Secciones secundarias.</li>
+                <li class="fragment fade-up"><code>&lt;h3&gt;</code> a <code>&lt;h6&gt;</code>: Subtemas de menor rango.</li>
               </ul>
             </div>
             
             <div class="bw-card bg-gray-50 text-left flex flex-col gap-2 font-serif">
-              <h2 class="text-xl font-black m-0 border-b pb-2">h1. Título Web</h2>
-              <h3 class="text-lg font-bold m-0 text-gray-800">h2. Título Sección</h3>
-              <h4 class="text-base font-bold m-0 text-gray-700">h3. Subtítulo</h4>
+              <h2 class="text-xl font-black m-0 border-b pb-2 fragment fade-left">h1. Título Web</h2>
+              <h3 class="text-lg font-bold m-0 text-gray-800 fragment fade-left">h2. Título Sección</h3>
+              <h4 class="text-base font-bold m-0 text-gray-700 fragment fade-left">h3. Subtítulo</h4>
             </div>
           </div>
         </section>
@@ -356,14 +352,14 @@
                 Viene del inglés <strong>Paragraph</strong>. Representa bloques de texto normales.
               </p>
               <div class="h-px bg-gray-200 my-4"></div>
-              <p class="text-xs text-gray-500 leading-relaxed">
+              <p class="text-xs text-gray-500 leading-relaxed fragment fade-up">
                 Usá <code>&lt;strong&gt;</code> para resaltar en <strong>negrita</strong> y <code>&lt;em&gt;</code> para dar énfasis en <em>cursiva</em>.
               </p>
             </div>
             
             <div class="bw-card bg-gray-50 font-sans text-sm text-left leading-relaxed">
-              <code class="block text-xs mb-3 text-pink-600">&lt;p&gt;Hola, soy &lt;strong&gt;Jesús&lt;/strong&gt;. En redes me encontrarás como &lt;em&gt;@imyisusdev&lt;/em&gt;&lt;/p&gt;</code>
-              <p class="p-3 bg-white border border-gray-200 rounded">
+              <code class="block text-xs mb-3 text-pink-600 fragment fade-left">&lt;p&gt;Hola, soy &lt;strong&gt;Jesús&lt;/strong&gt;. En redes me encontrarás como &lt;em&gt;@imyisusdev&lt;/em&gt;&lt;/p&gt;</code>
+              <p class="p-3 bg-white border border-gray-200 rounded fragment fade-left">
                 Hola, soy <strong>Jesús</strong>. En redes me encontrás como <em>@imyisusdev</em>.
               </p>
             </div>
@@ -379,19 +375,19 @@
               <p class="text-sm text-gray-600 leading-relaxed">
                 Del inglés <strong>Unordered List</strong> (Lista desordenada/viñetas) y <strong>List Item</strong> (Elemento de lista).
               </p>
-              <p class="text-xs text-gray-500 mt-3">
+              <p class="text-xs text-gray-500 mt-3 fragment fade-up">
                 Es la manera semántica perfecta de agrupar y ordenar tus enlaces de contacto y redes sociales.
               </p>
             </div>
             
             <div class="bw-card bg-gray-50 font-mono text-xs text-left flex flex-col gap-3">
-              <div class="bg-gray-900 text-green-400 p-3 rounded shadow-inner">
+              <div class="bg-gray-900 text-green-400 p-3 rounded shadow-inner fragment fade-left">
                 &lt;ul&gt;<br>
                 &nbsp;&nbsp;&lt;li&gt;Mi YouTube&lt;/li&gt;<br>
                 &nbsp;&nbsp;&lt;li&gt;Mi TikTok&lt;/li&gt;<br>
                 &lt;/ul&gt;
               </div>
-              <ul class="list-disc pl-5 font-sans text-sm font-bold text-black">
+              <ul class="list-disc pl-5 font-sans text-sm font-bold text-black fragment fade-left">
                 <li>Mi YouTube</li>
                 <li>Mi TikTok</li>
               </ul>
@@ -410,12 +406,12 @@
               </p>
               <div class="h-px bg-gray-200 my-3"></div>
               <div class="text-xs text-gray-500 space-y-1">
-                <div>• <strong><code>src</code></strong> (Source / Fuente): URL o dirección de la foto.</div>
-                <div>• <strong><code>alt</code></strong> (Alternative): Texto descriptivo para lectores de pantalla.</div>
+                <div class="fragment fade-up">• <strong><code>src</code></strong> (Source / Fuente): URL o dirección de la foto.</div>
+                <div class="fragment fade-up">• <strong><code>alt</code></strong> (Alternative): Texto descriptivo para lectores de pantalla.</div>
               </div>
             </div>
             
-            <div class="bw-card bg-gray-900 text-left font-mono text-[11px] text-green-400 shadow-md">
+            <div class="bw-card bg-gray-900 text-left font-mono text-[11px] text-green-400 shadow-md fragment fade-left">
               &lt;img<br>
               &nbsp;&nbsp;src="https://avatars..."<br>
               &nbsp;&nbsp;alt="Foto de perfil de imyisusdev"<br>
@@ -433,17 +429,17 @@
               <p class="text-sm text-gray-600 leading-relaxed mb-3">
                 Viene de <strong>Anchor</strong>. Como un ancla amarra tu barco en el puerto, esta etiqueta amarra tu página a otra dirección web.
               </p>
-              <p class="text-xs text-gray-500 font-bold">
+              <p class="text-xs text-gray-500 font-bold fragment fade-up">
                 💡 Agregá <code>target="_blank"</code> para abrir el link en otra pestaña.
               </p>
             </div>
             
             <div class="flex flex-col gap-3 w-full">
-              <div class="bg-gray-900 text-green-400 p-4 rounded text-left font-mono text-[11px] shadow-sm">
+              <div class="bg-gray-900 text-green-400 p-4 rounded text-left font-mono text-[11px] shadow-sm fragment fade-left">
                 &lt;a href="./demo.html"&gt;Ver Demo&lt;/a&gt;
               </div>
               <!-- Enlace real que abre la demo.html en una nueva pestaña -->
-              <a href="./ejemplos/demo.html" target="_blank" class="bg-black text-white text-center py-3 rounded-xl font-bold border-2 border-black shadow-[3px_3px_0px_rgba(0,0,0,0.15)] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_rgba(0,0,0,0.15)] transition-all text-sm">
+              <a href="./ejemplos/demo.html" target="_blank" class="fragment fade-left bg-black text-white text-center py-3 rounded-xl font-bold border-2 border-black shadow-[3px_3px_0px_rgba(0,0,0,0.15)] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_rgba(0,0,0,0.15)] transition-all text-sm">
                 ⚓ Ver Demo Real Completa
               </a>
             </div>
@@ -455,13 +451,13 @@
           <div class="max-w-4xl mx-auto text-left">
             <span class="bg-white text-black px-3 py-1 font-mono text-xs rounded font-bold uppercase tracking-wider mb-4 inline-block">Práctica en CodePen</span>
             <h2 class="text-white text-3xl mb-4">Estructurando tu Bio Card 🏆</h2>
-            <p class="text-gray-400 text-sm mb-6">
+            <p class="text-gray-400 text-sm mb-6 fragment fade-up">
               Abrí tu CodePen y copiá la plantilla de <code>esqueleto.html</code>. 
               Maquetá el esqueleto semántico agregando tus datos reales y tu lista ordenada de redes.
             </p>
             
             <!-- VS Code Editor Layout Mockup -->
-            <div class="bg-gray-950 border border-gray-800 rounded-xl overflow-hidden shadow-2xl font-mono text-xs text-white max-w-2xl mx-auto">
+            <div class="bg-gray-950 border border-gray-800 rounded-xl overflow-hidden shadow-2xl font-mono text-xs text-white max-w-2xl mx-auto fragment fade-up">
               <!-- Barra del editor -->
               <div class="bg-gray-900 px-4 py-2 border-b border-gray-800 flex justify-between items-center text-gray-500">
                 <div class="flex gap-2">
