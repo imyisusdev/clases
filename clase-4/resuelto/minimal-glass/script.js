@@ -1,6 +1,6 @@
 // Selección de elementos del DOM
-const btnSaludo = document.getElementById('btn-saludo');
-const btnTheme = document.getElementById('btn-theme');
+const btnSaludo = document.querySelector('#btn-saludo');
+const btnTheme = document.querySelector('#btn-theme');
 
 // Evento para el botón de saludo
 btnSaludo.addEventListener('click', () => {

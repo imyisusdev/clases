@@ -4,7 +4,7 @@
 // ==========================================
 
 // PASO 1: Selección de Elementos (DOM Selection)
-// Usá document.getElementById o document.querySelector para capturar los botones.
+// Usá document.querySelector (en lugar de document.getElementById) para capturar los botones.
 // - El botón de saludo tiene el id "btn-saludo"
 // - El botón de cambiar tema tiene el id "btn-theme"
 
