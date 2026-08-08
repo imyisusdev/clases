@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  /* Fondo con degradado fluido muy moderno */
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+  color: #f1f5f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* CÍRCULOS DE FONDO FLOTANTES (Crean profundidad detrás del vidrio) */
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 1;
+}
+
+.bg-circle-1 {
+  width: 300px;
+  height: 300px;
+  background: #6366f1; /* Índigo */
+  top: 15%;
+  left: 20%;
+  opacity: 0.45;
+}
+
+.bg-circle-2 {
+  width: 250px;
+  height: 250px;
+  background: #ec4899; /* Rosa */
+  bottom: 15%;
+  right: 20%;
+  opacity: 0.4;
+}
+
+/* LA TARJETA DE VIDRIO ESMERILADO (Glassmorphism) */
+.card {
+  background: rgba(255, 255, 255, 0.08); /* Fondo semi-transparente */
+  backdrop-filter: blur(16px) saturate(180%); /* Efecto vidrio esmerilado */
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12); /* Borde sutil del vidrio */
+  border-radius: 24px; /* Esquinas redondeadas suaves */
+  box-shadow: 0 10px 32px 0 rgba(0, 0, 0, 0.3); /* Sombra suave */
+  
+  max-width: 380px;
+  width: 100%;
+  padding: 35px 25px;
+  text-align: center;
+  position: relative;
+  z-index: 10; /* Por encima de los círculos flotantes */
+  transition: transform 0.3s ease, border-color 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* CABECERA (Avatar con borde de cristal y título) */
+header img {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  margin-bottom: 5px;
+}
+
+/* BIOGRAFÍA (Presentación) */
+main {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+main h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
+
+main p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #94a3b8;
+}
+
+/* Palabras clave con realce de vidrio brillante */
+main .highlight {
+  color: #ffffff;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+main strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+main em {
+  font-style: italic;
+  color: #818cf8;
+}
+
+/* BOTONERA DE REDES SOCIALES ESTILO PILL (Pastilla) */
+section h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #cbd5e1;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 6px;
+}
+
+section ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+section ul li a {
+  display: block;
+  text-decoration: none;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05); /* Botón traslúcido */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 18px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 30px; /* Estilo píldora */
+  transition: all 0.2s ease-in-out;
+  text-align: left;
+}
+
+/* Hover: botón se vuelve opaco y se eleva */
+section ul li a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+  transform: translateX(3px);
+}
+
+footer {
+  margin-top: 30px;
+  font-size: 0.75rem;
+  color: #64748b;
+}

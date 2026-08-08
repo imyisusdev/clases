@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+  color: #f1f5f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 1;
+}
+
+.bg-circle-1 {
+  width: 300px;
+  height: 300px;
+  background: #6366f1;
+  top: 15%;
+  left: 20%;
+  opacity: 0.45;
+}
+
+.bg-circle-2 {
+  width: 250px;
+  height: 250px;
+  background: #ec4899;
+  bottom: 15%;
+  right: 20%;
+  opacity: 0.4;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 10px 32px 0 rgba(0, 0, 0, 0.3);
+  max-width: 380px;
+  width: 100%;
+  padding: 35px 25px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  transition: transform 0.3s ease, border-color 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+header img {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  margin-bottom: 5px;
+}
+
+main {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+main h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
+
+main p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #94a3b8;
+}
+
+main .highlight {
+  color: #ffffff;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+main strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+main em {
+  font-style: italic;
+  color: #818cf8;
+}
+
+section h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #cbd5e1;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 6px;
+}
+
+/* HORIZONTAL SOCIAL BUTTONS */
+section ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+section ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 44px;
+  height: 44px;
+  font-size: 1.1rem;
+  border-radius: 50%; /* Botones circulares translúcidos */
+  transition: all 0.2s ease-in-out;
+}
+
+section ul li a:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+footer {
+  margin-top: 30px;
+  font-size: 0.75rem;
+  color: #64748b;
+}
