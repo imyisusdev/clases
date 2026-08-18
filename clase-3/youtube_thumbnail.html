@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generador de Miniaturas YouTube — Clase 3 CSS (@imyisusdev)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Outfit:wght@700;900&family=JetBrains+Mono:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    .font-outfit { font-family: 'Outfit', sans-serif; }
+    .font-mono-custom { font-family: 'JetBrains Mono', monospace; }
+    .brutal-shadow-lg { box-shadow: 16px 16px 0px #000000; }
+    .brutal-shadow-md { box-shadow: 8px 8px 0px #000000; }
+    .brutal-shadow-sm { box-shadow: 4px 4px 0px #000000; }
+
+    /* Estilos Glassmorphism fieles al demo de clase */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+    .glass-btn {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    /* Estilos Cyberpunk fieles al demo */
+    .cyber-card {
+      background: #111625;
+      border: 2px solid #00f0ff;
+      border-radius: 20px;
+      box-shadow: 0 0 35px rgba(0, 240, 255, 0.25);
+    }
+    .cyber-btn {
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid #00f0ff;
+      color: #00f0ff;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen flex flex-col items-center py-8 px-4">
+
+  <!-- BARRA DE CONTROL DE VARIANTES -->
+  <div class="mb-4 flex flex-wrap items-center justify-center gap-3 bg-slate-900/90 p-2.5 rounded-2xl border border-slate-800 shadow-2xl backdrop-blur">
+    <span class="text-xs font-bold text-slate-400 px-2 font-mono uppercase">Estilo de Miniatura:</span>
+    <button id="btn-var1" onclick="setVariant(1)" class="px-4 py-2 rounded-xl font-black text-xs bg-yellow-400 text-black border-2 border-black transition shadow-[3px_3px_0px_#000]">
+      1. Neo-brutalista (Alto CTR)
+    </button>
+    <button id="btn-var2" onclick="setVariant(2)" class="px-4 py-2 rounded-xl font-black text-xs bg-slate-800 text-slate-300 border border-slate-700 hover:text-white transition">
+      2. Minimal Glass (Efecto Vidrio)
+    </button>
+    <button id="btn-var3" onclick="setVariant(3)" class="px-4 py-2 rounded-xl font-black text-xs bg-slate-800 text-slate-300 border border-slate-700 hover:text-white transition">
+      3. Cyber Neon (Cyberpunk)
+    </button>
+  </div>
+
+  <p class="text-xs text-slate-400 mb-4 font-mono text-center">
+    📐 Resolución exacta: <strong>1280 × 720 px</strong> (16:9 YouTube). Abre a 100% de zoom y presiona <kbd class="bg-slate-800 px-2 py-1 rounded text-yellow-300 border border-slate-700">Cmd + Shift + 4</kbd> sobre el recuadro.
+  </p>
+
+  <!-- ========================================== -->
+  <!-- CANVAS PRINCIPAL: 1280x720 (YouTube 16:9) -->
+  <!-- ========================================== -->
+  <div id="thumbnail-canvas" class="w-[1280px] h-[720px] bg-[#fbf9f1] text-black relative border-[12px] border-black brutal-shadow-lg overflow-hidden flex items-center justify-between p-14 select-none">
+    
+    <!-- ELEMENTOS DE FONDO FLOTANTES (Para Glassmorphism / Cyberpunk) -->
+    <div id="glow-circle-1" class="absolute w-[380px] h-[380px] rounded-full blur-[100px] pointer-events-none opacity-0 transition-opacity duration-500 top-[-50px] right-[250px] bg-indigo-500"></div>
+    <div id="glow-circle-2" class="absolute w-[320px] h-[320px] rounded-full blur-[90px] pointer-events-none opacity-0 transition-opacity duration-500 bottom-[-50px] right-[-50px] bg-pink-500"></div>
+
+    <!-- PATRÓN DE CÓDIGO DE FONDO -->
+    <div id="bg-code" class="absolute inset-0 opacity-[0.04] font-mono-custom text-[24px] font-black pointer-events-none p-6 leading-tight break-all">
+      * { box-sizing: border-box; margin: 0; } body { display: flex; justify-content: center; } .card { border: 4px solid #000; box-shadow: 8px 8px 0px #000; }
+      * { box-sizing: border-box; margin: 0; } body { display: flex; justify-content: center; } .card { border: 4px solid #000; box-shadow: 8px 8px 0px #000; }
+      * { box-sizing: border-box; margin: 0; } body { display: flex; justify-content: center; } .card { border: 4px solid #000; box-shadow: 8px 8px 0px #000; }
+    </div>
+
+    <!-- COLUMNA IZQUIERDA: TITULARES Y HOOK VERBAL -->
+    <div class="relative z-10 max-w-[660px] flex flex-col items-start gap-4">
+      
+      <!-- BADGE CLASE -->
+      <div id="badge-pill" class="bg-black text-white px-5 py-2 font-mono-custom font-black text-xl rounded-xl tracking-wider uppercase flex items-center gap-2 border-2 border-black">
+        <i class="fa-solid fa-code text-yellow-400"></i> CLASE 3 GRATIS
+      </div>
+
+      <!-- TITULAR PRINCIPAL -->
+      <h1 class="font-outfit font-black tracking-tight leading-[0.88] flex flex-col items-start">
+        <span id="title-line-1" class="text-[72px] uppercase text-slate-900 tracking-tight">APRENDE</span>
+        <span id="title-line-2" class="text-[136px] uppercase text-indigo-600 drop-shadow-[8px_8px_0px_#000000] -mt-2">CSS REAL</span>
+      </h1>
+
+      <!-- SUBTITULAR DE PROMESA (DEJA DE ADIVINAR) -->
+      <div id="promise-badge" class="bg-yellow-300 border-4 border-black px-6 py-2.5 rounded-2xl brutal-shadow-md -rotate-1 mt-1">
+        <p id="promise-text" class="font-outfit font-black text-[34px] text-black uppercase tracking-tight">
+          ¡DEJA DE ADIVINAR! 🚀
+        </p>
+      </div>
+
+      <!-- PILLS DE CONCEPTOS CLAVE -->
+      <div id="pills-container" class="flex items-center gap-3 mt-3 text-sm font-bold font-mono-custom">
+        <span id="pill-1" class="bg-white text-black border-2 border-black px-4 py-2 rounded-xl shadow-[3px_3px_0px_#000]">Box Model</span>
+        <span id="pill-2" class="bg-white text-black border-2 border-black px-4 py-2 rounded-xl shadow-[3px_3px_0px_#000]">Flexbox</span>
+        <span id="pill-3" class="bg-white text-black border-2 border-black px-4 py-2 rounded-xl shadow-[3px_3px_0px_#000]">DevTools (F12)</span>
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: PROYECTO BIOCARD EN VIVO -->
+    <div class="relative z-10 w-[450px] flex flex-col items-center justify-center">
+      
+      <!-- CONTENEDOR DE LA CARD (Cambia según la variante) -->
+      <div id="card-container" class="w-full bg-white border-4 border-black rounded-3xl p-6 brutal-shadow-lg transform rotate-2 transition duration-300">
+        
+        <!-- Header de la Card -->
+        <div id="card-header" class="flex items-center gap-4 pb-4 border-b-2 border-black">
+          <img src="https://avatars.githubusercontent.com/u/188985435?v=4" id="avatar-img" class="w-16 h-16 rounded-full border-4 border-black shadow-[4px_4px_0px_#000]">
+          <div>
+            <h3 id="card-title" class="font-outfit font-black text-2xl text-black">@imyisusdev</h3>
+            <p id="card-subtitle" class="text-xs font-bold text-indigo-600 font-mono-custom">Developer & Creator</p>
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <p id="card-bio" class="text-xs font-semibold text-slate-700 my-3 leading-relaxed">
+          Aprende programación desde los fundamentos reales. Cero humo.
+        </p>
+
+        <!-- Botones de la BioCard -->
+        <div id="card-buttons" class="space-y-2.5">
+          <div id="btn-1" class="bg-[#c2f0c2] border-2 border-black rounded-xl p-2.5 text-xs font-bold text-black flex justify-between items-center shadow-[3px_3px_0px_#000]">
+            <span>🌳 Mi Linktree</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </div>
+          <div id="btn-2" class="bg-[#fbcfe8] border-2 border-black rounded-xl p-2.5 text-xs font-bold text-black flex justify-between items-center shadow-[3px_3px_0px_#000]">
+            <span>💻 Repositorios GitHub</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </div>
+          <div id="btn-3" class="bg-[#fef08a] border-2 border-black rounded-xl p-2.5 text-xs font-bold text-black flex justify-between items-center shadow-[3px_3px_0px_#000]">
+            <span>🎥 Canal de YouTube</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sticker Floating Tag -->
+      <div id="floating-sticker" class="absolute -bottom-6 -left-6 bg-rose-500 text-white font-mono-custom font-black px-4 py-2 text-base rounded-xl border-4 border-black shadow-[6px_6px_0px_#000] transform -rotate-6">
+        PROYECTO REAL 🔥
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function setVariant(num) {
+      const canvas = document.getElementById('thumbnail-canvas');
+      const card = document.getElementById('card-container');
+      const cardHeader = document.getElementById('card-header');
+      const cardTitle = document.getElementById('card-title');
+      const cardSubtitle = document.getElementById('card-subtitle');
+      const cardBio = document.getElementById('card-bio');
+      const cardButtons = document.getElementById('card-buttons');
+      const avatarImg = document.getElementById('avatar-img');
+      const titleLine1 = document.getElementById('title-line-1');
+      const titleLine2 = document.getElementById('title-line-2');
+      const badgePill = document.getElementById('badge-pill');
+      const promiseBadge = document.getElementById('promise-badge');
+      const promiseText = document.getElementById('promise-text');
+      const glow1 = document.getElementById('glow-circle-1');
+      const glow2 = document.getElementById('glow-circle-2');
+      const pill1 = document.getElementById('pill-1');
+      const pill2 = document.getElementById('pill-2');
+      const pill3 = document.getElementById('pill-3');
+      const sticker = document.getElementById('floating-sticker');
+
+      ['btn-var1', 'btn-var2', 'btn-var3'].forEach((id, idx) => {
+        const btn = document.getElementById(id);
+        if (idx + 1 === num) {
+          btn.className = "px-4 py-2 rounded-xl font-black text-xs bg-yellow-400 text-black border-2 border-black transition shadow-[3px_3px_0px_#000]";
+        } else {
+          btn.className = "px-4 py-2 rounded-xl font-black text-xs bg-slate-800 text-slate-300 border border-slate-700 hover:text-white transition";
+        }
+      });
+
+      if (num === 1) {
+        // 1. NEO-BRUTALISTA PREMIUM
+        canvas.className = "w-[1280px] h-[720px] bg-[#fbf9f1] text-black relative border-[12px] border-black brutal-shadow-lg overflow-hidden flex items-center justify-between p-14 select-none";
+        glow1.className = "opacity-0";
+        glow2.className = "opacity-0";
+        titleLine1.className = "text-[72px] uppercase text-slate-900 tracking-tight";
+        titleLine2.className = "text-[136px] uppercase text-indigo-600 drop-shadow-[8px_8px_0px_#000000] -mt-2";
+        badgePill.className = "bg-black text-white px-5 py-2 font-mono-custom font-black text-xl rounded-xl tracking-wider uppercase flex items-center gap-2 border-2 border-black";
+        promiseBadge.className = "bg-yellow-300 border-4 border-black px-6 py-2.5 rounded-2xl brutal-shadow-md -rotate-1 mt-1";
+        promiseText.className = "font-outfit font-black text-[34px] text-black uppercase tracking-tight";
+        pill1.className = "bg-white text-black border-2 border-black px-4 py-2 rounded-xl shadow-[3px_3px_0px_#000]";
+        pill2.className = "bg-white text-black border-2 border-black px-4 py-2 rounded-xl shadow-[3px_3px_0px_#000]";
+        pill3.className = "bg-white text-black border-2 border-black px-4 py-2 rounded-xl shadow-[3px_3px_0px_#000]";
+
+        card.className = "w-full bg-white border-4 border-black rounded-3xl p-6 brutal-shadow-lg transform rotate-2";
+        cardHeader.className = "flex items-center gap-4 pb-4 border-b-2 border-black";
+        cardTitle.className = "font-outfit font-black text-2xl text-black";
+        cardSubtitle.className = "text-xs font-bold text-indigo-600 font-mono-custom";
+        cardBio.className = "text-xs font-semibold text-slate-700 my-3 leading-relaxed";
+        avatarImg.className = "w-16 h-16 rounded-full border-4 border-black shadow-[4px_4px_0px_#000]";
+        sticker.className = "absolute -bottom-6 -left-6 bg-rose-500 text-white font-mono-custom font-black px-4 py-2 text-base rounded-xl border-4 border-black shadow-[6px_6px_0px_#000] transform -rotate-6";
+
+        cardButtons.innerHTML = `
+          <div class="bg-[#c2f0c2] border-2 border-black rounded-xl p-2.5 text-xs font-bold text-black flex justify-between items-center shadow-[3px_3px_0px_#000]">
+            <span>🌳 Mi Linktree</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </div>
+          <div class="bg-[#fbcfe8] border-2 border-black rounded-xl p-2.5 text-xs font-bold text-black flex justify-between items-center shadow-[3px_3px_0px_#000]">
+            <span>💻 Repositorios GitHub</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </div>
+          <div class="bg-[#fef08a] border-2 border-black rounded-xl p-2.5 text-xs font-bold text-black flex justify-between items-center shadow-[3px_3px_0px_#000]">
+            <span>🎥 Canal de YouTube</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </div>
+        `;
+      } else if (num === 2) {
+        // 2. MINIMAL GLASS (GLASSMORPHISM VIBRANTE)
+        canvas.className = "w-[1280px] h-[720px] bg-gradient-to-br from-[#0f172a] via-[#1e1b4b] to-[#311042] text-white relative border-[12px] border-indigo-500/60 shadow-2xl overflow-hidden flex items-center justify-between p-14 select-none";
+        glow1.className = "absolute w-[450px] h-[450px] rounded-full blur-[110px] pointer-events-none opacity-60 top-[10%] right-[15%] bg-indigo-500";
+        glow2.className = "absolute w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none opacity-50 bottom-[5%] right-[5%] bg-pink-500";
+        titleLine1.className = "text-[72px] uppercase text-white font-black tracking-tight drop-shadow-md";
+        titleLine2.className = "text-[136px] uppercase text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-300 to-pink-400 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] -mt-2";
+        badgePill.className = "bg-white/10 backdrop-blur-md text-yellow-300 px-5 py-2 font-mono-custom font-black text-xl rounded-xl tracking-wider uppercase flex items-center gap-2 border border-white/20 shadow-lg";
+        promiseBadge.className = "bg-gradient-to-r from-amber-400 to-yellow-300 border-2 border-white/40 px-6 py-2.5 rounded-2xl shadow-xl -rotate-1 mt-1";
+        promiseText.className = "font-outfit font-black text-[34px] text-slate-950 uppercase tracking-tight";
+        pill1.className = "bg-white/10 backdrop-blur text-white border border-white/20 px-4 py-2 rounded-xl shadow-md";
+        pill2.className = "bg-white/10 backdrop-blur text-white border border-white/20 px-4 py-2 rounded-xl shadow-md";
+        pill3.className = "bg-white/10 backdrop-blur text-white border border-white/20 px-4 py-2 rounded-xl shadow-md";
+
+        card.className = "w-full glass-card p-6 transform rotate-2 text-white";
+        cardHeader.className = "flex items-center gap-4 pb-4 border-b border-white/15";
+        cardTitle.className = "font-outfit font-black text-2xl text-white";
+        cardSubtitle.className = "text-xs font-bold text-cyan-300 font-mono-custom";
+        cardBio.className = "text-xs font-medium text-slate-300 my-3 leading-relaxed";
+        avatarImg.className = "w-16 h-16 rounded-full border-2 border-white/30 shadow-lg";
+        sticker.className = "absolute -bottom-6 -left-6 bg-pink-600 text-white font-mono-custom font-black px-4 py-2 text-base rounded-xl border border-white/30 shadow-2xl transform -rotate-6";
+
+        cardButtons.innerHTML = `
+          <div class="glass-btn rounded-xl p-2.5 text-xs font-semibold flex justify-between items-center shadow-sm">
+            <span>🌳 Mi Linktree</span> <i class="fa-solid fa-arrow-right text-[10px] text-slate-400"></i>
+          </div>
+          <div class="glass-btn rounded-xl p-2.5 text-xs font-semibold flex justify-between items-center shadow-sm">
+            <span>💻 Repositorios GitHub</span> <i class="fa-solid fa-arrow-right text-[10px] text-slate-400"></i>
+          </div>
+          <div class="glass-btn rounded-xl p-2.5 text-xs font-semibold flex justify-between items-center shadow-sm">
+            <span>🎥 Canal de YouTube</span> <i class="fa-solid fa-arrow-right text-[10px] text-slate-400"></i>
+          </div>
+        `;
+      } else if (num === 3) {
+        // 3. CYBER NEON / CYBERPUNK
+        canvas.className = "w-[1280px] h-[720px] bg-[#090d16] text-white relative border-[12px] border-[#00f0ff] shadow-[0_0_50px_rgba(0,240,255,0.3)] overflow-hidden flex items-center justify-between p-14 select-none";
+        glow1.className = "absolute w-[450px] h-[450px] rounded-full blur-[120px] pointer-events-none opacity-40 top-[-50px] right-[200px] bg-[#00f0ff]";
+        glow2.className = "absolute w-[350px] h-[350px] rounded-full blur-[100px] pointer-events-none opacity-40 bottom-[-50px] right-[-50px] bg-[#ff007f]";
+        titleLine1.className = "text-[72px] uppercase text-[#00f0ff] font-black tracking-tight drop-shadow-[0_0_15px_rgba(0,240,255,0.5)]";
+        titleLine2.className = "text-[136px] uppercase text-white font-black drop-shadow-[0_0_25px_rgba(255,0,127,0.7)] -mt-2";
+        badgePill.className = "bg-[#ff007f] text-white px-5 py-2 font-mono-custom font-black text-xl rounded-xl tracking-wider uppercase flex items-center gap-2 border border-white shadow-[0_0_15px_#ff007f]";
+        promiseBadge.className = "bg-[#00f0ff] border-2 border-white px-6 py-2.5 rounded-2xl shadow-[0_0_20px_#00f0ff] -rotate-1 mt-1";
+        promiseText.className = "font-outfit font-black text-[34px] text-black uppercase tracking-tight";
+        pill1.className = "bg-[#121826] text-[#00f0ff] border border-[#00f0ff] px-4 py-2 rounded-xl shadow-md";
+        pill2.className = "bg-[#121826] text-[#ff007f] border border-[#ff007f] px-4 py-2 rounded-xl shadow-md";
+        pill3.className = "bg-[#121826] text-yellow-300 border border-yellow-300 px-4 py-2 rounded-xl shadow-md";
+
+        card.className = "w-full cyber-card p-6 transform rotate-2 text-white";
+        cardHeader.className = "flex items-center gap-4 pb-4 border-b border-[#00f0ff]/30";
+        cardTitle.className = "font-outfit font-black text-2xl text-white";
+        cardSubtitle.className = "text-xs font-bold text-[#00f0ff] font-mono-custom";
+        cardBio.className = "text-xs font-medium text-slate-300 my-3 leading-relaxed";
+        avatarImg.className = "w-16 h-16 rounded-full border-2 border-[#00f0ff] shadow-[0_0_15px_#00f0ff]";
+        sticker.className = "absolute -bottom-6 -left-6 bg-[#ff007f] text-white font-mono-custom font-black px-4 py-2 text-base rounded-xl border border-white shadow-[0_0_20px_#ff007f] transform -rotate-6";
+
+        cardButtons.innerHTML = `
+          <div class="cyber-btn rounded-xl p-2.5 text-xs font-bold flex justify-between items-center">
+            <span>🌳 Mi Linktree</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </div>
+          <div class="cyber-btn rounded-xl p-2.5 text-xs font-bold flex justify-between items-center">
+            <span>💻 Repositorios GitHub</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </div>
+          <div class="cyber-btn rounded-xl p-2.5 text-xs font-bold flex justify-between items-center">
+            <span>🎥 Canal de YouTube</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </div>
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>
