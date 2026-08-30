@@ -99,7 +99,9 @@ section ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  /* 16px: la sombra plana de 3-4px se come parte del hueco, y en modo
+     oscuro la sombra clara avanza en vez de retroceder (irradiación). */
+  gap: 16px;
 }
 
 section ul li a {
@@ -191,23 +193,23 @@ footer {
 
 /* --- MODO OSCURO (DARK MODE) --- */
 body.dark-mode {
-  background-color: #121212;
-  color: #f6f5f0;
+  background-color: #16161a;
+  color: #f2efe9;
 }
 
 body.dark-mode .card {
-  background-color: #1e1e1e;
-  border-color: #ffffff;
-  box-shadow: 8px 8px 0px #ffffff;
+  background-color: #212127;
+  border-color: #78787f;
+  box-shadow: 8px 8px 0px #55555d;
 }
 
 body.dark-mode .card:hover {
-  box-shadow: 10px 10px 0px #ffffff;
+  box-shadow: 10px 10px 0px #55555d;
 }
 
 body.dark-mode header img {
-  border-color: #ffffff;
-  box-shadow: 3px 3px 0px #ffffff;
+  border-color: #78787f;
+  box-shadow: 3px 3px 0px #55555d;
 }
 
 body.dark-mode header h1 {
@@ -215,37 +217,37 @@ body.dark-mode header h1 {
 }
 
 body.dark-mode main h2 {
-  color: #a0aec0;
+  color: #b9b4ab;
 }
 
 body.dark-mode main p {
-  color: #e2e8f0;
+  color: #f2efe9;
 }
 
 body.dark-mode main strong {
-  background-color: #3b3b3b;
-  border-color: #ffffff;
-  color: #ffffff;
+  background-color: #3a3116;
+  border-color: #facc15;
+  color: #facc15;
 }
 
 body.dark-mode main em {
-  color: #818cf8;
+  color: #a5b4fc;
 }
 
 body.dark-mode section h3 {
-  border-bottom-color: #ffffff;
+  border-bottom-color: #55555d;
   color: #ffffff;
 }
 
 body.dark-mode section ul li a {
-  background-color: #1e1e1e;
-  color: #ffffff;
-  border-color: #ffffff;
-  box-shadow: 4px 4px 0px #ffffff;
+  background-color: #292930;
+  color: #f2efe9;
+  border-color: #78787f;
+  box-shadow: 3px 3px 0px #55555d;
 }
 
 body.dark-mode section ul li a:hover {
-  box-shadow: 2px 2px 0px #ffffff;
+  box-shadow: 2px 2px 0px #78787f;
 }
 
 /* Hover de botones individuales en modo oscuro */
@@ -258,31 +260,31 @@ body.dark-mode .btn-threads:hover { background-color: #322659; }
 body.dark-mode .btn-facebook:hover { background-color: #2a4365; }
 
 body.dark-mode #btn-saludo {
-  background-color: #3b3b3b;
-  color: #ffffff;
-  border-color: #ffffff;
-  box-shadow: 4px 4px 0px #ffffff;
+  background-color: #facc15;
+  color: #16161a;
+  border-color: #facc15;
+  box-shadow: 4px 4px 0px #8a6f0b;
 }
 
 body.dark-mode #btn-saludo:hover {
-  background-color: #4a4a4a;
-  box-shadow: 2px 2px 0px #ffffff;
+  background-color: #fde047;
+  box-shadow: 2px 2px 0px #8a6f0b;
 }
 
 body.dark-mode #btn-theme {
-  background-color: #1e1e1e;
-  color: #ffffff;
-  border-color: #ffffff;
-  box-shadow: 4px 4px 0px #ffffff;
+  background-color: #292930;
+  color: #f2efe9;
+  border-color: #78787f;
+  box-shadow: 3px 3px 0px #55555d;
 }
 
 body.dark-mode #btn-theme:hover {
-  background-color: #2d2d2d;
-  box-shadow: 2px 2px 0px #ffffff;
+  background-color: #35353d;
+  box-shadow: 2px 2px 0px #78787f;
 }
 
 body.dark-mode footer {
-  color: #a0aec0;
+  color: #9a958c;
 }
 
 /* Transiciones suaves para cambios de tema */
@@ -300,4 +302,30 @@ section ul li a,
 #btn-theme,
 footer {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s, text-shadow 0.3s ease;
+}
+
+/* --- CAJA DEL SALUDO (la escribe JavaScript) --- */
+#saludo {
+  margin-top: 18px;
+  padding: 12px 14px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #000000;
+  background-color: #d6f5d6;
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  border-radius: 10px;
+}
+
+#saludo:empty {
+  display: none;
+}
+
+body.dark-mode #saludo {
+  background-color: #14311f;
+  color: #bbf7d0;
+  border-color: #78787f;
+  box-shadow: 4px 4px 0px #55555d;
 }

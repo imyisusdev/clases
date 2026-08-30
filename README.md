@@ -22,7 +22,7 @@ Este documento detalla la estructura y el plan de clases en vivo (vía Meet) par
 
 > **Concepto clave:** Estructurar la información. No es programar, es maquetar.
 
-- **Analogía cotidiana:** Los planos y el esqueleto de una casa. Sin vigas ni paredes, no podés pintar ni amueblar.
+- **Analogía cotidiana:** Los planos y el esqueleto de una casa. Sin vigas ni paredes, no puedes pintar ni amueblar.
 - **Contenidos teóricos:**
   - ¿Qué es la Web? Cliente y Servidor (repaso rápido).
   - Etiquetas HTML fundamentales: `<html>`, `<head>`, `<body>`.
@@ -64,15 +64,16 @@ Este documento detalla la estructura y el plan de clases en vivo (vía Meet) par
   - Funciones: bloques de instrucciones con nombre.
   - **El DOM:** Cómo JS puede leer y modificar lo que está en HTML/CSS.
   - Event Listeners: escuchar cuando el usuario hace un click.
+  - **Puente a la clase 6:** los 3 paneles de CodePen son en realidad 3 archivos (`index.html`, `styles.css`, `script.js`); CodePen escribe por nosotros el `<link>` y el `<script>` que los conectan.
 - **Proyecto de clase (CodePen):**
-  - Agregar un botón "¡Saludame!" que al hacer click pida el nombre del usuario y le tire un saludo personalizado en pantalla.
+  - Agregar un botón "¡Saludar!" que al hacer click pida el nombre con `prompt` y escriba un saludo personalizado dentro de la tarjeta con `textContent`.
   - Crear un interruptor de **Modo Oscuro / Modo Claro** dinámico para la tarjeta.
 - **🎉 Cierre & Compartir:** En los últimos 10 minutos, cada alumno guarda su Pen, le da al botón **Share** de CodePen y comparte su enlace interactivo de presentación en el chat del Meet.
 - **Desafío para el alumno:** Agregar un segundo botón interactivo (por ejemplo, que cuente cuántas veces hicieron click en sus redes sociales).
 
 ---
 
-### 🎮 Clase 5: Lógica en Consola - "Adiviná el Número Secreto"
+### 🎮 Clase 5: Lógica en Consola - "Adivina el Número Secreto"
 
 > **Concepto clave:** Lógica pura, control de flujo y toma de decisiones del computador.
 
@@ -83,13 +84,13 @@ Este documento detalla la estructura y el plan de clases en vivo (vía Meet) par
   - Condicionales (`if`, `else if`, `else`) para tomar decisiones lógicas.
   - Ciclos (`while`): repetir el juego hasta que el usuario adivine o se quede sin vidas.
   - Variables acumuladoras y contadores (vidas/intentos restantes).
-- **El Proyecto - "Adiviná el Número de imyisusdev":**
+- **El Proyecto - "Adivina el Número de imyisusdev":**
   - El computador genera un número aleatorio del 1 al 50.
   - El usuario tiene **5 intentos** para adivinarlo.
   - En cada turno, la consola le pide que ingrese un número:
     - Si es menor: _"¡Casi! El número secreto es más GRANDE."_
     - Si es mayor: _"¡Casi! El número secreto es más CHICO."_
-    - Si adivina: _"🏆 ¡Excelente! Sos un crack de la programación. ¡Adivinaste!"_
+    - Si adivina: _"🏆 ¡Excelente! Eres un crack de la programación. ¡Adivinaste!"_
     - Si se le acaban los intentos: _"💀 Game Over. El número secreto era X. ¡A seguir practicando!"_
 - **Desafío para el alumno:** Cambiar el rango de números (de 1 a 100) o darles 7 intentos en lugar de 5 para ajustar la dificultad.
 

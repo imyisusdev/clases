@@ -118,7 +118,7 @@ section h3 {
   font-size: 0.95rem;
   font-weight: 800;
   letter-spacing: 3px;
-  color: #475569;
+  color: #8291a8;
   margin-bottom: 20px;
   text-align: left;
   border-bottom: 1px solid #1e293b;
@@ -162,7 +162,7 @@ section ul li a:hover {
 footer {
   margin-top: 35px;
   font-size: 0.7rem;
-  color: #475569;
+  color: #8291a8;
   letter-spacing: 1px;
 }
 
@@ -263,16 +263,16 @@ body.light-mode main strong {
 }
 
 body.light-mode main em {
-  color: #b7791f;
+  color: #a3540a;
 }
 
 body.light-mode section h3 {
-  color: #718096;
+  color: #55627a;
   border-bottom-color: #e2e8f0;
 }
 
 body.light-mode section ul li a {
-  color: #00808a;
+  color: #00707a;
   background-color: #f7fafc;
   border-color: #e2e8f0;
 }
@@ -314,7 +314,7 @@ body.light-mode #btn-theme:hover {
 }
 
 body.light-mode footer {
-  color: #718096;
+  color: #55627a;
 }
 
 /* Transiciones suaves para cambios de tema */
@@ -332,4 +332,32 @@ section ul li a,
 #btn-theme,
 footer {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s, text-shadow 0.3s ease;
+}
+
+/* --- CAJA DEL SALUDO (la escribe JavaScript) --- */
+#saludo {
+  margin-top: 18px;
+  padding: 12px 14px;
+  font-family: 'Fira Code', monospace;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-align: center;
+  color: #00f0ff;
+  background-color: rgba(0, 240, 255, 0.08);
+  border: 1px solid #00f0ff;
+  border-radius: 8px;
+  text-shadow: 0 0 5px rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+}
+
+#saludo:empty {
+  display: none;
+}
+
+body.light-mode #saludo {
+  color: #0077a3;
+  background-color: #eefbff;
+  border-color: #0077a3;
+  text-shadow: none;
+  box-shadow: 0 4px 6px rgba(0, 119, 163, 0.1);
 }

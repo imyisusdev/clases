@@ -188,8 +188,10 @@
       if (num === 1) {
         // 1. NEO-BRUTALISTA
         canvas.className = "w-[1280px] h-[720px] bg-[#fbf9f1] text-black relative border-[12px] border-black brutal-shadow-lg overflow-hidden flex items-center justify-between p-14 select-none";
-        glow1.className = "opacity-0";
-        glow2.className = "opacity-0";
+        // absolute obligatorio: sin él los glows vuelven al flujo flex y
+        // el justify-between del canvas desplaza la columna izquierda
+        glow1.className = "absolute opacity-0 pointer-events-none";
+        glow2.className = "absolute opacity-0 pointer-events-none";
         titleLine1.className = "text-[68px] uppercase text-slate-900 tracking-tight";
         titleLine2.className = "text-[80px] uppercase text-emerald-600 drop-shadow-[8px_8px_0px_#000000] -mt-2";
         badgePill.className = "bg-black text-white px-5 py-2 font-mono-custom font-black text-xl rounded-xl tracking-wider uppercase flex items-center gap-2 border-2 border-black";

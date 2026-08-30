@@ -123,7 +123,7 @@ main strong {
 
 main em {
   font-style: italic;
-  color: #818cf8;
+  color: #9aa5fb;
 }
 
 /* BOTONERA DE REDES SOCIALES ESTILO PILL (Pastilla) */
@@ -150,8 +150,9 @@ section ul li a {
   display: block;
   text-decoration: none;
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.05); /* Botón traslúcido */
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.14); /* Botón traslúcido */
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.20);
   padding: 12px 18px;
   font-weight: 600;
   font-size: 0.9rem;
@@ -171,7 +172,7 @@ section ul li a:hover {
 footer {
   margin-top: 30px;
   font-size: 0.75rem;
-  color: #64748b;
+  color: #94a3b8;
 }
 
 /* --- ESTILOS DE INTERACCIÓN (JS) --- */
@@ -288,8 +289,9 @@ body.light-mode section h3 {
 
 body.light-mode section ul li a {
   color: #334155;
-  background: rgba(255, 255, 255, 0.6);
-  border-color: rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10);
 }
 
 body.light-mode section ul li a:hover {
@@ -321,7 +323,7 @@ body.light-mode #btn-theme:hover {
 }
 
 body.light-mode footer {
-  color: #64748b;
+  color: #475569;
 }
 
 /* Transiciones suaves para cambios de tema */
@@ -339,4 +341,30 @@ section ul li a,
 #btn-theme,
 footer {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s, text-shadow 0.3s ease;
+}
+
+/* --- CAJA DEL SALUDO (la escribe JavaScript) --- */
+#saludo {
+  margin-top: 18px;
+  padding: 12px 18px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-align: center;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+#saludo:empty {
+  display: none;
+}
+
+body.light-mode #saludo {
+  color: #334155;
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(0, 0, 0, 0.05);
 }

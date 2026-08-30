@@ -183,98 +183,48 @@ footer {
   background-color: #f6f5f0;
 }
 
-/* --- MODO OSCURO (DARK MODE) --- */
-body.dark-mode {
-  background-color: #121212;
-  color: #f6f5f0;
+/* --- CAJA DEL SALUDO (la escribe JavaScript) --- */
+#saludo {
+  margin-top: 18px;
+  padding: 12px 14px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #000000;
+  background-color: #d6f5d6;
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  border-radius: 10px;
 }
 
-body.dark-mode .card {
-  background-color: #1e1e1e;
-  border-color: #ffffff;
-  box-shadow: 8px 8px 0px #ffffff;
+/* Mientras JS no escriba nada, la caja no se muestra */
+#saludo:empty {
+  display: none;
 }
 
-body.dark-mode .card:hover {
-  box-shadow: 10px 10px 0px #ffffff;
-}
+/* ==========================================================
+   MODO OSCURO (DARK MODE) - TU TURNO
+   ==========================================================
+   Escribe aquí las reglas que se aplican cuando JavaScript
+   agrega la clase "dark-mode" al body con classList.toggle().
 
-body.dark-mode header img {
-  border-color: #ffffff;
-  box-shadow: 3px 3px 0px #ffffff;
-}
+   Se escriben anteponiendo body.dark-mode al selector normal:
 
-body.dark-mode header h1 {
-  color: #ffffff;
-}
+   body.dark-mode {
+     background-color: #121212;
+     color: #f6f5f0;
+   }
 
-body.dark-mode main h2 {
-  color: #a0aec0;
-}
+   body.dark-mode .card {
+     ...
+   }
 
-body.dark-mode main p {
-  color: #e2e8f0;
-}
-
-body.dark-mode main strong {
-  background-color: #3b3b3b;
-  border-color: #ffffff;
-  color: #ffffff;
-}
-
-body.dark-mode main em {
-  color: #818cf8;
-}
-
-body.dark-mode section h3 {
-  border-bottom-color: #ffffff;
-  color: #ffffff;
-}
-
-body.dark-mode section ul li a {
-  background-color: #1e1e1e;
-  color: #ffffff;
-  border-color: #ffffff;
-  box-shadow: 4px 4px 0px #ffffff;
-}
-
-body.dark-mode section ul li a:hover {
-  box-shadow: 2px 2px 0px #ffffff;
-}
-
-/* Hover de botones individuales en modo oscuro */
-body.dark-mode .btn-linktree:hover { background-color: #1b4d1b; }
-body.dark-mode .btn-github:hover { background-color: #2d3748; }
-body.dark-mode .btn-youtube:hover { background-color: #742a2a; }
-body.dark-mode .btn-instagram:hover { background-color: #702459; }
-body.dark-mode .btn-tiktok:hover { background-color: #1a4d4a; }
-body.dark-mode .btn-threads:hover { background-color: #322659; }
-body.dark-mode .btn-facebook:hover { background-color: #2a4365; }
-
-body.dark-mode #btn-saludo {
-  background-color: #3b3b3b;
-  color: #ffffff;
-  border-color: #ffffff;
-  box-shadow: 4px 4px 0px #ffffff;
-}
-
-body.dark-mode #btn-saludo:hover {
-  background-color: #4a4a4a;
-  box-shadow: 2px 2px 0px #ffffff;
-}
-
-body.dark-mode #btn-theme {
-  background-color: #1e1e1e;
-  color: #ffffff;
-  border-color: #ffffff;
-  box-shadow: 4px 4px 0px #ffffff;
-}
-
-body.dark-mode #btn-theme:hover {
-  background-color: #2d2d2d;
-  box-shadow: 2px 2px 0px #ffffff;
-}
-
-body.dark-mode footer {
-  color: #a0aec0;
-}
+   Sugerencia de elementos a cubrir:
+   1. body (fondo y color de texto)
+   2. .card (fondo, borde y sombra)
+   3. header h1, main h2, main p (colores de texto)
+   4. section ul li a (los botones de redes)
+   5. #btn-saludo, #btn-theme y #saludo
+   6. footer
+   ========================================================== */

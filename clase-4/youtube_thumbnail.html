@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generador de Miniaturas YouTube — Clase 4 JavaScript (@imyisusdev)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Outfit:wght@700;900&family=JetBrains+Mono:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    .font-outfit { font-family: 'Outfit', sans-serif; }
+    .font-mono-custom { font-family: 'JetBrains Mono', monospace; }
+    .brutal-shadow-lg { box-shadow: 16px 16px 0px #000000; }
+    .brutal-shadow-md { box-shadow: 8px 8px 0px #000000; }
+    .brutal-shadow-sm { box-shadow: 4px 4px 0px #000000; }
+
+    /* Estilos Glassmorphism fieles al demo de clase */
+    .glass-card {
+      /* Fondo mayormente opaco: en la miniatura esta tarjeta va superpuesta
+         sobre la mitad clara, así que no puede depender de backdrop-filter
+         (blurrearía la tarjeta clara de abajo en vez del canvas oscuro). */
+      background: rgba(19, 15, 38, 0.88);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+    .glass-btn {
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+    }
+
+    /* Estilos Cyberpunk fieles al demo */
+    .cyber-card {
+      background: #15151f;
+      border: 2px solid #f7df1e;
+      border-radius: 20px;
+      box-shadow: 0 0 35px rgba(247, 223, 30, 0.22);
+    }
+    .cyber-btn {
+      background: rgba(247, 223, 30, 0.07);
+      border: 1px solid rgba(247, 223, 30, 0.55);
+      color: #f7df1e;
+    }
+
+    /* La mitad oscura de la tarjeta partida (modo oscuro en vivo) */
+    #card-dark { clip-path: inset(0 0 0 50%); }
+
+    /* Motivo decorativo: rayo en contorno, llena el vacío visual de la
+       columna izquierda y refuerza la analogía "electricidad = JS" de la clase. */
+    #bg-bolt {
+      -webkit-text-stroke-width: 5px;
+      color: transparent;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen flex flex-col items-center py-8 px-4">
+
+  <!-- BARRA 1: ESTILO VISUAL -->
+  <div class="mb-3 flex flex-wrap items-center justify-center gap-3 bg-slate-900/90 p-2.5 rounded-2xl border border-slate-800 shadow-2xl backdrop-blur">
+    <span class="text-xs font-bold text-slate-400 px-2 font-mono uppercase">Estilo:</span>
+    <button id="btn-var1" onclick="setVariant(1)" class="px-4 py-2 rounded-xl font-black text-xs bg-yellow-400 text-black border-2 border-black transition shadow-[3px_3px_0px_#000]">
+      1. Neo-brutalista (Alto CTR)
+    </button>
+    <button id="btn-var2" onclick="setVariant(2)" class="px-4 py-2 rounded-xl font-black text-xs bg-slate-800 text-slate-300 border border-slate-700 hover:text-white transition">
+      2. Minimal Glass (Efecto Vidrio)
+    </button>
+    <button id="btn-var3" onclick="setVariant(3)" class="px-4 py-2 rounded-xl font-black text-xs bg-slate-800 text-slate-300 border border-slate-700 hover:text-white transition">
+      3. Cyber Neon (Cyberpunk)
+    </button>
+  </div>
+
+  <!-- BARRA 2: COPY DEL TITULAR -->
+  <div class="mb-4 flex flex-wrap items-center justify-center gap-3 bg-slate-900/90 p-2.5 rounded-2xl border border-slate-800 shadow-2xl backdrop-blur">
+    <span class="text-xs font-bold text-slate-400 px-2 font-mono uppercase">Copy:</span>
+    <button id="btn-copy1" onclick="setCopy(1)" class="px-4 py-2 rounded-xl font-black text-xs bg-yellow-400 text-black border-2 border-black transition shadow-[3px_3px_0px_#000]">
+      A. TU WEB COBRA VIDA
+    </button>
+    <button id="btn-copy2" onclick="setCopy(2)" class="px-4 py-2 rounded-xl font-black text-xs bg-slate-800 text-slate-300 border border-slate-700 hover:text-white transition">
+      B. DE ESTÁTICO A INTERACTIVO
+    </button>
+    <button id="btn-copy3" onclick="setCopy(3)" class="px-4 py-2 rounded-xl font-black text-xs bg-slate-800 text-slate-300 border border-slate-700 hover:text-white transition">
+      C. TU PRIMER CÓDIGO JS
+    </button>
+  </div>
+
+  <p class="text-xs text-slate-400 mb-4 font-mono text-center">
+    📐 Resolución exacta: <strong>1280 × 720 px</strong> (16:9 YouTube). Abre a 100% de zoom y presiona <kbd class="bg-slate-800 px-2 py-1 rounded text-yellow-300 border border-slate-700">Cmd + Shift + 4</kbd> sobre el recuadro.
+  </p>
+
+  <!-- ========================================== -->
+  <!-- CANVAS PRINCIPAL: 1280x720 (YouTube 16:9) -->
+  <!-- ========================================== -->
+  <div id="thumbnail-canvas" class="w-[1280px] h-[720px] bg-[#fbf9f1] text-black relative border-[12px] border-black brutal-shadow-lg overflow-hidden flex items-center justify-between p-14 select-none">
+
+    <!-- ELEMENTOS DE FONDO FLOTANTES (Para Glassmorphism / Cyberpunk) -->
+    <div id="glow-circle-1" class="absolute w-[380px] h-[380px] rounded-full blur-[100px] pointer-events-none opacity-0 transition-opacity duration-500 top-[-50px] right-[250px] bg-[#f7df1e]"></div>
+    <div id="glow-circle-2" class="absolute w-[320px] h-[320px] rounded-full blur-[90px] pointer-events-none opacity-0 transition-opacity duration-500 bottom-[-50px] right-[-50px] bg-[#7c3aed]"></div>
+
+    <!-- PATRÓN DE CÓDIGO DE FONDO -->
+    <div id="bg-code" class="absolute inset-0 opacity-[0.04] font-mono-custom text-[24px] font-black pointer-events-none p-6 leading-tight break-all">
+      const btn = document.querySelector("#btn-theme"); btn.addEventListener("click", () =&gt; { document.body.classList.toggle("dark-mode"); });
+      const btn = document.querySelector("#btn-theme"); btn.addEventListener("click", () =&gt; { document.body.classList.toggle("dark-mode"); });
+      const btn = document.querySelector("#btn-theme"); btn.addEventListener("click", () =&gt; { document.body.classList.toggle("dark-mode"); });
+    </div>
+
+    <!-- MOTIVO DE FONDO: rayo en contorno (llena el vacío bajo los pills,
+         temáticamente ligado a "JS = electricidad" de la clase) -->
+    <i id="bg-bolt" class="fa-solid fa-bolt absolute -rotate-12 -bottom-16 left-10 text-[280px]"></i>
+
+    <!-- COLUMNA IZQUIERDA: TITULARES Y HOOK VERBAL -->
+    <div class="relative z-10 max-w-[660px] flex flex-col items-start gap-4">
+
+      <!-- BADGE CLASE -->
+      <div id="badge-pill" class="bg-black text-white px-5 py-2 font-mono-custom font-black text-xl rounded-xl tracking-wider uppercase flex items-center gap-2 border-2 border-black">
+        <i class="fa-solid fa-bolt text-yellow-400"></i> CLASE 4 GRATIS
+      </div>
+
+      <!-- TITULAR PRINCIPAL -->
+      <h1 class="font-outfit font-black tracking-tight leading-[0.88] flex flex-col items-start">
+        <span id="title-line-1" class="text-[72px] uppercase text-slate-900 tracking-tight">APRENDE</span>
+        <span id="title-line-2" class="text-[136px] uppercase text-[#f7df1e] drop-shadow-[8px_8px_0px_#000000] -mt-2">JS REAL</span>
+      </h1>
+
+      <!-- SUBTITULAR DE PROMESA -->
+      <div id="promise-badge" class="bg-yellow-300 border-4 border-black px-6 py-2.5 rounded-2xl brutal-shadow-md -rotate-1 mt-1">
+        <p id="promise-text" class="font-outfit font-black text-[34px] text-black uppercase tracking-tight">
+          ¡DALE VIDA A TU WEB! ⚡
+        </p>
+      </div>
+
+      <!-- PILLS DE CONCEPTOS CLAVE -->
+      <div id="pills-container" class="flex items-center gap-3 mt-3 text-sm font-bold font-mono-custom">
+        <span id="pill-1" class="bg-white text-black border-2 border-black px-4 py-2 rounded-xl shadow-[3px_3px_0px_#000]">Variables</span>
+        <span id="pill-2" class="bg-white text-black border-2 border-black px-4 py-2 rounded-xl shadow-[3px_3px_0px_#000]">Eventos</span>
+        <span id="pill-3" class="bg-white text-black border-2 border-black px-4 py-2 rounded-xl shadow-[3px_3px_0px_#000]">DOM</span>
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: BIOCARD PARTIDA (CLARO / OSCURO EN VIVO) -->
+    <div class="relative z-10 w-[450px] flex flex-col items-center justify-center">
+
+      <!-- Pila de dos tarjetas idénticas: la oscura se recorta al 50% derecho -->
+      <div id="card-stack" class="relative w-full transform rotate-2">
+        <div id="card-light" class="w-full"></div>
+        <div id="card-dark" class="absolute inset-0 w-full"></div>
+
+        <!-- Línea divisoria del "antes y después" -->
+        <div id="split-line" class="absolute top-[-14px] bottom-[-14px] left-1/2 w-[4px] bg-black z-20 -translate-x-1/2"></div>
+
+        <!-- Botón de tema + cursor: el gesto que dispara el cambio -->
+        <div id="theme-toggle" class="absolute top-4 right-4 z-30 w-[52px] h-[52px] rounded-xl bg-[#f7df1e] border-4 border-black shadow-[4px_4px_0px_#000] flex items-center justify-center text-[24px]">
+          🌙
+        </div>
+        <i id="click-cursor" class="fa-solid fa-arrow-pointer absolute top-[68px] right-[10px] z-30 text-[46px] text-black drop-shadow-[2px_2px_0px_#ffffff]"></i>
+      </div>
+
+      <!-- Sticker Floating Tag -->
+      <div id="floating-sticker" class="absolute -bottom-8 -left-6 bg-[#1a1a1a] text-[#f7df1e] font-mono-custom font-black px-4 py-2 text-base rounded-xl border-4 border-[#f7df1e] shadow-[6px_6px_0px_#000] transform -rotate-6 z-30">
+        MODO OSCURO 🌗
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentVariant = 1;
+    let currentCopy = 1;
+
+    // ---------- CONTENIDO DE LA BIOCARD (idéntico en ambas mitades) ----------
+    function cardHTML(tema) {
+      // tema: "claro" | "oscuro" según la variante activa
+      const t = temas[currentVariant][tema];
+      return `
+        <div class="${t.card}">
+          <div class="${t.header}">
+            <img src="https://avatars.githubusercontent.com/u/188985435?v=4" class="${t.avatar}">
+            <div>
+              <h3 class="${t.title}">@imyisusdev</h3>
+              <p class="${t.subtitle}">Developer &amp; Creator</p>
+            </div>
+          </div>
+          <p class="${t.bio}">Fundamentos reales. Cero humo.</p>
+          <div class="space-y-2.5">
+            <div class="${t.btn1}"><span>🌳 Mi Linktree</span> <i class="fa-solid fa-arrow-right text-[10px]"></i></div>
+            <div class="${t.btn2}"><span>💻 Repositorios GitHub</span> <i class="fa-solid fa-arrow-right text-[10px]"></i></div>
+            <div class="${t.btn3}"><span>🎥 Canal de YouTube</span> <i class="fa-solid fa-arrow-right text-[10px]"></i></div>
+          </div>
+          <div class="${t.saludo}">👋 ¡Hola, Yisus!</div>
+        </div>`;
+    }
+
+    // ---------- TOKENS VISUALES POR VARIANTE Y POR MITAD ----------
+    const temas = {
+      1: { // NEO-BRUTALISTA
+        claro: {
+          card: "w-full bg-white border-4 border-black rounded-3xl p-6 brutal-shadow-lg",
+          header: "flex items-center gap-4 pb-4 border-b-2 border-black",
+          avatar: "w-16 h-16 rounded-full border-4 border-black shadow-[4px_4px_0px_#000]",
+          title: "font-outfit font-black text-2xl text-black",
+          subtitle: "text-xs font-bold text-slate-500 font-mono-custom",
+          bio: "text-xs font-semibold text-slate-700 my-3 leading-relaxed",
+          btn1: "bg-white border-2 border-black rounded-xl p-2.5 text-xs font-bold text-black flex justify-between items-center shadow-[3px_3px_0px_#000]",
+          btn2: "bg-white border-2 border-black rounded-xl p-2.5 text-xs font-bold text-black flex justify-between items-center shadow-[3px_3px_0px_#000]",
+          btn3: "bg-white border-2 border-black rounded-xl p-2.5 text-xs font-bold text-black flex justify-between items-center shadow-[3px_3px_0px_#000]",
+          saludo: "mt-3 bg-[#f7df1e] border-2 border-black rounded-xl p-2 text-xs font-black text-black text-left pl-3 shadow-[3px_3px_0px_#000]"
+        },
+        oscuro: {
+          card: "w-full bg-[#212127] border-4 border-[#78787f] rounded-3xl p-6 shadow-[16px_16px_0px_#55555d]",
+          header: "flex items-center gap-4 pb-4 border-b-2 border-[#55555d]",
+          avatar: "w-16 h-16 rounded-full border-4 border-[#78787f] shadow-[4px_4px_0px_#55555d]",
+          title: "font-outfit font-black text-2xl text-white",
+          subtitle: "text-xs font-bold text-[#b9b4ab] font-mono-custom",
+          bio: "text-xs font-semibold text-[#f2efe9] my-3 leading-relaxed",
+          btn1: "bg-[#292930] border-2 border-[#78787f] rounded-xl p-2.5 text-xs font-bold text-[#f2efe9] flex justify-between items-center shadow-[3px_3px_0px_#55555d]",
+          btn2: "bg-[#292930] border-2 border-[#78787f] rounded-xl p-2.5 text-xs font-bold text-[#f2efe9] flex justify-between items-center shadow-[3px_3px_0px_#55555d]",
+          btn3: "bg-[#292930] border-2 border-[#78787f] rounded-xl p-2.5 text-xs font-bold text-[#f2efe9] flex justify-between items-center shadow-[3px_3px_0px_#55555d]",
+          saludo: "mt-3 bg-[#f7df1e] border-2 border-[#8a6f0b] rounded-xl p-2 text-xs font-black text-[#16161a] text-left pl-3 shadow-[3px_3px_0px_#8a6f0b]"
+        }
+      },
+      2: { // MINIMAL GLASS
+        claro: {
+          card: "w-full bg-white/70 backdrop-blur-xl border border-white/60 rounded-[28px] p-6 shadow-2xl",
+          header: "flex items-center gap-4 pb-4 border-b border-black/10",
+          avatar: "w-16 h-16 rounded-full border-2 border-white shadow-lg",
+          title: "font-outfit font-black text-2xl text-slate-900",
+          subtitle: "text-xs font-bold text-indigo-600 font-mono-custom",
+          bio: "text-xs font-medium text-slate-600 my-3 leading-relaxed",
+          btn1: "bg-white/80 border border-black/5 rounded-xl p-2.5 text-xs font-semibold text-slate-700 flex justify-between items-center",
+          btn2: "bg-white/80 border border-black/5 rounded-xl p-2.5 text-xs font-semibold text-slate-700 flex justify-between items-center",
+          btn3: "bg-white/80 border border-black/5 rounded-xl p-2.5 text-xs font-semibold text-slate-700 flex justify-between items-center",
+          saludo: "mt-3 bg-[#f7df1e] border border-[#8a6f0b]/40 rounded-2xl p-2 text-xs font-bold text-[#16161a] text-left pl-3"
+        },
+        oscuro: {
+          card: "w-full glass-card p-6 text-white",
+          header: "flex items-center gap-4 pb-4 border-b border-white/15",
+          avatar: "w-16 h-16 rounded-full border-2 border-white/30 shadow-lg",
+          title: "font-outfit font-black text-2xl text-white",
+          subtitle: "text-xs font-bold text-cyan-300 font-mono-custom",
+          bio: "text-xs font-medium text-slate-300 my-3 leading-relaxed",
+          btn1: "glass-btn rounded-xl p-2.5 text-xs font-semibold flex justify-between items-center",
+          btn2: "glass-btn rounded-xl p-2.5 text-xs font-semibold flex justify-between items-center",
+          btn3: "glass-btn rounded-xl p-2.5 text-xs font-semibold flex justify-between items-center",
+          saludo: "mt-3 bg-[#f7df1e]/90 border border-[#f7df1e] rounded-2xl p-2 text-xs font-bold text-[#16161a] text-left pl-3"
+        }
+      },
+      3: { // CYBER NEON
+        claro: {
+          card: "w-full bg-[#fbf9f1] border-2 border-[#6b21a8] rounded-[20px] p-6 shadow-xl",
+          header: "flex items-center gap-4 pb-4 border-b border-[#6b21a8]/30",
+          avatar: "w-16 h-16 rounded-full border-2 border-[#6b21a8] shadow-md",
+          title: "font-outfit font-black text-2xl text-slate-900",
+          subtitle: "text-xs font-bold text-[#6b21a8] font-mono-custom",
+          bio: "text-xs font-medium text-slate-600 my-3 leading-relaxed",
+          btn1: "bg-white border border-[#6b21a8] text-[#6b21a8] rounded-xl p-2.5 text-xs font-bold flex justify-between items-center",
+          btn2: "bg-white border border-[#6b21a8] text-[#6b21a8] rounded-xl p-2.5 text-xs font-bold flex justify-between items-center",
+          btn3: "bg-white border border-[#6b21a8] text-[#6b21a8] rounded-xl p-2.5 text-xs font-bold flex justify-between items-center",
+          saludo: "mt-3 bg-[#f7df1e] border border-[#8a6f0b] text-[#16161a] rounded-xl p-2 text-xs font-black text-left pl-3"
+        },
+        oscuro: {
+          card: "w-full cyber-card p-6 text-white",
+          header: "flex items-center gap-4 pb-4 border-b border-[#f7df1e]/30",
+          avatar: "w-16 h-16 rounded-full border-2 border-[#f7df1e] shadow-[0_0_15px_rgba(247,223,30,0.6)]",
+          title: "font-outfit font-black text-2xl text-white",
+          subtitle: "text-xs font-bold text-[#a855f7] font-mono-custom",
+          bio: "text-xs font-medium text-slate-300 my-3 leading-relaxed",
+          btn1: "cyber-btn rounded-xl p-2.5 text-xs font-bold flex justify-between items-center",
+          btn2: "cyber-btn rounded-xl p-2.5 text-xs font-bold flex justify-between items-center",
+          btn3: "cyber-btn rounded-xl p-2.5 text-xs font-bold flex justify-between items-center",
+          saludo: "mt-3 bg-[#f7df1e] border border-[#f7df1e] text-[#16161a] rounded-xl p-2 text-xs font-black text-left pl-3"
+        }
+      }
+    };
+
+    // ---------- COPYS DEL TITULAR ----------
+    const copys = {
+      1: {
+        line1: "TU WEB",
+        line2: "COBRA VIDA",
+        line2Size: "text-[92px]",
+        acento: "text-[#f7df1e]",
+        promesa: "¡DALE VIDA A TU WEB! ⚡",
+        promesaBg: "bg-yellow-300"
+      },
+      2: {
+        line1: "DE ESTÁTICO",
+        line2: "A INTERACTIVO",
+        line2Size: "text-[92px]",
+        acento: "text-rose-600",
+        promesa: "¡MODO OSCURO EN 5 LÍNEAS!",
+        promesaBg: "bg-rose-200"
+      },
+      3: {
+        line1: "TU PRIMER",
+        line2: "CÓDIGO JS",
+        line2Size: "text-[118px]",
+        acento: "text-amber-500",
+        promesa: "¡BOTONES QUE FUNCIONAN! 🔘",
+        promesaBg: "bg-amber-200"
+      }
+    };
+
+    function setVariant(num) {
+      currentVariant = num;
+      ['btn-var1', 'btn-var2', 'btn-var3'].forEach((id, idx) => {
+        document.getElementById(id).className = (idx + 1 === num)
+          ? "px-4 py-2 rounded-xl font-black text-xs bg-yellow-400 text-black border-2 border-black transition shadow-[3px_3px_0px_#000]"
+          : "px-4 py-2 rounded-xl font-black text-xs bg-slate-800 text-slate-300 border border-slate-700 hover:text-white transition";
+      });
+      render();
+    }
+
+    function setCopy(num) {
+      currentCopy = num;
+      ['btn-copy1', 'btn-copy2', 'btn-copy3'].forEach((id, idx) => {
+        document.getElementById(id).className = (idx + 1 === num)
+          ? "px-4 py-2 rounded-xl font-black text-xs bg-yellow-400 text-black border-2 border-black transition shadow-[3px_3px_0px_#000]"
+          : "px-4 py-2 rounded-xl font-black text-xs bg-slate-800 text-slate-300 border border-slate-700 hover:text-white transition";
+      });
+      render();
+    }
+
+    function render() {
+      const canvas = document.getElementById('thumbnail-canvas');
+      const glow1 = document.getElementById('glow-circle-1');
+      const glow2 = document.getElementById('glow-circle-2');
+      const badgePill = document.getElementById('badge-pill');
+      const titleLine1 = document.getElementById('title-line-1');
+      const titleLine2 = document.getElementById('title-line-2');
+      const promiseBadge = document.getElementById('promise-badge');
+      const promiseText = document.getElementById('promise-text');
+      const pills = [document.getElementById('pill-1'), document.getElementById('pill-2'), document.getElementById('pill-3')];
+      const sticker = document.getElementById('floating-sticker');
+      const splitLine = document.getElementById('split-line');
+      const toggle = document.getElementById('theme-toggle');
+      const cursor = document.getElementById('click-cursor');
+      const bolt = document.getElementById('bg-bolt');
+      const c = copys[currentCopy];
+
+      // --- Estilo del canvas y de la columna izquierda según la variante ---
+      if (currentVariant === 1) {
+        canvas.className = "w-[1280px] h-[720px] bg-[#fbf9f1] text-black relative border-[12px] border-black brutal-shadow-lg overflow-hidden flex items-center justify-between p-14 select-none";
+        // absolute obligatorio: sin él los glows vuelven al flujo flex y
+        // el justify-between del canvas desplaza la columna izquierda
+        glow1.className = "absolute opacity-0 pointer-events-none";
+        glow2.className = "absolute opacity-0 pointer-events-none";
+        titleLine1.className = "text-[72px] uppercase text-slate-900 tracking-tight";
+        titleLine2.className = `${c.line2Size} uppercase ${c.acento} drop-shadow-[8px_8px_0px_#000000] -mt-2`;
+        badgePill.className = "bg-black text-white px-5 py-2 font-mono-custom font-black text-xl rounded-xl tracking-wider uppercase flex items-center gap-2 border-2 border-black";
+        promiseBadge.className = `${c.promesaBg} border-4 border-black px-6 py-2.5 rounded-2xl brutal-shadow-md -rotate-1 mt-1`;
+        promiseText.className = "font-outfit font-black text-[34px] text-black uppercase tracking-tight";
+        pills.forEach(p => p.className = "bg-white text-black border-2 border-black px-4 py-2 rounded-xl shadow-[3px_3px_0px_#000]");
+        sticker.className = "absolute -bottom-8 -left-6 bg-[#1a1a1a] text-[#f7df1e] font-mono-custom font-black px-4 py-2 text-base rounded-xl border-4 border-[#f7df1e] shadow-[6px_6px_0px_#000] transform -rotate-6 z-30";
+        splitLine.className = "absolute top-[-14px] bottom-[-14px] left-1/2 w-[4px] bg-black z-20 -translate-x-1/2";
+        toggle.className = "absolute top-4 right-4 z-30 w-[52px] h-[52px] rounded-xl bg-[#f7df1e] border-4 border-black shadow-[4px_4px_0px_#000] flex items-center justify-center text-[24px]";
+        cursor.className = "fa-solid fa-arrow-pointer absolute top-[68px] right-[10px] z-30 text-[46px] text-black drop-shadow-[2px_2px_0px_#ffffff]";
+        bolt.style.webkitTextStrokeColor = "#000000";
+        bolt.style.opacity = "0.10";
+      } else if (currentVariant === 2) {
+        canvas.className = "w-[1280px] h-[720px] bg-gradient-to-br from-[#0d0d12] via-[#1b1630] to-[#2f2410] text-white relative border-[12px] border-[#f7df1e]/50 shadow-2xl overflow-hidden flex items-center justify-between p-14 select-none";
+        glow1.className = "absolute w-[450px] h-[450px] rounded-full blur-[110px] pointer-events-none opacity-50 top-[10%] right-[15%] bg-[#f7df1e]";
+        glow2.className = "absolute w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none opacity-55 bottom-[5%] right-[5%] bg-[#7c3aed]";
+        titleLine1.className = "text-[72px] uppercase text-white font-black tracking-tight drop-shadow-md";
+        titleLine2.className = `${c.line2Size} uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#fef3c7] via-[#f7df1e] to-[#f59e0b] drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] -mt-2`;
+        badgePill.className = "bg-white/10 backdrop-blur-md text-[#f7df1e] px-5 py-2 font-mono-custom font-black text-xl rounded-xl tracking-wider uppercase flex items-center gap-2 border border-white/20 shadow-lg";
+        promiseBadge.className = "bg-gradient-to-r from-[#f7df1e] to-[#fde047] border-2 border-white/40 px-6 py-2.5 rounded-2xl shadow-xl -rotate-1 mt-1";
+        promiseText.className = "font-outfit font-black text-[34px] text-slate-950 uppercase tracking-tight";
+        pills.forEach(p => p.className = "bg-white/10 backdrop-blur text-white border border-white/20 px-4 py-2 rounded-xl shadow-md");
+        sticker.className = "absolute -bottom-8 -left-6 bg-[#1a1a1a] text-[#f7df1e] font-mono-custom font-black px-4 py-2 text-base rounded-xl border border-[#f7df1e]/60 shadow-2xl transform -rotate-6 z-30";
+        splitLine.className = "absolute top-[-14px] bottom-[-14px] left-1/2 w-[3px] bg-white/70 z-20 -translate-x-1/2";
+        toggle.className = "absolute top-4 right-4 z-30 w-[52px] h-[52px] rounded-2xl bg-white/15 backdrop-blur border border-white/30 shadow-xl flex items-center justify-center text-[24px]";
+        cursor.className = "fa-solid fa-arrow-pointer absolute top-[68px] right-[10px] z-30 text-[46px] text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)]";
+        bolt.style.webkitTextStrokeColor = "#f7df1e";
+        bolt.style.opacity = "0.16";
+      } else {
+        canvas.className = "w-[1280px] h-[720px] bg-[#0a0a0f] text-white relative border-[12px] border-[#f7df1e] shadow-[0_0_50px_rgba(247,223,30,0.3)] overflow-hidden flex items-center justify-between p-14 select-none";
+        glow1.className = "absolute w-[450px] h-[450px] rounded-full blur-[120px] pointer-events-none opacity-35 top-[-50px] right-[200px] bg-[#f7df1e]";
+        glow2.className = "absolute w-[350px] h-[350px] rounded-full blur-[100px] pointer-events-none opacity-45 bottom-[-50px] right-[-50px] bg-[#a855f7]";
+        titleLine1.className = "text-[72px] uppercase text-[#a855f7] font-black tracking-tight drop-shadow-[0_0_15px_rgba(168,85,247,0.6)]";
+        titleLine2.className = `${c.line2Size} uppercase text-[#f7df1e] font-black drop-shadow-[0_0_25px_rgba(247,223,30,0.65)] -mt-2`;
+        badgePill.className = "bg-[#a855f7] text-white px-5 py-2 font-mono-custom font-black text-xl rounded-xl tracking-wider uppercase flex items-center gap-2 border border-white shadow-[0_0_15px_#a855f7]";
+        promiseBadge.className = "bg-[#f7df1e] border-2 border-white px-6 py-2.5 rounded-2xl shadow-[0_0_20px_rgba(247,223,30,0.7)] -rotate-1 mt-1";
+        promiseText.className = "font-outfit font-black text-[34px] text-black uppercase tracking-tight";
+        pills[0].className = "bg-[#15151f] text-[#f7df1e] border border-[#f7df1e] px-4 py-2 rounded-xl shadow-md";
+        pills[1].className = "bg-[#15151f] text-[#a855f7] border border-[#a855f7] px-4 py-2 rounded-xl shadow-md";
+        pills[2].className = "bg-[#15151f] text-[#e2e8f0] border border-[#e2e8f0] px-4 py-2 rounded-xl shadow-md";
+        sticker.className = "absolute -bottom-8 -left-6 bg-[#a855f7] text-white font-mono-custom font-black px-4 py-2 text-base rounded-xl border border-white shadow-[0_0_20px_#a855f7] transform -rotate-6 z-30";
+        splitLine.className = "absolute top-[-14px] bottom-[-14px] left-1/2 w-[3px] bg-[#f7df1e] z-20 -translate-x-1/2 shadow-[0_0_12px_rgba(247,223,30,0.8)]";
+        toggle.className = "absolute top-4 right-4 z-30 w-[52px] h-[52px] rounded-xl bg-[#15151f] border-2 border-[#f7df1e] shadow-[0_0_15px_rgba(247,223,30,0.7)] flex items-center justify-center text-[24px]";
+        cursor.className = "fa-solid fa-arrow-pointer absolute top-[68px] right-[10px] z-30 text-[46px] text-[#f7df1e] drop-shadow-[0_0_10px_rgba(247,223,30,0.9)]";
+        bolt.style.webkitTextStrokeColor = "#f7df1e";
+        bolt.style.opacity = "0.20";
+      }
+
+      // --- Textos del copy ---
+      titleLine1.textContent = c.line1;
+      titleLine2.textContent = c.line2;
+      promiseText.textContent = c.promesa;
+
+      // --- Tarjeta partida: mitad clara + mitad oscura idénticas ---
+      document.getElementById('card-light').innerHTML = cardHTML('claro');
+      document.getElementById('card-dark').innerHTML = cardHTML('oscuro');
+    }
+
+    render();
+  </script>
+
+</body>
+</html>
