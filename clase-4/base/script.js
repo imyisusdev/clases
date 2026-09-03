@@ -21,7 +21,6 @@
 // 1. Pide el nombre de quien visita la tarjeta con prompt() y guárdalo en una variable.
 // 2. Escribe un saludo personalizado dentro de cajaSaludo usando textContent.
 //    Recuerda que los textos se unen con el signo +  ->  "Hola, " + nombre + "!"
-// 3. Si la persona no escribe nada, muestra un saludo genérico.
 
 // btnSaludo.addEventListener('click', () => {
 //   // Escribe tu código aquí:

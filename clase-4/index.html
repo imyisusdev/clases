@@ -25,6 +25,12 @@
       .reveal {
         font-family: "Inter", "Segoe UI", sans-serif;
         color: #1a1a1a;
+        /* El tema white.min.css fija estas variables con más especificidad que
+           las clases de Tailwind (text-lg, text-4xl...) en h1-h4, así que son
+           las que realmente controlan el tamaño — no las clases de utilidad. */
+        --r-heading2-size: 38px;
+        --r-heading3-size: 20px;
+        --r-heading4-size: 14px;
       }
 
       .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
@@ -33,6 +39,10 @@
         text-transform: none;
         letter-spacing: -1px;
       }
+
+      /* Excepciones puntuales: portada (hero) y título sobre fondo oscuro */
+      .reveal h2.text-5xl { font-size: 48px; }
+      .reveal h2.text-white { font-size: 30px; }
 
       /* Marca de agua flotante del canal */
       #branding-overlay {
@@ -127,10 +137,10 @@
 
         <!-- 2. ¿QUÉ ES JAVASCRIPT? -->
         <section data-background-color="#ffffff">
-          <h2>¿Qué es JavaScript?</h2>
+          <h2 class="text-4xl">¿Qué es JavaScript?</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
             <div class="bw-card text-left">
-              <h4 class="font-bold text-lg text-indigo-600 mb-2 font-mono">El cerebro dinámico</h4>
+              <h3 class="font-bold text-lg text-indigo-600 mb-2 font-mono">El cerebro dinámico</h3>
               <p class="text-sm text-gray-600 leading-relaxed fragment fade-up">
                 Es el lenguaje de programación que nos permite crear contenido dinámico, controlar multimedia, animar imágenes y hacer que la web responda a las acciones del usuario.
               </p>
@@ -157,7 +167,7 @@
 
         <!-- 3. CONSOLE.LOG: TU PRIMERA LÍNEA -->
         <section data-background-color="#ffffff">
-          <h2>console.log: Hablar con el navegador</h2>
+          <h2 class="text-4xl">console.log: Hablar con el navegador</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
             <div class="bw-card text-left">
               <h3 class="text-lg font-bold mb-2">Hablar en voz alta 🗣️</h3>
@@ -176,7 +186,7 @@
                 <span class="text-gray-500">// Enviamos un mensaje al diario de JS</span><br>
                 <span class="text-yellow-400">console.log</span>(<span class="text-red-400">"¡Hola desde JS!"</span>);
               </div>
-              <div class="p-4 bg-yellow-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold fragment fade-up">
+              <div class="p-4 bg-indigo-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold fragment fade-up">
                 💡 Ideal para verificar que nuestro script está conectado y funcionando correctamente.
               </div>
             </div>
@@ -185,7 +195,7 @@
 
         <!-- 4. VARIABLES: CAJAS CON ETIQUETA -->
         <section data-background-color="#ffffff">
-          <h2>Variables: Cajas de Almacenamiento</h2>
+          <h2 class="text-4xl">Variables: Cajas de Almacenamiento</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
             <div class="bw-card text-left">
               <h3 class="text-lg font-bold mb-2">Guardar para después 📦</h3>
@@ -215,7 +225,7 @@
 
         <!-- 5. QUERYSELECTOR: BUSCAR TUS CAJAS -->
         <section data-background-color="#ffffff">
-          <h2>querySelector: Encontrar Elementos</h2>
+          <h2 class="text-4xl">querySelector: Encontrar Elementos</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
             <div class="bw-card text-left">
               <h3 class="text-lg font-bold mb-2">Conectar HTML y JS 🎯</h3>
@@ -247,7 +257,7 @@
 
         <!-- 6. TEXTCONTENT: CAMBIAR EL CARTEL -->
         <section data-background-color="#ffffff">
-          <h2>textContent: Cambiar el Contenido</h2>
+          <h2 class="text-4xl">textContent: Cambiar el Contenido</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
             <div class="bw-card text-left">
               <h3 class="text-lg font-bold mb-2">Modificar texto al vuelo ✏️</h3>
@@ -267,7 +277,7 @@
                 <span class="text-gray-500">// Cambiamos el texto del título</span><br>
                 titulo.<span class="text-blue-400">textContent</span> = <span class="text-red-400">"¡JS está vivo!"</span>;
               </div>
-              <div class="p-3 bg-green-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold text-black fragment fade-up">
+              <div class="p-3 bg-indigo-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold text-black fragment fade-up">
                 👉 Al asignarle un nuevo valor, el navegador actualiza la pantalla inmediatamente.
               </div>
             </div>
@@ -276,7 +286,7 @@
 
         <!-- 7. ADDEVENTLISTENER: EL SENSOR DE MOVIMIENTO -->
         <section data-background-color="#ffffff">
-          <h2>addEventListener: Escuchar Acciones</h2>
+          <h2 class="text-4xl">addEventListener: Escuchar Acciones</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
             <div class="bw-card text-left">
               <h3 class="text-lg font-bold mb-2">Reaccionar a eventos ⚡</h3>
@@ -305,7 +315,7 @@
 
         <!-- 8. CLASSLIST.TOGGLE: EL INTERRUPTOR DE LUZ -->
         <section data-background-color="#ffffff">
-          <h2>classList.toggle: El Interruptor</h2>
+          <h2 class="text-4xl">classList.toggle: El Interruptor</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
             <div class="bw-card text-left">
               <h3 class="text-lg font-bold mb-2">Quitar y poner clases 🔌</h3>
@@ -326,7 +336,7 @@
                 &nbsp;&nbsp;document.<span class="text-blue-400">body</span>.<span class="text-blue-400">classList</span>.<span class="text-yellow-400">toggle</span>(<span class="text-red-400">"dark-mode"</span>);<br>
                 });
               </div>
-              <div class="p-3 bg-pink-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold text-black fragment fade-up">
+              <div class="p-3 bg-indigo-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold text-black fragment fade-up">
                 💡 JS agrega/quita la clase, y CSS se encarga de re-pintar todo con la nueva paleta.
               </div>
               <div class="p-3 bg-white border-2 border-dashed border-gray-400 rounded text-center text-gray-600 fragment fade-up">
@@ -336,7 +346,70 @@
           </div>
         </section>
 
-        <!-- 9. PRÁCTICA EN CODEPEN -->
+        <!-- 9. PROMPT: PREGUNTAR AL USUARIO -->
+        <section data-background-color="#ffffff">
+          <h2 class="text-4xl">prompt(): Preguntar al Usuario</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">Pedir un dato 🙋</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3 fragment fade-up">
+                La función <code>prompt()</code> abre una ventana emergente que le hace una pregunta a quien visita la página, y guarda lo que responda.
+              </p>
+              <div class="h-px bg-gray-200 my-3"></div>
+              <h4 class="font-bold text-sm text-indigo-600 uppercase mb-1 fragment fade-up">¿Cómo uno los textos?</h4>
+              <p class="text-sm text-gray-500 leading-relaxed fragment fade-up">
+                Con el signo <code>+</code> puedes pegar dos textos como piezas de un rompecabezas: <code>"Hola, " + nombre</code> arma un solo mensaje.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-3 text-left font-mono text-sm">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
+                <span class="text-gray-500">// Preguntamos y guardamos la respuesta</span><br>
+                <span class="text-purple-400">const</span> nombre = <span class="text-yellow-400">prompt</span>(<span class="text-red-400">"¿Cómo te llamas?"</span>);<br><br>
+                <span class="text-gray-500">// Unimos textos con el signo +</span><br>
+                <span class="text-purple-400">const</span> mensaje = <span class="text-red-400">"¡Hola, "</span> + nombre + <span class="text-red-400">"!"</span>;
+              </div>
+              <div class="p-3 bg-indigo-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold fragment fade-up">
+                💡 Lo que devuelve <code>prompt()</code> es siempre texto, por eso lo puedes concatenar directo con otro texto usando <code>+</code>.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10. IF/ELSE: TOMAR DECISIONES -->
+        <section data-background-color="#ffffff">
+          <h2 class="text-4xl">if / else: Tomar Decisiones</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">Preguntar y decidir 🤔</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3 fragment fade-up">
+                Un condicional <code>if</code> ejecuta un bloque de código solo si una condición es verdadera. El bloque <code>else</code> se ejecuta cuando no lo es.
+              </p>
+              <div class="h-px bg-gray-200 my-3"></div>
+              <h4 class="font-bold text-sm text-indigo-600 uppercase mb-1 fragment fade-up">¿Cómo lo usamos hoy?</h4>
+              <p class="text-sm text-gray-500 leading-relaxed fragment fade-up">
+                Con <code>classList.contains()</code> preguntamos si el body ya tiene la clase <code>dark-mode</code>, y decidimos qué ícono mostrar en el botón de tema.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-3 text-left font-mono text-sm">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
+                <span class="text-purple-400">if</span> (document.<span class="text-blue-400">body</span>.<span class="text-blue-400">classList</span>.<span class="text-yellow-400">contains</span>(<span class="text-red-400">"dark-mode"</span>)) {<br>
+                &nbsp;&nbsp;<span class="text-gray-500">// ya está oscuro → mostramos el sol para volver</span><br>
+                &nbsp;&nbsp;btnTheme.<span class="text-blue-400">textContent</span> = <span class="text-red-400">"☀️"</span>;<br>
+                } <span class="text-purple-400">else</span> {<br>
+                &nbsp;&nbsp;<span class="text-gray-500">// está claro → mostramos la luna para oscurecer</span><br>
+                &nbsp;&nbsp;btnTheme.<span class="text-blue-400">textContent</span> = <span class="text-red-400">"🌙"</span>;<br>
+                }
+              </div>
+              <div class="p-3 bg-indigo-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold text-black fragment fade-up">
+                💡 "Si (condición) { ... } si no { ... }" — la misma lógica que vas a usar en casi cualquier programa.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 11. PRÁCTICA EN CODEPEN -->
         <section data-background-color="#121214">
           <h2 class="text-white text-3xl font-black mb-4">Práctica en Vivo: Dando Vida</h2>
           <div class="grid grid-cols-1 gap-6 max-w-4xl mx-auto text-left">
@@ -372,9 +445,9 @@
           </div>
         </section>
 
-        <!-- 10. PUENTE A LA CLASE 6: LOS 3 PANELES SON 3 ARCHIVOS -->
+        <!-- 12. PUENTE A LA CLASE 6: LOS 3 PANELES SON 3 ARCHIVOS -->
         <section data-background-color="#ffffff">
-          <h2>CodePen te está ocultando algo 👀</h2>
+          <h2 class="text-4xl">CodePen te está ocultando algo 👀</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
             <div class="bw-card text-left">
               <h3 class="text-lg font-bold mb-2">3 paneles = 3 archivos 🗂️</h3>
@@ -401,7 +474,7 @@
                 </div>
               </div>
 
-              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md font-mono text-xs fragment fade-left">
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md font-mono text-sm fragment fade-left">
                 <span class="text-gray-500">&lt;!-- Las dos líneas que CodePen escribe por ti --&gt;</span><br>
                 &lt;<span class="text-blue-400">link</span> <span class="text-yellow-400">rel</span>=<span class="text-red-400">"stylesheet"</span> <span class="text-yellow-400">href</span>=<span class="text-red-400">"styles.css"</span>&gt;<br>
                 &lt;<span class="text-blue-400">script</span> <span class="text-yellow-400">src</span>=<span class="text-red-400">"script.js"</span>&gt;&lt;/<span class="text-blue-400">script</span>&gt;
@@ -414,9 +487,9 @@
           </div>
         </section>
 
-        <!-- 11. DEMOS Y VARIANTES DE REFERENCIA -->
+        <!-- 13. DEMOS Y VARIANTES DE REFERENCIA -->
         <section data-background-color="#ffffff">
-          <h2>Demos y Variantes de Referencia</h2>
+          <h2 class="text-4xl">Demos y Variantes de Referencia</h2>
           <p class="text-base text-gray-500 font-mono mb-4">Haz clic en cualquier demo para ver el JS resuelto</p>
           
           <div class="grid grid-cols-2 gap-8 mt-6 text-left max-w-4xl mx-auto">
@@ -440,9 +513,9 @@
           </div>
         </section>
 
-        <!-- 12. IDEAS EXTRA PARA TU BIO CARD -->
+        <!-- 14. IDEAS EXTRA PARA TU BIO CARD -->
         <section data-background-color="#ffffff">
-          <h2>💡 Ideas Extra para tu Bio Card</h2>
+          <h2 class="text-4xl">💡 Ideas Extra para tu Bio Card</h2>
           <p class="text-base text-gray-500 font-mono mb-4">Pequeños desafíos de JS para que experimentes por tu cuenta</p>
           
           <div class="grid grid-cols-2 gap-6 mt-6 max-w-4xl mx-auto text-left text-sm">
@@ -468,7 +541,7 @@
           </div>
         </section>
 
-        <!-- 13. ¡MANOS AL CÓDIGO! (DESAFÍO FINAL - SIN ANIMACIÓN/FRAGMENTS) -->
+        <!-- 15. ¡MANOS AL CÓDIGO! (DESAFÍO FINAL - SIN ANIMACIÓN/FRAGMENTS) -->
         <section data-background-color="#ffffff">
           <div class="flex flex-col items-center justify-center border-4 border-black p-8 relative max-w-2xl mx-auto bg-yellow-50 shadow-[8px_8px_0px_rgba(0,0,0,1)]">
             <h2 class="text-4xl font-black text-black uppercase tracking-tight mb-4">
@@ -481,7 +554,7 @@
             <ol class="text-sm text-left text-gray-800 space-y-3 font-sans list-decimal pl-5 mb-6">
               <li>Coloca en tu HTML los dos botones con los ids <strong>btn-saludo</strong> y <strong>btn-theme</strong>, más un párrafo vacío con el id <strong>saludo</strong>.</li>
               <li>Crea las reglas de estilos para la clase <strong>.dark-mode</strong> en tu hoja de estilos CSS.</li>
-              <li>Escribe la lógica en JS: pide el nombre con <code>prompt</code>, escríbelo en la tarjeta con <code>textContent</code> y alterna el tema con <code>classList.toggle</code>.</li>
+              <li>Escribe la lógica en JS: pide el nombre con <code>prompt</code>, escríbelo en la tarjeta con <code>textContent</code>, alterna el tema con <code>classList.toggle</code> y usa <code>if / else</code> para cambiar el ícono del botón (☀️ / 🌙).</li>
               <li><strong>¡Compártelo!:</strong> usa la opción Share de CodePen para enviarle el link del resultado a tus amigos.</li>
             </ol>
 
