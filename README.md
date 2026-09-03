@@ -13,10 +13,12 @@ Este documento detalla la estructura y el plan de clases en vivo (vía Meet) par
 | **Clase 3** | CSS (Diseño)                     | **CodePen**               | Iteración visual ultrarrápida sin configurar archivos locales.            |
 | **Clase 4** | JavaScript (Interactividad)      | **CodePen**               | Ver la relación directa entre el click en un botón y el cambio visual.    |
 | **Clase 5** | Lógica de Programación (Consola) | **Replit** (o JSBin)      | Introducción a la terminal, variables, bucles e inputs reales de consola. |
+| **Clase 6** | Editor local + IA (VS Code, Antigravity, Git) | **VS Code + Antigravity** | Pasar de la nube ajena a su propia máquina, con un copiloto de IA y control de versiones. |
+| **Clase 7** | Publicación (GitHub, GitHub Pages) | **GitHub**                | Cerrar el ciclo: su proyecto sale de su computadora y queda público en internet. |
 
 ---
 
-## 📚 Plan de Clases Detallado (5 Clases)
+## 📚 Plan de Clases Detallado (7 Clases)
 
 ### 🧱 Clase 2: HTML y el Esqueleto de tu Bio Card
 
@@ -96,7 +98,39 @@ Este documento detalla la estructura y el plan de clases en vivo (vía Meet) par
 
 ---
 
+### 💻 Clase 6: De CodePen a tu Computadora, con un Copiloto de IA
+
+> **Concepto clave:** Tu código deja de vivir en una web ajena — vive en tu computadora, y ahora tienes un asistente de IA que te ayuda a escribirlo.
+
+- **Analogía cotidiana:** Pasar de un departamento amoblado (CodePen, todo ya puesto) a tu propia casa (tu compu): ahora tú tienes las llaves de cada archivo, pero también un ayudante de construcción (Antigravity) que te apoya cuando se lo pides.
+- **Contenidos teóricos:**
+  - Instalar VS Code y recorrer su interfaz: explorador de archivos, editor, terminal integrada.
+  - Extensión **Live Server**: recrea el auto-refresh que CodePen hacía por ellos, ahora en archivos locales.
+  - Mover el proyecto de la Bio Card (CodePen) a una carpeta local, conectando `index.html`, `styles.css` y `script.js` a mano — retoma directamente la diapositiva-puente de la clase 4.
+  - **Antigravity como copiloto agéntico**, enseñado en el momento y no como teoría seca: qué es un LLM, qué es un agente, en qué se diferencia de un chatbot normal — pidiéndole en vivo una edición real sobre su propio proyecto.
+  - **Git local**: `git init`, `git add`, `git commit`, `git status`, motivado como "puntos de guardado" antes de dejar que la IA edite sus archivos — todavía sin GitHub.
+- **Proyecto de clase:** mover su Bio Card a una carpeta local, hacer su primer commit, y usar Antigravity para agregar una mejora simple que revisan juntos línea por línea antes de aceptarla.
+- **Desafío para el alumno:** hacer 3 commits distintos (uno por cada cambio chico) para practicar el hábito de guardar en partes, no todo junto al final.
+
+---
+
+### 🚀 Clase 7: Tu Web ya Existe en Internet
+
+> **Concepto clave:** De tu computadora a un servidor público, con un clic.
+
+- **Analogía cotidiana:** Git local es guardar en el escritorio de tu casa; GitHub es subirlo a un archivador compartido en la nube que cualquiera puede visitar.
+- **Contenidos teóricos:**
+  - Crear cuenta y repositorio en GitHub.
+  - `git remote add` y `git push`: conectar el repositorio local con el remoto.
+  - **GitHub Pages**: activar la publicación y obtener la URL pública de su Bio Card.
+  - Cierre conceptual: panorama rápido de otros agentic IDEs/herramientas de IA que existen (sin profundizar) y qué caminos seguir después de este curso.
+- **Proyecto de clase:** publicar su Bio Card real en GitHub Pages y compartir el link en el chat del Meet.
+- **Desafío para el alumno:** agregar un `README.md` a su repositorio explicando su propio proyecto — su primera pieza de documentación real.
+
+---
+
 ## 📈 ¿Cómo ayuda este plan a decidir su trayectoria?
 
 - **Frontend (Clases 2, 3 y 4):** Si al alumno le apasionó la alineación, los colores, las animaciones y ver el resultado visual al instante, su camino es el **Frontend**.
 - **Backend / Lógica (Clase 5):** Si al alumno le fascinó pensar en los caminos lógicos, el flujo del juego, cómo interactúa la computadora por debajo y el control de datos sin importarle que solo se vea texto en una consola, su camino es el **Backend / Datos**.
+- **Herramientas profesionales (Clases 6 y 7):** Independiente de la rama elegida, todo alumno necesita saber trabajar localmente, usar IA como copiloto y publicar su trabajo — por eso estas dos clases no separan por trayectoria, son la base operativa de cualquier developer.

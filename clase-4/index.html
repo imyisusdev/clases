@@ -44,6 +44,14 @@
       .reveal h2.text-5xl { font-size: 48px; }
       .reveal h2.text-white { font-size: 30px; }
 
+      /* reset.min.css de reveal.js aplica `border:0` (con especificidad de
+         etiqueta) a div/button/span/etc, lo que fija border-style:none y
+         gana sobre el border-style:solid del Preflight de Tailwind (que usa
+         selector universal, especificidad cero). Resultado: casi ningún
+         border-* de Tailwind se pintaba en todo el deck. Se restaura aquí
+         con mayor especificidad que la del reset. */
+      .reveal * { border-style: solid; }
+
       /* Marca de agua flotante del canal */
       #branding-overlay {
         position: absolute;
@@ -119,19 +127,29 @@
 
         <!-- 1. PORTADA -->
         <section data-background-color="#ffffff">
-          <div class="flex flex-col items-center justify-center border-4 border-black p-8 relative max-w-2xl mx-auto">
-            <div class="absolute top-0 left-0 w-8 h-8 bg-black"></div>
-            <div class="absolute bottom-0 right-0 w-8 h-8 bg-black"></div>
+          <div class="relative w-full h-full flex items-center justify-center">
+            <div class="grid grid-cols-[320px_1fr] items-stretch border-4 border-black relative w-full max-w-4xl mx-auto bg-white shadow-[8px_8px_0px_#000] overflow-hidden">
 
-            <div class="mb-6">
-              <img src="https://avatars.githubusercontent.com/u/188985435?v=4" class="w-36 h-36 rounded-full border-4 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.15)] mx-auto" />
+              <div class="relative bg-[#1a1a1a] flex flex-col items-center justify-center p-8">
+                <span class="absolute top-4 left-4 font-mono text-white opacity-10 text-6xl select-none pointer-events-none">{ }</span>
+                <span class="absolute bottom-4 right-4 font-mono text-white opacity-10 text-6xl select-none pointer-events-none">&lt;/&gt;</span>
+                <img src="https://avatars.githubusercontent.com/u/188985435?v=4" class="w-32 h-32 rounded-full border-4 border-white shadow-[6px_6px_0px_#F7DF1E] ring-4 ring-[#F7DF1E] ring-offset-4 ring-offset-[#1a1a1a] relative z-10" />
+                <span class="mt-6 inline-block font-mono text-xs font-bold px-3 py-1 bg-[#F7DF1E] text-black border-2 border-black rounded-full relative z-10">
+                  CLASE 4 · JAVASCRIPT
+                </span>
+              </div>
+
+              <div class="text-left p-10 flex flex-col justify-center bg-white">
+                <h2 class="text-5xl font-black text-black uppercase tracking-tight mb-2">
+                  JS y la Vida de tu Tarjeta
+                </h2>
+                <div class="h-1 w-24 bg-black my-4"></div>
+                <h3 class="text-xl text-gray-600 font-medium mb-4">Clase 4: Electricidad, Sensores y Vida</h3>
+                <span class="inline-block w-fit font-mono text-xs font-bold px-3 py-1 bg-white border-2 border-black rounded-full">⚡ JavaScript</span>
+              </div>
+
+              <div class="absolute bottom-0 right-0 w-8 h-8 bg-[#F7DF1E] border-t-4 border-l-4 border-black"></div>
             </div>
-
-            <h2 class="text-5xl font-black text-black uppercase tracking-tight mb-2">
-              JS y la Vida de tu Tarjeta
-            </h2>
-            <div class="h-1 w-24 bg-black my-4 mx-auto"></div>
-            <h3 class="text-xl text-gray-600 font-medium">Clase 4: Electricidad, Sensores y Vida</h3>
           </div>
         </section>
 
@@ -223,7 +241,88 @@
           </div>
         </section>
 
-        <!-- 5. QUERYSELECTOR: BUSCAR TUS CAJAS -->
+        <!-- 5. EL DOM: TU HTML ES UN ÁRBOL -->
+        <section data-background-color="#ffffff">
+          <h2 class="text-4xl">El DOM: tu HTML es un árbol 🌳</h2>
+          <p class="text-sm text-gray-500 font-mono mb-4 fragment fade-up">Cuando el navegador lee tu HTML, arma un árbol genealógico de etiquetas — cada una anidada dentro de otra es su "hija".</p>
+
+          <div class="max-w-4xl mx-auto fragment fade-up">
+            <svg viewBox="0 0 1200 400" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg" font-family="Fira Code, monospace">
+              <g stroke="#1A1A1A" stroke-width="3" fill="none">
+                <line x1="600" y1="90" x2="230" y2="180"/>
+                <line x1="600" y1="90" x2="480" y2="180"/>
+                <line x1="600" y1="90" x2="730" y2="180"/>
+                <line x1="600" y1="90" x2="980" y2="180"/>
+                <line x1="230" y1="220" x2="140" y2="320"/>
+                <line x1="230" y1="220" x2="320" y2="320"/>
+                <line x1="480" y1="220" x2="420" y2="320"/>
+                <line x1="480" y1="220" x2="560" y2="320"/>
+                <line x1="730" y1="220" x2="700" y2="320"/>
+                <line x1="730" y1="220" x2="850" y2="320"/>
+              </g>
+              <g>
+                <rect x="530" y="40" width="140" height="50" rx="10" fill="#1A1A1A"/>
+                <rect x="524" y="34" width="140" height="50" rx="10" fill="#fff" stroke="#1A1A1A" stroke-width="3"/>
+                <text x="594" y="65" text-anchor="middle" font-size="18" font-weight="700" fill="#1A1A1A">&lt;div.card&gt;</text>
+              </g>
+              <g>
+                <rect x="166" y="186" width="128" height="44" rx="10" fill="#1A1A1A"/>
+                <rect x="160" y="180" width="128" height="44" rx="10" fill="#fff" stroke="#1A1A1A" stroke-width="3"/>
+                <text x="224" y="207" text-anchor="middle" font-size="16" font-weight="700" fill="#1A1A1A">&lt;header&gt;</text>
+              </g>
+              <g>
+                <rect x="416" y="186" width="120" height="44" rx="10" fill="#1A1A1A"/>
+                <rect x="410" y="180" width="120" height="44" rx="10" fill="#fff" stroke="#1A1A1A" stroke-width="3"/>
+                <text x="470" y="207" text-anchor="middle" font-size="16" font-weight="700" fill="#1A1A1A">&lt;main&gt;</text>
+              </g>
+              <g>
+                <rect x="666" y="186" width="136" height="44" rx="10" fill="#1A1A1A"/>
+                <rect x="660" y="180" width="136" height="44" rx="10" fill="#fff" stroke="#1A1A1A" stroke-width="3"/>
+                <text x="728" y="207" text-anchor="middle" font-size="16" font-weight="700" fill="#1A1A1A">&lt;section&gt;</text>
+              </g>
+              <g>
+                <rect x="916" y="186" width="128" height="44" rx="10" fill="#1A1A1A"/>
+                <rect x="910" y="180" width="128" height="44" rx="10" fill="#fff" stroke="#1A1A1A" stroke-width="3"/>
+                <text x="974" y="207" text-anchor="middle" font-size="16" font-weight="700" fill="#1A1A1A">&lt;footer&gt;</text>
+              </g>
+              <g>
+                <rect x="86" y="326" width="108" height="42" rx="10" fill="#1A1A1A"/>
+                <rect x="80" y="320" width="108" height="42" rx="10" fill="#F7DF1E" stroke="#1A1A1A" stroke-width="3"/>
+                <text x="134" y="346" text-anchor="middle" font-size="15" font-weight="700" fill="#1A1A1A">&lt;img&gt;</text>
+              </g>
+              <g>
+                <rect x="266" y="326" width="100" height="42" rx="10" fill="#1A1A1A"/>
+                <rect x="260" y="320" width="100" height="42" rx="10" fill="#F7DF1E" stroke="#1A1A1A" stroke-width="3"/>
+                <text x="310" y="346" text-anchor="middle" font-size="15" font-weight="700" fill="#1A1A1A">&lt;h1&gt;</text>
+              </g>
+              <g>
+                <rect x="366" y="326" width="100" height="42" rx="10" fill="#1A1A1A"/>
+                <rect x="360" y="320" width="100" height="42" rx="10" fill="#F7DF1E" stroke="#1A1A1A" stroke-width="3"/>
+                <text x="410" y="346" text-anchor="middle" font-size="15" font-weight="700" fill="#1A1A1A">&lt;h2&gt;</text>
+              </g>
+              <g>
+                <rect x="506" y="326" width="96" height="42" rx="10" fill="#1A1A1A"/>
+                <rect x="500" y="320" width="96" height="42" rx="10" fill="#F7DF1E" stroke="#1A1A1A" stroke-width="3"/>
+                <text x="548" y="346" text-anchor="middle" font-size="15" font-weight="700" fill="#1A1A1A">&lt;p&gt;</text>
+              </g>
+              <g>
+                <rect x="646" y="326" width="100" height="42" rx="10" fill="#1A1A1A"/>
+                <rect x="640" y="320" width="100" height="42" rx="10" fill="#fff" stroke="#1A1A1A" stroke-width="3"/>
+                <text x="690" y="346" text-anchor="middle" font-size="15" font-weight="700" fill="#1A1A1A">&lt;h3&gt;</text>
+              </g>
+              <g>
+                <rect x="800" y="326" width="192" height="42" rx="10" fill="#1A1A1A"/>
+                <rect x="791" y="317" width="192" height="42" rx="10" fill="#F7DF1E" stroke="#1A1A1A" stroke-width="4"/>
+                <text x="887" y="343" text-anchor="middle" font-size="15" font-weight="700" fill="#1A1A1A">#btn-saludo 🔍</text>
+              </g>
+            </svg>
+            <div class="p-3 bg-indigo-50 border-2 border-black rounded-xl shadow-[3px_3px_0px_#000] text-center font-bold text-black text-sm mt-2 fragment fade-up">
+              💡 Este es literalmente el árbol de <strong>tu propia Bio Card</strong>. Cuando <code>querySelector</code> "busca", camina por este árbol hasta encontrar la rama que le pediste.
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. QUERYSELECTOR: BUSCAR TUS CAJAS -->
         <section data-background-color="#ffffff">
           <h2 class="text-4xl">querySelector: Encontrar Elementos</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
@@ -241,21 +340,23 @@
                 • Por Etiqueta: <code>h1</code>
               </p>
             </div>
-            
-            <div class="flex flex-col gap-3 text-left font-mono text-sm">
-              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
-                <span class="text-gray-500">// Buscamos el botón de saludo por su ID</span><br>
-                <span class="text-purple-400">const</span> boton = document.<span class="text-yellow-400">querySelector</span>(<span class="text-red-400">"#btn-saludo"</span>);
+
+            <div class="flex flex-col gap-3 text-left">
+              <div class="bg-gray-900 rounded-xl p-4 font-mono text-xs text-gray-400 border-2 border-black shadow-[3px_3px_0px_#000] fragment fade-left">
+                <div class="px-1 py-1.5">&lt;div class="card"&gt;</div>
+                <div class="bg-indigo-500/20 -mx-1 px-2 py-1.5 flex items-center justify-between text-indigo-200 font-bold rounded">
+                  <span>&lt;button id="btn-saludo"&gt;</span><span>🔍</span>
+                </div>
+                <div class="px-1 py-1.5">&lt;h1&gt;</div>
               </div>
-              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
-                <span class="text-gray-500">// Buscamos el h1 de la cabecera</span><br>
-                <span class="text-purple-400">const</span> titulo = document.<span class="text-yellow-400">querySelector</span>(<span class="text-red-400">"h1"</span>);
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md font-mono text-sm fragment fade-left">
+                <span class="text-purple-400">const</span> boton = document.<span class="text-yellow-400">querySelector</span>(<span class="text-red-400">"#btn-saludo"</span>);
               </div>
             </div>
           </div>
         </section>
 
-        <!-- 6. TEXTCONTENT: CAMBIAR EL CARTEL -->
+        <!-- 7. TEXTCONTENT: CAMBIAR EL CARTEL -->
         <section data-background-color="#ffffff">
           <h2 class="text-4xl">textContent: Cambiar el Contenido</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
@@ -284,7 +385,47 @@
           </div>
         </section>
 
-        <!-- 7. ADDEVENTLISTENER: EL SENSOR DE MOVIMIENTO -->
+        <!-- 8. ¿QUÉ ES UNA FUNCIÓN? -->
+        <section data-background-color="#ffffff">
+          <h2 class="text-4xl">¿Qué es una función?</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">Una receta en papel 📖</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3 fragment fade-up">
+                Una función es un paquete de instrucciones con nombre. Escribirla no la ejecuta — es como anotar una receta: hasta que alguien decide cocinarla, es solo papel.
+              </p>
+              <div class="h-px bg-gray-200 my-3"></div>
+              <h4 class="font-bold text-sm text-indigo-600 uppercase mb-1 fragment fade-up">¿Cómo se escribe hoy?</h4>
+              <p class="text-sm text-gray-500 leading-relaxed fragment fade-up">
+                <code>() =&gt; { ... }</code> es la forma corta (función flecha). Todo lo que va entre <code>{ }</code> se ejecuta solo cuando alguien "llama" a la función por su nombre. <em>(En frameworks como React verás <code>onClick={fn}</code> — misma idea, otra forma.)</em>
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-3 text-left">
+              <div class="grid grid-cols-2 divide-x-2 divide-black bg-white border-2 border-black rounded-xl shadow-[3px_3px_0px_#000] text-center overflow-hidden fragment fade-left">
+                <div class="p-4">
+                  <div class="text-3xl mb-1">📄</div>
+                  <p class="text-xs font-mono font-bold">Definida</p>
+                </div>
+                <div class="p-4 bg-amber-50">
+                  <div class="text-3xl mb-1">⚡</div>
+                  <p class="text-xs font-mono font-bold text-indigo-700">Ejecutada</p>
+                </div>
+              </div>
+              <p class="text-center text-xs font-mono text-gray-500 fragment fade-up">👉 Nada pasa hasta que alguien la <strong>llama</strong> por su nombre</p>
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md font-mono text-sm fragment fade-left">
+                <span class="text-gray-500">// 1. Definimos la receta (no se ejecuta aún)</span><br>
+                <span class="text-purple-400">const</span> saludar = () =&gt; {<br>
+                &nbsp;&nbsp;<span class="text-yellow-400">alert</span>(<span class="text-red-400">"👋 ¡Hola!"</span>);<br>
+                };<br><br>
+                <span class="text-gray-500">// 2. La llamamos: recién ahí se "cocina"</span><br>
+                <span class="text-yellow-400">saludar</span>();
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. ADDEVENTLISTENER: EL SENSOR DE MOVIMIENTO -->
         <section data-background-color="#ffffff">
           <h2 class="text-4xl">addEventListener: Escuchar Acciones</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
@@ -296,10 +437,10 @@
               <div class="h-px bg-gray-200 my-3"></div>
               <h4 class="font-bold text-sm text-indigo-600 uppercase mb-1 fragment fade-up">La analogía:</h4>
               <p class="text-sm text-gray-500 leading-relaxed fragment fade-up">
-                Como un sensor de luz en el pasillo: detecta que pasas (el evento "click") y prende el foco (ejecuta la función).
+                Como un sensor de luz en el pasillo: detecta que pasas (el evento "click") y prende el foco (ejecuta la función que ya conoces).
               </p>
             </div>
-            
+
             <div class="flex flex-col gap-3 text-left font-mono text-sm">
               <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
                 boton.<span class="text-yellow-400">addEventListener</span>(<span class="text-red-400">"click"</span>, () => {<br>
@@ -313,7 +454,7 @@
           </div>
         </section>
 
-        <!-- 8. CLASSLIST.TOGGLE: EL INTERRUPTOR DE LUZ -->
+        <!-- 10. CLASSLIST.TOGGLE: EL INTERRUPTOR DE LUZ -->
         <section data-background-color="#ffffff">
           <h2 class="text-4xl">classList.toggle: El Interruptor</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
@@ -329,24 +470,32 @@
               </p>
             </div>
             
-            <div class="flex flex-col gap-3 text-left font-mono text-sm">
-              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
+            <div class="flex flex-col gap-3 text-left">
+              <div class="grid grid-cols-2 divide-x-2 divide-black bg-white border-2 border-black rounded-xl shadow-[3px_3px_0px_#000] text-center overflow-hidden fragment fade-left">
+                <div class="p-4">
+                  <div class="text-3xl mb-1">☀️</div>
+                  <p class="text-xs font-mono font-bold">.light-mode</p>
+                </div>
+                <div class="p-4 bg-gray-900">
+                  <div class="text-3xl mb-1">🌙</div>
+                  <p class="text-xs font-mono font-bold text-indigo-300">.dark-mode</p>
+                </div>
+              </div>
+              <p class="text-center text-xs font-mono text-gray-500 fragment fade-up">🔁 classList.toggle() alterna entre ambas</p>
+              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md font-mono text-sm fragment fade-left">
                 <span class="text-gray-500">// Al hacer click, prende/apaga dark-mode</span><br>
                 btnTheme.<span class="text-yellow-400">addEventListener</span>(<span class="text-red-400">"click"</span>, () => {<br>
                 &nbsp;&nbsp;document.<span class="text-blue-400">body</span>.<span class="text-blue-400">classList</span>.<span class="text-yellow-400">toggle</span>(<span class="text-red-400">"dark-mode"</span>);<br>
                 });
               </div>
-              <div class="p-3 bg-indigo-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold text-black fragment fade-up">
-                💡 JS agrega/quita la clase, y CSS se encarga de re-pintar todo con la nueva paleta.
-              </div>
-              <div class="p-3 bg-white border-2 border-dashed border-gray-400 rounded text-center text-gray-600 fragment fade-up">
-                🔄 ¿Tu tarjeta ya es oscura? Entonces la clase se llama <code>light-mode</code> y la lógica se invierte. Lo verás en los demos Cyber Neon y Minimal Glass.
+              <div class="p-2.5 bg-white border-2 border-dashed border-gray-400 rounded text-center text-gray-600 text-xs fragment fade-up">
+                🔄 ¿Tu tarjeta ya es oscura? La clase se llama <code>light-mode</code> y la lógica se invierte (demos Cyber Neon / Minimal Glass).
               </div>
             </div>
           </div>
         </section>
 
-        <!-- 9. PROMPT: PREGUNTAR AL USUARIO -->
+        <!-- 11. PROMPT: PREGUNTAR AL USUARIO -->
         <section data-background-color="#ffffff">
           <h2 class="text-4xl">prompt(): Preguntar al Usuario</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
@@ -376,7 +525,7 @@
           </div>
         </section>
 
-        <!-- 10. IF/ELSE: TOMAR DECISIONES -->
+        <!-- 12. IF/ELSE: TOMAR DECISIONES -->
         <section data-background-color="#ffffff">
           <h2 class="text-4xl">if / else: Tomar Decisiones</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
@@ -392,24 +541,63 @@
               </p>
             </div>
 
-            <div class="flex flex-col gap-3 text-left font-mono text-sm">
-              <div class="bg-gray-900 p-4 rounded-xl text-green-400 shadow-md fragment fade-left">
-                <span class="text-purple-400">if</span> (document.<span class="text-blue-400">body</span>.<span class="text-blue-400">classList</span>.<span class="text-yellow-400">contains</span>(<span class="text-red-400">"dark-mode"</span>)) {<br>
-                &nbsp;&nbsp;<span class="text-gray-500">// ya está oscuro → mostramos el sol para volver</span><br>
-                &nbsp;&nbsp;btnTheme.<span class="text-blue-400">textContent</span> = <span class="text-red-400">"☀️"</span>;<br>
-                } <span class="text-purple-400">else</span> {<br>
-                &nbsp;&nbsp;<span class="text-gray-500">// está claro → mostramos la luna para oscurecer</span><br>
-                &nbsp;&nbsp;btnTheme.<span class="text-blue-400">textContent</span> = <span class="text-red-400">"🌙"</span>;<br>
-                }
+            <div class="flex flex-col items-center gap-0 fragment fade-left w-full">
+              <div class="px-4 py-2 bg-white border-2 border-black rounded-xl shadow-[3px_3px_0px_#000] font-mono text-xs font-bold text-center w-full">
+                ¿classList.contains("dark-mode")?
               </div>
-              <div class="p-3 bg-indigo-50 border-2 border-black rounded shadow-[3px_3px_0px_#000] text-center font-bold text-black fragment fade-up">
-                💡 "Si (condición) { ... } si no { ... }" — la misma lógica que vas a usar en casi cualquier programa.
+              <div class="w-0.5 h-4 bg-black"></div>
+              <div class="grid grid-cols-2 divide-x-2 divide-black bg-white border-2 border-black rounded-xl shadow-[3px_3px_0px_#000] text-center w-full overflow-hidden mb-2">
+                <div class="p-3 bg-indigo-50">
+                  <p class="text-[10px] font-mono text-gray-500 mb-1">if (true)</p>
+                  <p class="text-2xl">☀️</p>
+                </div>
+                <div class="p-3 bg-gray-100">
+                  <p class="text-[10px] font-mono text-gray-500 mb-1">else</p>
+                  <p class="text-2xl">🌙</p>
+                </div>
+              </div>
+              <div class="bg-gray-900 p-3 rounded-xl text-green-400 shadow-md font-mono text-xs w-full text-center">
+                <span class="text-purple-400">if</span> (...<span class="text-yellow-400">contains</span>(<span class="text-red-400">"dark-mode"</span>)) { ☀️ } <span class="text-purple-400">else</span> { 🌙 }
               </div>
             </div>
           </div>
         </section>
 
-        <!-- 11. PRÁCTICA EN CODEPEN -->
+        <!-- 13. ANTES DE PROGRAMAR: HTML Y CSS -->
+        <section data-background-color="#ffffff">
+          <h2 class="text-4xl">Antes de Programar: HTML y CSS</h2>
+          <div class="grid grid-cols-2 gap-8 items-center mt-6">
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">1. Agrega tus botones 🔘</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3 fragment fade-up">
+                Tu Bio Card de la clase 3 todavía no tiene botones reales. Pega esto justo antes de tu <code>&lt;footer&gt;</code>:
+              </p>
+              <div class="bg-gray-900 p-3 rounded-xl font-mono text-[11px] text-green-400 shadow-md mb-3 fragment fade-left">
+                &lt;<span class="text-blue-400">div</span> <span class="text-yellow-400">class</span>=<span class="text-red-400">"actions"</span>&gt;<br>
+                &nbsp;&nbsp;&lt;<span class="text-blue-400">button</span> <span class="text-yellow-400">id</span>=<span class="text-red-400">"btn-saludo"</span>&gt;👋 ¡Saludar!&lt;/<span class="text-blue-400">button</span>&gt;<br>
+                &nbsp;&nbsp;&lt;<span class="text-blue-400">button</span> <span class="text-yellow-400">id</span>=<span class="text-red-400">"btn-theme"</span>&gt;🌙&lt;/<span class="text-blue-400">button</span>&gt;<br>
+                &lt;/<span class="text-blue-400">div</span>&gt;<br>
+                &lt;<span class="text-blue-400">p</span> <span class="text-yellow-400">id</span>=<span class="text-red-400">"saludo"</span>&gt;&lt;/<span class="text-blue-400">p</span>&gt;
+              </div>
+            </div>
+
+            <div class="bw-card text-left">
+              <h3 class="text-lg font-bold mb-2">2. Prepara el modo oscuro 🌙</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3 fragment fade-up">
+                El JS de hoy va a agregar la clase <code>dark-mode</code> al <code>body</code> — pero el estilo de esa clase lo escribes tú en tu CSS:
+              </p>
+              <div class="bg-gray-900 p-3 rounded-xl font-mono text-[11px] text-green-400 shadow-md fragment fade-left">
+                <span class="text-purple-400">body</span><span class="text-yellow-400">.dark-mode</span> {<br>
+                &nbsp;&nbsp;background: <span class="text-blue-400">#121212</span>;<br>
+                &nbsp;&nbsp;color: <span class="text-blue-400">#f6f5f0</span>;<br>
+                }
+              </div>
+              <p class="text-xs text-gray-500 mt-2 fragment fade-up">Repite el patrón para <code>.card</code>, los textos, los botones y el footer.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 14. PRÁCTICA EN CODEPEN -->
         <section data-background-color="#121214">
           <h2 class="text-white text-3xl font-black mb-4">Práctica en Vivo: Dando Vida</h2>
           <div class="grid grid-cols-1 gap-6 max-w-4xl mx-auto text-left">
@@ -440,12 +628,12 @@
             </div>
             
             <div class="p-4 bg-gray-800 border border-gray-700 rounded-xl text-sm text-gray-300 fragment fade-up">
-              ⚡ <strong>Instrucción en CodePen:</strong> agrega los <code>id="btn-saludo"</code> y <code>id="btn-theme"</code> a tus botones, suma un párrafo vacío con <code>id="saludo"</code>, escribe el CSS de <code>.dark-mode</code> y copia este JS en el panel correspondiente.
+              ⚡ <strong>Instrucción en CodePen:</strong> con tu HTML y CSS ya listos (diapositiva anterior), copia este JS en el panel correspondiente para darle vida a tu tarjeta.
             </div>
           </div>
         </section>
 
-        <!-- 12. PUENTE A LA CLASE 6: LOS 3 PANELES SON 3 ARCHIVOS -->
+        <!-- 15. PUENTE A LA CLASE 6: LOS 3 PANELES SON 3 ARCHIVOS -->
         <section data-background-color="#ffffff">
           <h2 class="text-4xl">CodePen te está ocultando algo 👀</h2>
           <div class="grid grid-cols-2 gap-8 items-center mt-6">
@@ -487,7 +675,7 @@
           </div>
         </section>
 
-        <!-- 13. DEMOS Y VARIANTES DE REFERENCIA -->
+        <!-- 16. DEMOS Y VARIANTES DE REFERENCIA -->
         <section data-background-color="#ffffff">
           <h2 class="text-4xl">Demos y Variantes de Referencia</h2>
           <p class="text-base text-gray-500 font-mono mb-4">Haz clic en cualquier demo para ver el JS resuelto</p>
@@ -513,7 +701,7 @@
           </div>
         </section>
 
-        <!-- 14. IDEAS EXTRA PARA TU BIO CARD -->
+        <!-- 17. IDEAS EXTRA PARA TU BIO CARD -->
         <section data-background-color="#ffffff">
           <h2 class="text-4xl">💡 Ideas Extra para tu Bio Card</h2>
           <p class="text-base text-gray-500 font-mono mb-4">Pequeños desafíos de JS para que experimentes por tu cuenta</p>
@@ -541,27 +729,40 @@
           </div>
         </section>
 
-        <!-- 15. ¡MANOS AL CÓDIGO! (DESAFÍO FINAL - SIN ANIMACIÓN/FRAGMENTS) -->
+        <!-- 18. ¡MANOS AL CÓDIGO! (DESAFÍO FINAL - SIN ANIMACIÓN/FRAGMENTS) -->
         <section data-background-color="#ffffff">
-          <div class="flex flex-col items-center justify-center border-4 border-black p-8 relative max-w-2xl mx-auto bg-yellow-50 shadow-[8px_8px_0px_rgba(0,0,0,1)]">
-            <h2 class="text-4xl font-black text-black uppercase tracking-tight mb-4">
-              ⚔️ DESAFÍO FINAL
-            </h2>
-            <p class="text-sm text-gray-700 leading-relaxed mb-6 font-semibold">
-              ¡Llegó la hora de darle energía y sensores de movimiento a tu propia tarjeta en CodePen!
-            </p>
-            
-            <ol class="text-sm text-left text-gray-800 space-y-3 font-sans list-decimal pl-5 mb-6">
-              <li>Coloca en tu HTML los dos botones con los ids <strong>btn-saludo</strong> y <strong>btn-theme</strong>, más un párrafo vacío con el id <strong>saludo</strong>.</li>
-              <li>Crea las reglas de estilos para la clase <strong>.dark-mode</strong> en tu hoja de estilos CSS.</li>
-              <li>Escribe la lógica en JS: pide el nombre con <code>prompt</code>, escríbelo en la tarjeta con <code>textContent</code>, alterna el tema con <code>classList.toggle</code> y usa <code>if / else</code> para cambiar el ícono del botón (☀️ / 🌙).</li>
-              <li><strong>¡Compártelo!:</strong> usa la opción Share de CodePen para enviarle el link del resultado a tus amigos.</li>
-            </ol>
+          <div class="grid grid-cols-[320px_1fr] items-stretch border-4 border-black relative w-full max-w-4xl mx-auto bg-white shadow-[8px_8px_0px_#000] overflow-hidden">
 
-            <div class="flex items-center justify-center gap-4 py-2 px-6 rounded-full border-2 border-black bg-white shadow-[4px_4px_0px_#000]">
-              <img src="https://avatars.githubusercontent.com/u/188985435?v=4" class="w-8 h-8 rounded-full border border-black" />
-              <span class="font-mono text-sm font-bold text-black">imyisusdev</span>
+            <div class="relative bg-[#F7DF1E] flex flex-col justify-center p-8 text-left">
+              <span class="text-5xl mb-3">⚔️</span>
+              <h2 class="text-4xl font-black text-black uppercase tracking-tight mb-3">
+                Desafío Final
+              </h2>
+              <p class="text-sm text-black/80 leading-relaxed font-semibold">
+                Dale energía y sensores de movimiento a tu propia tarjeta en CodePen.
+              </p>
             </div>
+
+            <div class="text-left p-8 flex flex-col justify-center gap-3 bg-white">
+              <div class="flex items-start gap-3 p-3 border-2 border-black rounded-xl shadow-[3px_3px_0px_#000]">
+                <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 bg-black text-white font-mono text-xs font-bold rounded-full">1</span>
+                <p class="text-sm text-gray-800">Botones con <code>btn-saludo</code> / <code>btn-theme</code> + párrafo <code>saludo</code>.</p>
+              </div>
+              <div class="flex items-start gap-3 p-3 border-2 border-black rounded-xl shadow-[3px_3px_0px_#000]">
+                <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 bg-black text-white font-mono text-xs font-bold rounded-full">2</span>
+                <p class="text-sm text-gray-800">Reglas CSS de <code>.dark-mode</code>.</p>
+              </div>
+              <div class="flex items-start gap-3 p-3 border-2 border-black rounded-xl shadow-[3px_3px_0px_#000]">
+                <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 bg-black text-white font-mono text-xs font-bold rounded-full">3</span>
+                <p class="text-sm text-gray-800"><code>prompt</code> + <code>textContent</code> + <code>classList.toggle</code> + <code>if/else</code>.</p>
+              </div>
+              <div class="flex items-start gap-3 p-3 bg-[#FEF9E7] border-2 border-black rounded-xl shadow-[3px_3px_0px_#000]">
+                <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 bg-black text-white font-mono text-xs font-bold rounded-full">4</span>
+                <p class="text-sm text-gray-800 font-bold">¡Compártelo! Usa Share de CodePen.</p>
+              </div>
+            </div>
+
+            <div class="absolute bottom-0 right-0 w-8 h-8 bg-black"></div>
           </div>
         </section>
 
