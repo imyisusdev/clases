@@ -310,46 +310,54 @@
         </article>
 
         <!-- Clase 4 -->
-        <article class="neo-card p-5 flex flex-col justify-between relative overflow-hidden group opacity-85 hover:opacity-100">
-          <div class="absolute top-0 right-0 w-12 h-12 bg-gray-400 text-white flex items-center justify-center font-bold text-sm transform translate-x-3 -translate-y-3 rotate-45 transition-colors z-10">
+        <article class="neo-card p-5 flex flex-col justify-between relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-12 h-12 bg-black text-white flex items-center justify-center font-bold text-sm transform translate-x-3 -translate-y-3 rotate-45 group-hover:bg-amber-600 transition-colors z-10">
             4
           </div>
           <div>
-            <!-- Placeholder Cover -->
-            <div class="w-full aspect-video rounded-xl bg-slate-100 border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-gray-400 mb-4 font-mono text-xs">
-              <i class="fas fa-video text-2xl mb-1 text-gray-300"></i>
-              <span>Grabación en Vivo Próximamente</span>
-            </div>
+            <!-- Miniatura Cover con Hover Play -->
+            <a
+              href="https://youtu.be/nrGZPOGFdXk"
+              target="_blank"
+              class="block relative rounded-xl overflow-hidden mb-4 border-2 border-black shadow-[3px_3px_0px_#000] group/thumb"
+            >
+              <img
+                src="./assets/thumbnails/clase-4.png"
+                alt="Clase 4: JS y la Vida de tu Tarjeta"
+                class="w-full aspect-video object-cover transition-transform duration-300 group-hover/thumb:scale-105"
+              />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                <span class="bg-red-600 text-white font-mono font-bold text-xs px-3.5 py-2 rounded-xl border-2 border-white shadow-xl flex items-center gap-2 transform translate-y-2 group-hover/thumb:translate-y-0 transition-transform">
+                  <i class="fab fa-youtube text-base"></i> Ver Clase en YouTube
+                </span>
+              </div>
+            </a>
 
             <div class="flex items-center gap-2 mb-3">
-              <span class="bg-gray-100 text-gray-600 text-xs font-bold px-2.5 py-0.5 rounded-full border border-gray-300">PRÓXIMAMENTE</span>
-              <span class="font-mono text-xs text-gray-500">Clase 4</span>
+              <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-0.5 rounded-full border border-emerald-400">DISPONIBLE</span>
+              <span class="font-mono text-xs text-gray-500">Clase 4 · 2h 09m</span>
             </div>
-            <h2 class="text-xl font-bold text-gray-800 mb-2 leading-tight">
+            <h2 class="text-xl font-black mb-2 leading-tight">
               JS y la Vida de tu Tarjeta
             </h2>
             <p class="text-gray-600 mb-5 text-xs sm:text-sm leading-relaxed">
               Instalación eléctrica y sensores de movimiento. Entiende variables, funciones y eventos del DOM. Crea botones interactivos, saludos dinámicos y modo oscuro/claro.
             </p>
           </div>
-          <div
-            class="mt-auto pt-4 border-t-2 border-dashed border-gray-200 flex flex-col gap-3"
-          >
-            <div class="flex gap-3">
-              <a
-                href="./clase-4/"
-                class="flex-1 bg-black text-white hover:bg-white hover:text-black border-2 border-black py-2 text-center rounded font-bold transition-all shadow-[3px_3px_0px_rgba(0,0,0,0.25)] text-sm flex items-center justify-center gap-1.5"
-              >
-                <i class="fas fa-desktop"></i> Diapositivas
-              </a>
-              <a
-                href="https://youtube.com/@imyisusdev"
-                target="_blank"
-                class="flex-1 bg-red-600 text-white hover:bg-white hover:text-red-600 border-2 border-red-600 py-2 text-center rounded font-bold transition-all shadow-[3px_3px_0px_rgba(220,38,38,0.25)] text-sm flex items-center justify-center gap-1.5"
-              >
-                <i class="fab fa-youtube"></i> Grabación
-              </a>
-            </div>
+          <div class="mt-auto pt-4 border-t-2 border-dashed border-gray-200 flex gap-2">
+            <a
+              href="./clase-4/"
+              class="flex-1 bg-black text-white hover:bg-white hover:text-black border-2 border-black py-2 text-center rounded font-bold transition-all shadow-[2px_2px_0px_rgba(0,0,0,0.25)] text-xs sm:text-sm flex items-center justify-center gap-1.5"
+            >
+              <i class="fas fa-desktop"></i> Diapositivas
+            </a>
+            <a
+              href="https://youtu.be/nrGZPOGFdXk"
+              target="_blank"
+              class="flex-1 bg-red-600 text-white hover:bg-white hover:text-red-600 border-2 border-red-600 py-2 text-center rounded font-bold transition-all shadow-[2px_2px_0px_rgba(220,38,38,0.25)] text-xs sm:text-sm flex items-center justify-center gap-1.5"
+            >
+              <i class="fab fa-youtube"></i> Grabación
+            </a>
           </div>
         </article>
 
